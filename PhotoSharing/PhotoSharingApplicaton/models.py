@@ -49,6 +49,7 @@ class Pictures(models.Model):
     description = models.CharField(max_length=100)
     updated_at = models.DateField()
     created_at = models.DateField()
+    likes_count = models.IntegerField(max_length=9, default=0)
 
     class Meta:
         db_table = "pictures"
