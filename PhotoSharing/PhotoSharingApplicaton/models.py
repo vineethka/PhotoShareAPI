@@ -17,7 +17,7 @@ class Users(models.Model):
 
 
 class UserFriends(models.Model):
-    user_id = models.ForeignKey(Users)
+    user = models.ForeignKey(Users)
     friend_id = models.CharField(max_length=30)
     updated_at = models.DateField()
     created_at = models.DateField()
@@ -37,7 +37,7 @@ class Categories(models.Model):
 
 
 class Pictures(models.Model):
-    category_id = models.ForeignKey(Categories)
+    category = models.ForeignKey(Categories)
     image = models.ImageField(upload_to='pics')
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
@@ -50,8 +50,8 @@ class Pictures(models.Model):
 
 
 class PictureCategories(models.Model):
-    category_id = models.ForeignKey(Categories)
-    picture_id = models.ForeignKey(Pictures)
+    category = models.ForeignKey(Categories)
+    picture = models.ForeignKey(Pictures)
     updated_at = models.DateField()
     created_at = models.DateField()
 
@@ -60,8 +60,8 @@ class PictureCategories(models.Model):
 
 
 class PictureLikes(models.Model):
-    picture_id = models.ForeignKey(Pictures)
-    user_id = models.ForeignKey(Users)
+    picture = models.ForeignKey(Pictures)
+    user = models.ForeignKey(Users)
     updated_at = models.DateField()
     created_at = models.DateField()
 
@@ -70,8 +70,8 @@ class PictureLikes(models.Model):
 
 
 class PictureComments(models.Model):
-    picture_id = models.ForeignKey(Pictures)
-    user_id = models.ForeignKey(Users)
+    picture = models.ForeignKey(Pictures)
+    user = models.ForeignKey(Users)
     commented_text = models.CharField(max_length=100)
     updated_at = models.DateField()
     created_at = models.DateField()
@@ -81,7 +81,7 @@ class PictureComments(models.Model):
 
 
 class UserActivation(models.Model):
-    user_id = models.ForeignKey(Users)
+    user = models.ForeignKey(Users)
     authentication_key = models.CharField(max_length=100, blank=False)
 
     class Meta:
