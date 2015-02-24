@@ -1,5 +1,7 @@
 from django.contrib.auth import  authenticate
 from django.http import HttpResponse
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
 from rest_framework.renderers import JSONRenderer
 from django.contrib.auth import login as auth_login
@@ -8,6 +10,8 @@ from django.contrib.auth import login as auth_login
 from PhotoSharingApplication import authentication_helper
 from PhotoSharingApplication.serializers import UserSerializer
 
+SUCESS_STRING = "Success"
+FAILED_STRING = "Failed"
 
 class JSONResponse(HttpResponse):
     """
@@ -20,6 +24,7 @@ class JSONResponse(HttpResponse):
 
 
 @api_view(['POST'])
+@method_decorator(csrf_exempt)
 def login(request):
     if request.method == 'POST':
         user = authentication_helper.login_authenticate(request)
@@ -41,7 +46,13 @@ def login(request):
 
 
 def get_response_data(error_message, response_data):
-    content = {'data': response_data, 'errorMessage': error_message}
+
+    if error_message == "":
+        response_code = SUCESS_STRING
+    else:
+        response_code = FAILED_STRING
+
+    content = {'responseCode': response_code, 'data': response_data, 'errorMessage': error_message}
     return content
 
 
