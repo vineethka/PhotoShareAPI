@@ -1,7 +1,8 @@
-from django.contrib.auth import login
+from django.contrib.auth import  authenticate
 from django.http import HttpResponse
 from rest_framework.decorators import api_view
 from rest_framework.renderers import JSONRenderer
+from django.contrib.auth import login as auth_login
 
 # Create your views here.
 from PhotoSharingApplication import authentication_helper
@@ -25,8 +26,9 @@ def login(request):
         if user is not None:
             if user.is_active:
                 # return success response
-                login(request, user)
-                serializer = UserSerializer(user)
+                authenticated_user = authenticate(username=user.username, password=request.data['password'])
+                auth_login(request, authenticated_user)
+                serializer = UserSerializer(authenticated_user)
                 return JSONResponse(get_response_data("", serializer.data))
             else:
                 return JSONResponse(get_response_data("Invalid user name and password", ""))
