@@ -56,3 +56,5 @@ docs/_build/
 target/
 
 .DS_Store
+
+PhotoSharing/uploaded_images/

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from PhotoSharingApplicaton.models import User, Categories
+from PhotoSharingApplication.models import Categories
 
 
 # Register your models here.
