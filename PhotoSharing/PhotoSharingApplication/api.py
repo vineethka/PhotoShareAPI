@@ -54,7 +54,7 @@ def register(request):
                                                    request.data['password'], request.data['firstName'],
                                                    request.data['lastName'])
             user.save()
-            return JSONResponse(get_response_data("Success", ""))
+            return JSONResponse(get_response_data("", "Success"))
 
     else:
         return JSONResponse(get_response_data("bad request", ""))
