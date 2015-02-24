@@ -87,6 +87,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# TODO: need to verify these values before release
+MEDIA_URL = '/media/'
+MEDIA_ROOT = ''
+STATIC_ROOT = ''
+
+
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR,  'templates'),
 )
