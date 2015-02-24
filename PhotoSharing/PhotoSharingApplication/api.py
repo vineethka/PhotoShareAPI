@@ -24,7 +24,6 @@ class JSONResponse(HttpResponse):
         super(JSONResponse, self).__init__(content, **kwargs)
 
 @api_view(['POST'])
-@csrf_exempt
 def login(request):
     if request.method == 'POST':
         user = authentication_helper.login_authenticate(request)
@@ -45,7 +44,6 @@ def login(request):
         return JSONResponse(get_response_data("bad request", ""))
 
 
-@csrf_exempt
 @api_view(['POST'])
 def register(request):
     if request.method == 'POST':
