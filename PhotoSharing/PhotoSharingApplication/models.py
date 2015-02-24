@@ -1,8 +1,9 @@
 from django.contrib.auth.models import User
 from django.db import models
+from PhotoSharingApplication.managers import UserProfileManager
 
 
-class Users(models.Model):
+class UserProfile(models.Model):
     user = models.OneToOneField(User)
     fb_user_id = models.CharField(max_length=100, blank=True)
     fb_access_token = models.CharField(max_length=100, blank=True)
@@ -11,6 +12,14 @@ class Users(models.Model):
     gp_user_id = models.CharField(max_length=100, blank=True)
     gp_access_token = models.CharField(max_length=100, blank=True)
     profile_image = models.ImageField(upload_to='uploaded_images/profile_pics')
+    objects = UserProfileManager()
+
+    def get_full_name(self):
+        return ' '.join([self.first_name, self.last_name])
+
+    def get_short_name(self):
+        return self.first_name
+
     def profile_image_link(self):
         return '<a href="/media/{0}"><img src="/media/{0}"></a>'.format(self.profile_image)
     profile_image_link.allow_tags = True
@@ -20,7 +29,7 @@ class Users(models.Model):
 
 
 class UserFriends(models.Model):
-    user = models.ForeignKey(Users)
+    user = models.ForeignKey(UserProfile)
     friend_id = models.CharField(max_length=30)
     updated_at = models.DateTimeField()
     created_at = models.DateTimeField()
@@ -74,7 +83,7 @@ class PictureCategories(models.Model):
 
 class PictureLikes(models.Model):
     picture = models.ForeignKey(Pictures)
-    user = models.ForeignKey(Users)
+    user = models.ForeignKey(UserProfile)
     updated_at = models.DateTimeField()
     created_at = models.DateTimeField()
 
@@ -84,7 +93,7 @@ class PictureLikes(models.Model):
 
 class PictureComments(models.Model):
     picture = models.ForeignKey(Pictures)
-    user = models.ForeignKey(Users)
+    user = models.ForeignKey(UserProfile)
     commented_text = models.CharField(max_length=100)
     updated_at = models.DateTimeField()
     created_at = models.DateTimeField()
@@ -94,7 +103,7 @@ class PictureComments(models.Model):
 
 
 class UserActivation(models.Model):
-    user = models.ForeignKey(Users)
+    user = models.ForeignKey(UserProfile)
     authentication_key = models.CharField(max_length=100, blank=False)
 
     class Meta:

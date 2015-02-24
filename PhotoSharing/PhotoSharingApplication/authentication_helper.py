@@ -26,3 +26,14 @@ def authenticate(request):
     else:
         # the authentication system was unable to verify the username and password
         return None
+
+
+def is_user_already_exists(email):
+    try:
+        user = User.objects.get(email=email)
+        if user is not None:
+            return True
+        else:
+            return False
+    except User.DoesNotExist:
+        return False
