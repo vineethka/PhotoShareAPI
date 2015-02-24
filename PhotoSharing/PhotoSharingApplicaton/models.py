@@ -1,22 +1,16 @@
+from django.contrib.auth.models import User
 from django.db import models
-
-# Create your models here.
 
 
 class Users(models.Model):
-    user_id = models.CharField(max_length=30)
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
-    email = models.EmailField()
+    user = models.OneToOneField(User)
     fb_user_id = models.CharField(max_length=100, blank=True)
     fb_access_token = models.CharField(max_length=100, blank=True)
     tw_user_id = models.CharField(max_length=100, blank=True)
     tw_access_token = models.CharField(max_length=100, blank=True)
     gp_user_id = models.CharField(max_length=100, blank=True)
     gp_access_token = models.CharField(max_length=100, blank=True)
-    updated_at = models.DateField()
-    profile_image = models.CharField(max_length=500)
-    created_at = models.DateField()
+    profile_image = models.ImageField(upload_to='profile_pics')
 
     class Meta:
         db_table = "users"
@@ -34,7 +28,7 @@ class UserFriends(models.Model):
 
 class Categories(models.Model):
     name = models.CharField(max_length=50)
-    image = models.CharField(max_length=500)
+    image = models.ImageField(upload_to='categories_pics')
     updated_at = models.DateField()
     created_at = models.DateField()
 
@@ -44,7 +38,7 @@ class Categories(models.Model):
 
 class Pictures(models.Model):
     category_id = models.ForeignKey(Categories)
-    image = models.CharField(max_length=500)
+    image = models.ImageField(upload_to='pics')
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
     updated_at = models.DateField()
@@ -86,6 +80,12 @@ class PictureComments(models.Model):
         db_table = "picture_comments"
 
 
+class UserActivation(models.Model):
+    user_id = models.ForeignKey(Users)
+    authentication_key = models.CharField(max_length=100, blank=False)
+
+    class Meta:
+        db_table = "user_activation"
 
 
 
