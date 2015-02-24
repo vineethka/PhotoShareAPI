@@ -19,21 +19,25 @@ class Users(models.Model):
 class UserFriends(models.Model):
     user = models.ForeignKey(Users)
     friend_id = models.CharField(max_length=30)
-    updated_at = models.DateField()
-    created_at = models.DateField()
+    updated_at = models.DateTimeField()
+    created_at = models.DateTimeField()
 
     class Meta:
         db_table = "user_friends"
+        verbose_name = 'User_Friend'
+        verbose_name_plural = 'user_friends'
 
 
 class Categories(models.Model):
     name = models.CharField(max_length=50)
     image = models.ImageField(upload_to='categories_pics')
-    updated_at = models.DateField()
-    created_at = models.DateField()
+    updated_at = models.DateTimeField()
+    created_at = models.DateTimeField()
 
     class Meta:
         db_table = "categories"
+        verbose_name = 'Category'
+        verbose_name_plural = 'Categories'
 
 
 class Pictures(models.Model):
@@ -41,8 +45,8 @@ class Pictures(models.Model):
     image = models.ImageField(upload_to='pics')
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
-    updated_at = models.DateField()
-    created_at = models.DateField()
+    updated_at = models.DateTimeField()
+    created_at = models.DateTimeField()
     likes_count = models.IntegerField(max_length=9, default=0)
 
     class Meta:
@@ -52,8 +56,8 @@ class Pictures(models.Model):
 class PictureCategories(models.Model):
     category = models.ForeignKey(Categories)
     picture = models.ForeignKey(Pictures)
-    updated_at = models.DateField()
-    created_at = models.DateField()
+    updated_at = models.DateTimeField()
+    created_at = models.DateTimeField()
 
     class Meta:
         db_table = "picture_categories"
@@ -62,8 +66,8 @@ class PictureCategories(models.Model):
 class PictureLikes(models.Model):
     picture = models.ForeignKey(Pictures)
     user = models.ForeignKey(Users)
-    updated_at = models.DateField()
-    created_at = models.DateField()
+    updated_at = models.DateTimeField()
+    created_at = models.DateTimeField()
 
     class Meta:
         db_table = "picture_likes"
@@ -73,8 +77,8 @@ class PictureComments(models.Model):
     picture = models.ForeignKey(Pictures)
     user = models.ForeignKey(Users)
     commented_text = models.CharField(max_length=100)
-    updated_at = models.DateField()
-    created_at = models.DateField()
+    updated_at = models.DateTimeField()
+    created_at = models.DateTimeField()
 
     class Meta:
         db_table = "picture_comments"
