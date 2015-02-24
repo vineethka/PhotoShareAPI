@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from PhotoSharingApplicaton.models import Users
+from PhotoSharingApplication.models import Users
 
 
 class UserSerializer(serializers.ModelSerializer):
