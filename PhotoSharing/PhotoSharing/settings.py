@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'PhotoSharingApplicaton',
+    'rest_framework',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -59,7 +60,7 @@ WSGI_APPLICATION = 'PhotoSharing.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'PhotoSharing',
+        'NAME': 'photoshare',
         'USER': 'root',
         'PASSWORD': 'qburst',
         'HOST': '127.0.0.1',
