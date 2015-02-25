@@ -10,7 +10,7 @@ class CategoryAdmin(admin.ModelAdmin):
     ]
     search_fields = ['name']
     list_filter = ['created_at']
-    list_display = ('name', 'image_src')
+    list_display = ('name', 'image_src', 'created_at', 'updated_at')
     change_list_template = "admin/change_list_filter_sidebar.html"
     change_list_filter_template = "admin/filter_listing.html"
 
@@ -21,9 +21,9 @@ class PictureAdmin(admin.ModelAdmin):
         ('Belongs to',       {'fields': ['user', 'category']}),
 
     ]
-    search_fields = ['name']
+    search_fields = ['name', 'category__name', 'user__user__username']
     list_filter = ['created_at', 'category__name', 'user__user__username']
-    list_display = ('name', 'thumb_image_src', 'category', 'user')
+    list_display = ('name', 'thumb_image_src', 'category', 'user', 'created_at', 'updated_at')
     # change_list_template = "admin/change_list_filter_sidebar.html"
     # change_list_filter_template = "admin/filter_listing.html"
 
