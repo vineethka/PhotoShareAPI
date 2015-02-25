@@ -61,6 +61,8 @@ def facebook_login(request):
                                                                      request.data["email"], request.data["firstName"],
                                                                      request.data['lastName'])
             facebook_user.save()
+            auth_user = authenticate(username=facebook_user.user.username)
+            auth_login(request, auth_user)
             serializer = UserSerializer(facebook_user.user)
             return JSONResponse(get_response_data("", serializer.data))
 
