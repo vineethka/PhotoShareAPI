@@ -10,6 +10,8 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from django.conf import settings
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -30,6 +32,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+    'grappelli.dashboard',
+    'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -55,6 +59,13 @@ AUTHENTICATION_BACKENDS = (
     'PhotoSharingApplication.auth_backend.PasswordlessAuthBackend',
     'django.contrib.auth.backends.ModelBackend',
 
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.request",
+    "django.core.context_processors.i18n",
+    'django.contrib.messages.context_processors.messages',
 )
 
 
@@ -98,10 +109,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
-
 # TODO: need to verify these values before release
 MEDIA_URL = '/media/'
 MEDIA_ROOT = ''
-STATIC_ROOT = ''
-
+STATIC_ROOT = os.path.join(settings.BASE_DIR, 'static')

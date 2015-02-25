@@ -20,7 +20,10 @@ class UserProfile(models.Model):
     objects = UserProfileManager()
 
     def __unicode__(self):
-        return self.email
+        return u"%s" % self.email
+
+    def __str__(self):
+        return "%s" % self.email
 
     def get_full_name(self):
         return ' '.join([self.first_name, self.last_name])
@@ -61,7 +64,10 @@ class Categories(models.Model):
     created_at = models.DateTimeField(default=datetime.now, auto_now_add=True)
 
     def __unicode__(self):
-        return self.name
+        return u"%s" % self.name
+
+    def __str__(self):
+        return "%s" % self.name
 
     def image_src(self):
         return '<a href="/media/{0}"><img style="height:auto; width:auto; max-width:150px; max-height:150px;" src="/media/{0}"></a>'.\
@@ -89,7 +95,10 @@ class Pictures(models.Model):
     likes_count = models.IntegerField(max_length=9, default=0)
 
     def __unicode__(self):
-        return self.name
+        return u"%s" % self.name
+
+    def __str__(self):
+        return "%s" % self.name
 
     def thumb_image_src(self):
         return '<a href="/media/{0}"><img style="height:auto; width:auto; max-width:150px; max-height:150px;" src="/media/{0}"></a>'.\
@@ -143,7 +152,10 @@ class PictureComments(models.Model):
     created_at = models.DateTimeField(default=datetime.now, auto_now_add=True)
 
     def __unicode__(self):
-        return self.commented_text
+        return u"%s" % self.commented_text
+
+    def __str__(self):
+        return "%s" % self.commented_text
 
     class Meta:
         db_table = "picture_comments"
@@ -168,7 +180,10 @@ class PictureAbuseReports(models.Model):
     created_at = models.DateTimeField(default=datetime.now, auto_now_add=True)
 
     def __unicode__(self):
-        return self.comment
+        return u"%s" % self.comment
+
+    def __str__(self):
+        return "%s" % self.comment
 
     class Meta:
         db_table = "picture_abuse_reports"
@@ -183,7 +198,10 @@ class ContactUs(models.Model):
     comment = models.CharField(max_length=1000)
 
     def __unicode__(self):
-        return self.subject
+        return u"%s" % self.subject
+
+    def __str__(self):
+        return "%s" % self.subject
 
     class Meta:
         db_table = "contact_us"
@@ -201,7 +219,10 @@ class Contest(models.Model):
     created_at = models.DateTimeField(default=datetime.now, auto_now_add=True)
 
     def __unicode__(self):
-        return self.name
+        return u"%s" % self.name
+
+    def __str__(self):
+        return "%s" % self.name
 
     class Meta:
         db_table = "contest"
@@ -232,7 +253,10 @@ class ContestReward(models.Model):
     image = models.ImageField(upload_to='uploaded_images/rewards')
 
     def __unicode__(self):
-        return self.name
+        return u"%s" % self.name
+
+    def __str__(self):
+        return "%s" % self.name
 
     class Meta:
         db_table = "contest_reward"
@@ -248,7 +272,10 @@ class ContestWinners(models.Model):
     comment = models.CharField(max_length=200, blank=True)
 
     def __unicode__(self):
-        return self.user
+        return u"%s" % self.user
+
+    def __str__(self):
+        return "%s" % self.user
 
     class Meta:
         db_table = "contest_winners"

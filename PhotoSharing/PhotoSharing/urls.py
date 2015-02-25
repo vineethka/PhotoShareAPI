@@ -13,7 +13,7 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'PhotoSharing.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
-
+    url(r'^grappelli/', include('grappelli.urls')), # grappelli URLS
     url(r'^admin/', include(admin.site.urls)),
     url(r'^photoshare/', include('PhotoSharingApplication.urls')),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
