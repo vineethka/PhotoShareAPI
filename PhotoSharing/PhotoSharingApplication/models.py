@@ -38,6 +38,8 @@ class UserProfile(models.Model):
 
     class Meta:
         db_table = "users"
+        verbose_name = 'User'
+        verbose_name_plural = 'Users'
 
 
 class UserFriends(models.Model):
@@ -136,13 +138,16 @@ class PictureLikes(models.Model):
 class PictureComments(models.Model):
     picture = models.ForeignKey(Pictures)
     user = models.ForeignKey(UserProfile)
-    commented_text = models.CharField(max_length=100)
+    commented_text = models.CharField(max_length=100, blank=True)
     updated_at = models.DateTimeField(default=datetime.now, auto_now=True)
     created_at = models.DateTimeField(default=datetime.now, auto_now_add=True)
 
+    def __unicode__(self):
+        return self.commented_text
+
     class Meta:
         db_table = "picture_comments"
-        verbose_name = 'Comment'
+        verbose_name = 'Picture Comment'
         verbose_name_plural = 'Picture Comments'
 
 
@@ -157,23 +162,33 @@ class UserActivation(models.Model):
 class PictureAbuseReports(models.Model):
     picture = models.ForeignKey(Pictures)
     user = models.ForeignKey(UserProfile)
-    subject = models.CharField(max_length=150)
+    subject = models.CharField(max_length=150, blank=True)
     comment = models.CharField(max_length=1000)
     updated_at = models.DateTimeField(default=datetime.now, auto_now=True)
     created_at = models.DateTimeField(default=datetime.now, auto_now_add=True)
 
+    def __unicode__(self):
+        return self.comment
+
     class Meta:
         db_table = "picture_abuse_reports"
+        verbose_name = 'User Reported Issue'
+        verbose_name_plural = 'User Reported Issues'
 
 
 class ContactUs(models.Model):
     name = models.CharField(max_length=50)
     email = models.EmailField(max_length=150)
-    subject = models.CharField(max_length=150)
+    subject = models.CharField(max_length=150, blank=True)
     comment = models.CharField(max_length=1000)
+
+    def __unicode__(self):
+        return self.subject
 
     class Meta:
         db_table = "contact_us"
+        verbose_name = 'Contact Us'
+        verbose_name_plural = 'Contact Us'
 
 
 class Contest(models.Model):
@@ -185,8 +200,13 @@ class Contest(models.Model):
     updated_at = models.DateTimeField(default=datetime.now, auto_now=True)
     created_at = models.DateTimeField(default=datetime.now, auto_now_add=True)
 
+    def __unicode__(self):
+        return self.name
+
     class Meta:
         db_table = "contest"
+        verbose_name = 'Contest'
+        verbose_name_plural = 'Contests'
 
 
 class ContestVotes(models.Model):
@@ -198,6 +218,9 @@ class ContestVotes(models.Model):
 
     class Meta:
         db_table = "contest_votes"
+        verbose_name = 'Contest Vote'
+        verbose_name_plural = 'Contest Votes'
+
 
 
 class ContestReward(models.Model):
@@ -208,8 +231,13 @@ class ContestReward(models.Model):
     position = models.IntegerField(default=0)
     image = models.ImageField(upload_to='uploaded_images/rewards')
 
+    def __unicode__(self):
+        return self.name
+
     class Meta:
         db_table = "contest_reward"
+        verbose_name = 'Contest Reward'
+        verbose_name_plural = 'Contest Reward'
 
 
 class ContestWinners(models.Model):
@@ -219,5 +247,10 @@ class ContestWinners(models.Model):
     contest_reward = models.ForeignKey(ContestReward)
     comment = models.CharField(max_length=200, blank=True)
 
+    def __unicode__(self):
+        return self.user
+
     class Meta:
         db_table = "contest_winners"
+        verbose_name = 'Contest Winner'
+        verbose_name_plural = 'Contest Winners'
