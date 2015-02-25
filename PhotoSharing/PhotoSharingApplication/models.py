@@ -16,6 +16,9 @@ class UserProfile(models.Model):
     profile_image = models.ImageField(upload_to='uploaded_images/profile_pics')
     objects = UserProfileManager()
 
+    def __unicode__(self):
+        return self.email
+
     def get_full_name(self):
         return ' '.join([self.first_name, self.last_name])
 
@@ -48,6 +51,9 @@ class Categories(models.Model):
     updated_at = models.DateTimeField(default=datetime.now)
     created_at = models.DateTimeField(default=datetime.now)
 
+    def __unicode__(self):
+        return self.name
+
     def image_link(self):
         return '<a href="/media/{0}"><img style="height:auto; width:auto; max-width:300px; max-height:300px;" src="/media/{0}"></a>'.\
             format(self.image)
@@ -68,6 +74,10 @@ class Pictures(models.Model):
     updated_at = models.DateTimeField(default=datetime.now)
     created_at = models.DateTimeField(default=datetime.now)
     likes_count = models.IntegerField(max_length=9, default=0)
+
+    def __unicode__(self):
+        return self.name
+
     def image_link(self):
         return '<a href="/media/{0}"><img src="/media/{0}"></a>'.format(self.image)
     image_link.allow_tags = True
