@@ -55,7 +55,7 @@ class Categories(models.Model):
         return self.name
 
     def image_link(self):
-        return '<a href="/media/{0}"><img style="height:auto; width:auto; max-width:300px; max-height:300px;" src="/media/{0}"></a>'.\
+        return '<a href="/media/{0}"><img style="height:auto; width:auto; max-width:150px; max-height:150px;" src="/media/{0}"></a>'.\
             format(self.image)
     image_link.short_description = 'Preview'
     image_link.allow_tags = True
@@ -77,6 +77,12 @@ class Pictures(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    def thumb_image_link(self):
+        return '<a href="/media/{0}"><img style="height:auto; width:auto; max-width:150px; max-height:150px;" src="/media/{0}"></a>'.\
+            format(self.image)
+    thumb_image_link.short_description = 'Preview'
+    thumb_image_link.allow_tags = True
 
     def image_link(self):
         return '<a href="/media/{0}"><img src="/media/{0}"></a>'.format(self.image)

@@ -7,4 +7,7 @@ urlpatterns = patterns('',
     url(r'^register', user_manager_api.register, name='register'),
     url(r'^facebooklogin', user_manager_api.facebook_login, name='facebooklogin'),
     url(r'^get_all_categories', categories_api_manager.get_all_categories, name='get_all_categories'),
+    url(r'^get_pictures_for_category', categories_api_manager.get_pictures_for_category, name='get_pictures_for_category'),
+
+
 )
