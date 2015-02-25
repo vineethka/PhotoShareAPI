@@ -1,5 +1,5 @@
 from django.contrib import admin
-from PhotoSharingApplication.models import Categories
+from PhotoSharingApplication.models import Categories, Pictures
 
 
 # Register your models here.
@@ -15,3 +15,5 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Categories, CategoryAdmin)
+admin.site.register(Pictures)
+
