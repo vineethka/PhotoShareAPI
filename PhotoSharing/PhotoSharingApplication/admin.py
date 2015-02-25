@@ -22,10 +22,10 @@ class PictureAdmin(admin.ModelAdmin):
 
     ]
     search_fields = ['name']
-    list_filter = ['created_at', 'user', 'category']
+    list_filter = ['created_at', 'category__name', 'user__user__username']
     list_display = ('name', 'thumb_image_src', 'category', 'user')
-    change_list_template = "admin/change_list_filter_sidebar.html"
-    change_list_filter_template = "admin/filter_listing.html"
+    # change_list_template = "admin/change_list_filter_sidebar.html"
+    # change_list_filter_template = "admin/filter_listing.html"
 
 
 
