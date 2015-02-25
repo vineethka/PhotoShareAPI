@@ -1,27 +1,13 @@
 from django.contrib.auth import authenticate
-from django.http import HttpResponse
-from django.utils.decorators import method_decorator
-from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
-from rest_framework.renderers import JSONRenderer
 from django.contrib.auth import login as auth_login
 
 # Create your views here.
-from PhotoSharingApplication import authentication_helper
-from PhotoSharingApplication.serializers import UserSerializer
+from PhotoSharingApplication.APIS import authentication_helper
+from PhotoSharingApplication.APIS.api_helper import JSONResponse, get_response_data
+from PhotoSharingApplication.APIS.serializers import UserSerializer
 from PhotoSharingApplication.models import UserProfile
 
-SUCCESS_STRING = "Success"
-FAILED_STRING = "Failed"
-
-class JSONResponse(HttpResponse):
-    """
-    An HttpResponse that renders its content into JSON.
-    """
-    def __init__(self, data, **kwargs):
-        content = JSONRenderer().render(data)
-        kwargs['content_type'] = 'application/json'
-        super(JSONResponse, self).__init__(content, **kwargs)
 
 @api_view(['POST'])
 def login(request):
@@ -60,15 +46,7 @@ def register(request):
         return JSONResponse(get_response_data("bad request", ""))
 
 
-def get_response_data(error_message, response_data):
 
-    if error_message == "":
-        response_code = SUCCESS_STRING
-    else:
-        response_code = FAILED_STRING
-
-    content = {'responseCode': response_code, 'data': response_data, 'errorMessage': error_message}
-    return content
 
 
 

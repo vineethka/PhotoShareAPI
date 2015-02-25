@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
-from PhotoSharingApplication.managers import UserProfileManager
+
+from PhotoSharingApplication.APIS.managers import UserProfileManager
 
 
 class UserProfile(models.Model):
