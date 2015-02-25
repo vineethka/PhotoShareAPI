@@ -13,7 +13,17 @@ class CategoryAdmin(admin.ModelAdmin):
     list_filter = ['created_at']
     list_display = ('name', 'image_link')
 
+class PictureAdmin(admin.ModelAdmin):
+    fieldsets = [
+        (None,               {'fields': ['name', 'image', 'category']}),
+        ('Date information', {'fields': ['created_at', 'updated_at']}),
+    ]
+    search_fields = ['name']
+    list_filter = ['created_at']
+    list_display = ('name', 'thumb_image_link')
+
+
 
 admin.site.register(Categories, CategoryAdmin)
-admin.site.register(Pictures)
+admin.site.register(Pictures, PictureAdmin)
 

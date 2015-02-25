@@ -13,9 +13,9 @@ def get_all_categories(request):
         return JSONResponse(get_response_data("bad request", ""))
 
 @api_view(['POST'])
-def get_picture_list(request):
+def get_pictures_for_category(request):
     if request.method == 'POST':
-        return JSONResponse(get_response_data("", serialize('python', Pictures.objects.filter())))
+        return JSONResponse(get_response_data("", serialize('python', Pictures.objects.filter(category_id=request.data['category_id']))))
     else:
         return JSONResponse(get_response_data("bad request", ""))
 
