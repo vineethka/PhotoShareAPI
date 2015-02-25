@@ -25,8 +25,12 @@ class UserProfile(models.Model):
     def get_short_name(self):
         return self.first_name
 
-    def profile_image_link(self):
+    def profile_image_src(self):
         return '<a href="/media/{0}"><img src="/media/{0}"></a>'.format(self.profile_image)
+    profile_image_src.allow_tags = True
+
+    def profile_image_link(self):
+        return self.profile_image.url
     profile_image_link.allow_tags = True
 
     class Meta:
@@ -54,10 +58,14 @@ class Categories(models.Model):
     def __unicode__(self):
         return self.name
 
-    def image_link(self):
+    def image_src(self):
         return '<a href="/media/{0}"><img style="height:auto; width:auto; max-width:150px; max-height:150px;" src="/media/{0}"></a>'.\
             format(self.image)
-    image_link.short_description = 'Preview'
+    image_src.short_description = 'Preview'
+    image_src.allow_tags = True
+
+    def image_link(self):
+        return self.image_link.url
     image_link.allow_tags = True
 
     class Meta:
@@ -78,14 +86,18 @@ class Pictures(models.Model):
     def __unicode__(self):
         return self.name
 
-    def thumb_image_link(self):
+    def thumb_image_src(self):
         return '<a href="/media/{0}"><img style="height:auto; width:auto; max-width:150px; max-height:150px;" src="/media/{0}"></a>'.\
             format(self.image)
-    thumb_image_link.short_description = 'Preview'
-    thumb_image_link.allow_tags = True
+    thumb_image_src.short_description = 'Preview'
+    thumb_image_src.allow_tags = True
+
+    def image_src(self):
+        return '<a href="/media/{0}"><img src="/media/{0}"></a>'.format(self.image)
+    image_src.allow_tags = True
 
     def image_link(self):
-        return '<a href="/media/{0}"><img src="/media/{0}"></a>'.format(self.image)
+        return self.image_link.url
     image_link.allow_tags = True
 
     class Meta:

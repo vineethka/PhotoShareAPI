@@ -11,7 +11,7 @@ class CategoryAdmin(admin.ModelAdmin):
     ]
     search_fields = ['name']
     list_filter = ['created_at']
-    list_display = ('name', 'image_link')
+    list_display = ('name', 'image_src')
 
 class PictureAdmin(admin.ModelAdmin):
     fieldsets = [
@@ -20,7 +20,7 @@ class PictureAdmin(admin.ModelAdmin):
     ]
     search_fields = ['name']
     list_filter = ['created_at']
-    list_display = ('name', 'thumb_image_link')
+    list_display = ('name', 'thumb_image_src')
 
 
 
