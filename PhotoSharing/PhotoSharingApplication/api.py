@@ -5,11 +5,12 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
 from rest_framework.renderers import JSONRenderer
 from django.contrib.auth import login as auth_login
+from django.core import serializers
 
 # Create your views here.
 from PhotoSharingApplication import authentication_helper
 from PhotoSharingApplication.serializers import UserSerializer
-from PhotoSharingApplication.models import UserProfile
+from PhotoSharingApplication.models import UserProfile, Categories
 
 SUCCESS_STRING = "Success"
 FAILED_STRING = "Failed"
@@ -56,6 +57,14 @@ def register(request):
             user.save()
             return JSONResponse(get_response_data("", "Success"))
 
+    else:
+        return JSONResponse(get_response_data("bad request", ""))
+
+
+@api_view(['GET'])
+def get_categories(request):
+    if request.method == 'GET':
+        return JSONResponse(get_response_data("", serializers.serialize('python', Categories.objects.all())))
     else:
         return JSONResponse(get_response_data("bad request", ""))
 
