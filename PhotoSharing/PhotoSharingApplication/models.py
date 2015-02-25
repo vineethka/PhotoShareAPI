@@ -20,13 +20,13 @@ class UserProfile(models.Model):
     objects = UserProfileManager()
 
     def __unicode__(self):
-        return u"%s" % self.email
+        return u"%s" % self.get_full_name()
 
     def __str__(self):
-        return "%s" % self.email
+        return "%s" % self.get_full_name()
 
     def get_full_name(self):
-        return ' '.join([self.first_name, self.last_name])
+        return ' '.join([self.user.first_name, self.user.last_name])
 
     def get_short_name(self):
         return self.first_name
@@ -87,6 +87,7 @@ class Categories(models.Model):
 
 class Pictures(models.Model):
     category = models.ForeignKey(Categories)
+    user = models.ForeignKey(UserProfile)
     image = models.ImageField(upload_to='uploaded_images/pics')
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
@@ -119,7 +120,7 @@ class Pictures(models.Model):
         verbose_name = 'Picture'
         verbose_name_plural = 'Pictures'
 
-
+# only needed in future
 class PictureCategories(models.Model):
     category = models.ForeignKey(Categories)
     picture = models.ForeignKey(Pictures)
