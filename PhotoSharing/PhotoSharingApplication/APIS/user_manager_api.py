@@ -16,7 +16,7 @@ def login(request):
         if user is not None:
             if user.is_active:
                 # return success response
-                authenticated_user = authenticate(username=user.username, password=request.data['password'])
+                authenticated_user = authenticate(username=user.username)
                 auth_login(request, authenticated_user)
                 serializer = UserSerializer(authenticated_user)
                 return JSONResponse(get_response_data("", serializer.data))
@@ -51,7 +51,8 @@ def facebook_login(request):
     if request.method == 'POST':
         user = authentication_helper.is_user_already_exists(request.data['email'])
         if user is not None:
-            auth_login(request, user)
+            auth_user = authenticate(username=user.username)
+            auth_login(request, auth_user)
             serializer = UserSerializer(user)
             return JSONResponse(get_response_data("", serializer.data))
         else:
