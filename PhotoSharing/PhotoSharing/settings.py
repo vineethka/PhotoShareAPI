@@ -114,3 +114,9 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = ''
 STATIC_ROOT = os.path.join(settings.BASE_DIR, 'static')
+
+
+GRAPPELLI_INDEX_DASHBOARD = 'PhotoSharing.dashboardhelper.CustomIndexDashboard'
+# GRAPPELLI_INDEX_DASHBOARD = {  # alternative method
+#     'PhotoSharing.admin.admin_site': 'PhotoSharing.my_dashboard.CustomIndexDashboard',
+# }
