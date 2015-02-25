@@ -3,9 +3,9 @@ from rest_framework.decorators import api_view
 from django.contrib.auth import login as auth_login
 
 # Create your views here.
-from PhotoSharingApplication.APIS import authentication_helper
-from PhotoSharingApplication.APIS.api_helper import JSONResponse, get_response_data
-from PhotoSharingApplication.APIS.serializers import UserSerializer
+from PhotoSharingApplication.APIS.helpers import authentication_helper
+from PhotoSharingApplication.APIS.helpers.api_helper import JSONResponse, get_response_data
+from PhotoSharingApplication.APIS.helpers.serializers import UserSerializer
 from PhotoSharingApplication.models import UserProfile
 
 
