@@ -33,7 +33,7 @@ def login(request):
 @api_view(['POST'])
 def register(request):
     if request.method == 'POST':
-        if authentication_helper.is_user_already_exists(request.data['email']):
+        if authentication_helper.is_user_already_exists(request.data['email']) is not None:
             return JSONResponse(get_response_data("User already exists", ""))
         else:
             user = UserProfile.objects.create_user(request.data['username'], request.data['email'],
@@ -46,7 +46,25 @@ def register(request):
         return JSONResponse(get_response_data("bad request", ""))
 
 
+@api_view(['POST'])
+def facebook_login(request):
+    if request.method == 'POST':
+        user = authentication_helper.is_user_already_exists(request.data['email'])
+        if user is not None:
+            auth_login(request, user)
+            serializer = UserSerializer(user)
+            return JSONResponse(get_response_data("", serializer.data))
+        else:
+            facebook_user = UserProfile.objects.create_facebook_user(request.data["fb_user_id"],
+                                                                     request.data["fb_access_token"],
+                                                                     request.data["email"], request.data["firstName"],
+                                                                     request.data['lastName'])
+            facebook_user.save()
+            serializer = UserSerializer(facebook_user.user)
+            return JSONResponse(get_response_data("", serializer.data))
 
+    else:
+        return JSONResponse(get_response_data("bad request", ""))
 
 
 
