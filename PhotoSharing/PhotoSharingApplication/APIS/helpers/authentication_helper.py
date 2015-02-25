@@ -8,7 +8,7 @@ def login_authenticate(request):
 
     try:
         user = User.objects.get(email=user_email)
-        if user.password == user_password:
+        if user.check_password(user_password):
             return user
     except User.DoesNotExist:
         return None
@@ -17,9 +17,9 @@ def login_authenticate(request):
 def authenticate(request):
     user_name = request.data['user']
     user_password = request.data['password']
-    user = authenticate(username=user_name, password=user_password)
+    user = User.objects.get(username=user_name)
     if user is not None:
-        if user.is_authenticated():
+        if user.password == user_password:
             return user
         else:
             return None

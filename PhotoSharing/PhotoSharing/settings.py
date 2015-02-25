@@ -50,6 +50,12 @@ MIDDLEWARE_CLASSES = (
     'PhotoSharingApplication.disable.DisableCSRF',
 )
 
+AUTHENTICATION_BACKENDS = (
+    # ... your other backends
+    'PhotoSharingApplication.auth_backend.PasswordlessAuthBackend',
+)
+
+
 
 
 ROOT_URLCONF = 'PhotoSharing.urls'
