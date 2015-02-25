@@ -53,6 +53,8 @@ MIDDLEWARE_CLASSES = (
 AUTHENTICATION_BACKENDS = (
     # ... your other backends
     'PhotoSharingApplication.auth_backend.PasswordlessAuthBackend',
+    'django.contrib.auth.backends.ModelBackend',
+
 )
 
 

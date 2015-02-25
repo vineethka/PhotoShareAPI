@@ -15,7 +15,7 @@ class UserProfile(models.Model):
     gp_user_id = models.CharField(max_length=100, blank=True)
     gp_access_token = models.CharField(max_length=100, blank=True)
     profile_image = models.ImageField(upload_to='uploaded_images/profile_pics')
-    power_votes = models.IntegerField()
+    power_votes = models.IntegerField(default=0)
     ad_enabled = models.BooleanField(default=True)
     objects = UserProfileManager()
 
@@ -204,8 +204,8 @@ class ContestReward(models.Model):
     contest = models.ForeignKey(Contest)
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=200, blank=True)
-    amount = models.IntegerField()
-    position = models.IntegerField()
+    amount = models.IntegerField(default=0)
+    position = models.IntegerField(default=0)
     image = models.ImageField(upload_to='uploaded_images/rewards')
 
     class Meta:

@@ -17,9 +17,8 @@ class UserProfileManager(BaseUserManager):
         current_user = self.model(
             user=auth_user,
         )
-
-        auth_user.save()
         current_user.save()
+        auth_user.save()
 
         return current_user
 

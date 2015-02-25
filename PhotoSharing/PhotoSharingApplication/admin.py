@@ -7,7 +7,6 @@ from PhotoSharingApplication.models import Categories, Pictures
 class CategoryAdmin(admin.ModelAdmin):
     fieldsets = [
         (None,               {'fields': ['name', 'image']}),
-        ('Date information', {'fields': ['created_at', 'updated_at']}),
     ]
     search_fields = ['name']
     list_filter = ['created_at']
@@ -16,7 +15,6 @@ class CategoryAdmin(admin.ModelAdmin):
 class PictureAdmin(admin.ModelAdmin):
     fieldsets = [
         (None,               {'fields': ['name', 'image', 'category']}),
-        ('Date information', {'fields': ['created_at', 'updated_at']}),
     ]
     search_fields = ['name']
     list_filter = ['created_at']
