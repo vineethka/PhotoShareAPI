@@ -28,7 +28,7 @@ def authenticate(request):
         return None
 
 
-def is_user_already_exists(email):
+def get_user_with_email_address(email):
     try:
         user = User.objects.get(email=email)
         if user is not None:

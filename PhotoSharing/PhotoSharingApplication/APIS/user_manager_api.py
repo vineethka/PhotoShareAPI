@@ -33,7 +33,7 @@ def login(request):
 @api_view(['POST'])
 def register(request):
     if request.method == 'POST':
-        if authentication_helper.is_user_already_exists(request.data['email']) is not None:
+        if authentication_helper.get_user_with_email_address(request.data['email']) is not None:
             return JSONResponse(get_response_data("User already exists", ""))
         else:
             user = UserProfile.objects.create_user(request.data['username'], request.data['email'],
@@ -49,7 +49,7 @@ def register(request):
 @api_view(['POST'])
 def facebook_login(request):
     if request.method == 'POST':
-        user = authentication_helper.is_user_already_exists(request.data['email'])
+        user = authentication_helper.get_user_with_email_address(request.data['email'])
         if user is not None:
             auth_user = authenticate(username=user.username)
             auth_login(request, auth_user)

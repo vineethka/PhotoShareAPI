@@ -136,6 +136,8 @@ class PictureCategories(models.Model):
 class PictureLikes(models.Model):
     picture = models.ForeignKey(Pictures)
     user = models.ForeignKey(UserProfile)
+    like_count = models.IntegerField(default=0)
+    is_in_app_vote = models.BooleanField(default=False)
     updated_at = models.DateTimeField(default=datetime.now, auto_now=True)
     created_at = models.DateTimeField(default=datetime.now, auto_now_add=True)
 

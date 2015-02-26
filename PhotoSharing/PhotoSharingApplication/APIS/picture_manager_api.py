@@ -1,3 +1,5 @@
+from django.http.response import Http404
+from django.shortcuts import get_list_or_404
 from rest_framework.decorators import api_view
 from PhotoSharingApplication.APIS.helpers.api_helper import JSONResponse, get_response_data
 from PhotoSharingApplication.models import PictureLikes, PictureAbuseReports
@@ -6,24 +8,38 @@ from PhotoSharingApplication.models import PictureLikes, PictureAbuseReports
 @api_view(['POST'])
 def like(request):
     if request.method == 'POST':
+
         picture_id = request.data['picture_id']
         user_id = request.data["user_id"]
-        try:
-            like = PictureLikes.objects.get(user=user_id,picture=picture_id)
-        except PictureLikes.DoesNotExist:
-            like = None
+        is_power_vote = request.data['is_power_vote']
+        like_count = request.data['like_count']
 
-        if like is None:
-            picture_like = PictureLikes()
-            picture_like.picture_id = picture_id
-            picture_like.user_id = user_id
-            picture_like.save()
-            return JSONResponse(get_response_data("", "Success"))
+        if is_power_vote:
+            try:
+                picture_like = PictureLikes.objects.get(user=user_id, picture=picture_id, is_in_app_vote=True)
+                picture_like.like_count = like_count + picture_like.like_count
+                picture_like.save()
+                return JSONResponse(get_response_data("", "Success"))
+            except PictureLikes.DoesNotExist:
+                save_picture_like(request)
+                return JSONResponse(get_response_data("", "Success"))
+        # dislike
+        elif like_count < 0:
+            try:
+                get_list_or_404(PictureLikes,user=user_id, picture=picture_id)
+                # PictureLikes.objects.get(user=user_id, picture=picture_id)
+                return JSONResponse(get_response_data("You can not dislike the picture that you already liked", ""))
+            except Http404:
+                save_picture_like(request)
+                return JSONResponse(get_response_data("", "Success"))
+        #Normal like
         else:
-            return JSONResponse(get_response_data("User already liked this picture", ""))
-
-    else:
-        return JSONResponse(get_response_data("bad request", ""))
+            try:
+                get_list_or_404(PictureLikes,user=user_id, picture=picture_id)
+                return JSONResponse(get_response_data("User already liked this picture", ""))
+            except Http404:
+                save_picture_like(request)
+                return JSONResponse(get_response_data("", "Success"))
 
 
 @api_view(['POST'])
@@ -41,3 +57,16 @@ def abuse_picture(request):
         picture_abuse_report.save()
         return JSONResponse(get_response_data("", "Success"))
 
+
+def save_picture_like(request):
+    picture_id = request.data['picture_id']
+    user_id = request.data["user_id"]
+    is_power_vote = request.data['is_power_vote']
+    like_count = request.data['like_count']
+
+    picture_like = PictureLikes()
+    picture_like.picture_id = picture_id
+    picture_like.user_id = user_id
+    picture_like.is_in_app_vote = is_power_vote
+    picture_like.like_count = like_count
+    picture_like.save()
