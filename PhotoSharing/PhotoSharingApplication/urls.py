@@ -9,6 +9,7 @@ urlpatterns = patterns('',
     url(r'^get_all_categories', categories_api_manager.get_all_categories, name='get_all_categories'),
     url(r'^get_pictures_for_category', categories_api_manager.get_pictures_for_category, name='get_pictures_for_category'),
     url(r'^like', picture_manager_api.like, name='like'),
+    url(r'^abuse_picture', picture_manager_api.abuse_picture, name='abuse_picture'),
 
 
 )
