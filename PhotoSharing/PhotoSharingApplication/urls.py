@@ -13,7 +13,7 @@ urlpatterns = patterns('',
     url(r'^home', views.home, name='home'),
     url(r'^register', views.register, name='register'),
     url(r'^profile', views.profile, name='profile'),
-
+    url(r'^category_list', views.category_list, name='category_list'),
 
 
     url(r'^facebooklogin', user_manager_api.facebook_login, name='facebooklogin'),

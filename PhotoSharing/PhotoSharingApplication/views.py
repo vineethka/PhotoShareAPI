@@ -31,3 +31,9 @@ def profile(request):
     if request.user.is_authenticated():
         return render(request, 'views/profile.html')
     return render(request, 'views/login.html')
+
+
+def category_list(request):
+    if request.user.is_authenticated():
+        return render(request, 'views/profile.html')
+    return render(request, 'views/category_list.html')

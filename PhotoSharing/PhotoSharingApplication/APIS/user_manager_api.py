@@ -23,10 +23,9 @@ def login_action(request):
                 # serializer = UserSerializer(authenticated_user)
                 return render(request, 'views/home.html')
             else:
-                return HttpResponse("Login Failed")
-
+                return render(request, 'views/login.html', {'error_message': "Invalid username / password.", })
         else:
-             return HttpResponse("Login Failed")
+            return render(request, 'views/login.html', {'error_message': "Invalid username / password.", })
 
     else:
         return HttpResponse("Login Failed")
@@ -43,7 +42,7 @@ def logout_action(request):
 def register_action(request):
     if request.method == 'POST':
         if authentication_helper.get_user_with_email_address(request.data['email']) is not None:
-            return HttpResponse("User Already exists")
+            return render(request, 'views/login.html', {'error_message': "User Already exists.", })
         else:
             user = UserProfile.objects.create_user(request.data['username'], request.data['email'],
                                                    request.data['password'], request.data['firstName'],
