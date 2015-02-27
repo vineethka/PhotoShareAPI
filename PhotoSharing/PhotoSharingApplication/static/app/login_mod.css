@@ -22,7 +22,7 @@ margin-top:14px;
 background-color:transparent;
 font-family:AvenirLight;
 }
-input[type=submit] {
+input[type=submit], [type=button] {
 background-color:#676e14;
 color:#fff;
 border:2px solid #676e14;
@@ -35,6 +35,18 @@ font-family:AvenirLight;
 }
 
 
+/*input[type=button] {*/
+/*background-color:#676e14;*/
+/*color:#fff;*/
+/*border:2px solid #676e14;*/
+/*padding:14px;*/
+/*font-size:20px;*/
+/*cursor:pointer;*/
+/*border-radius:5px;*/
+/*width:100%;*/
+/*font-family:AvenirLight;*/
+/*}*/
+
 .inputBox {
 }
 .buttonBoxLeft {
@@ -44,6 +56,15 @@ margin-top:14px;
 .buttonBoxRight {
 padding-left:7px;
 margin-top:14px;
+}
+
+.buttonBoxCenter {
+margin-top:14px;
+}
+
+.content-box {
+    padding-bottom:14px;
+
 }
 
 @font-face { font-family: AvenirLight; src: url('AVENIRLTSTD-LIGHT.otf'); } 

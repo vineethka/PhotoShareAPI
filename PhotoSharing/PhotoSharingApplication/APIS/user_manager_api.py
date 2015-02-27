@@ -1,4 +1,6 @@
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, logout
+from django.http.response import HttpResponse
+from django.shortcuts import render
 from rest_framework.decorators import api_view
 from django.contrib.auth import login as auth_login
 
@@ -10,7 +12,7 @@ from PhotoSharingApplication.models import UserProfile
 
 
 @api_view(['POST'])
-def login(request):
+def login_action(request):
     if request.method == 'POST':
         user = authentication_helper.login_authenticate(request)
         if user is not None:
@@ -18,32 +20,39 @@ def login(request):
                 # return success response
                 authenticated_user = authenticate(username=user.username)
                 auth_login(request, authenticated_user)
-                serializer = UserSerializer(authenticated_user)
-                return JSONResponse(get_response_data("", serializer.data))
+                # serializer = UserSerializer(authenticated_user)
+                return render(request, 'views/home.html')
             else:
-                return JSONResponse(get_response_data("Invalid user name and password", ""))
+                return HttpResponse("Login Failed")
 
         else:
-            return JSONResponse(get_response_data("Invalid user name and password", ""))
+             return HttpResponse("Login Failed")
 
     else:
-        return JSONResponse(get_response_data("bad request", ""))
+        return HttpResponse("Login Failed")
 
 
 @api_view(['POST'])
-def register(request):
+def logout_action(request):
+    logout(request)
+    return render(request, 'views/login.html')
+
+
+
+@api_view(['POST'])
+def register_action(request):
     if request.method == 'POST':
         if authentication_helper.get_user_with_email_address(request.data['email']) is not None:
-            return JSONResponse(get_response_data("User already exists", ""))
+            return HttpResponse("User Already exists")
         else:
             user = UserProfile.objects.create_user(request.data['username'], request.data['email'],
                                                    request.data['password'], request.data['firstName'],
                                                    request.data['lastName'])
             user.save()
-            return JSONResponse(get_response_data("", "Success"))
+            return HttpResponse("Register Success")
 
     else:
-        return JSONResponse(get_response_data("bad request", ""))
+        return HttpResponse("Bad request")
 
 
 @api_view(['POST'])
