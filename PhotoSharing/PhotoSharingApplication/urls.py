@@ -12,6 +12,8 @@ urlpatterns = patterns('',
     url(r'^login', views.login, name='login'),
     url(r'^home', views.home, name='home'),
     url(r'^register', views.register, name='register'),
+    url(r'^profile', views.profile, name='profile'),
+
 
 
     url(r'^facebooklogin', user_manager_api.facebook_login, name='facebooklogin'),

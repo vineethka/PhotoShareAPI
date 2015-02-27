@@ -25,3 +25,9 @@ def register(request):
     if request.user.is_authenticated():
         return render(request, 'views/home.html')
     return render(request, 'views/register.html')
+
+
+def profile(request):
+    if request.user.is_authenticated():
+        return render(request, 'views/profile.html')
+    return render(request, 'views/login.html')
