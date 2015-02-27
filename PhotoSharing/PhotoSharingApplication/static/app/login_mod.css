@@ -1,0 +1,144 @@
+@import http://fonts.googleapis.com/css?family=Raleway;
+/*----------------------------------------------
+CSS Settings For HTML Div ExactCenter
+------------------------------------------------*/
+
+body {
+background:#cfdd28;
+}
+.logoImage {
+margin-top:30px;
+margin-bottom:30px;
+}
+
+input[type=text],input[type=password] {
+width:100%;
+padding:14px 7px;
+border:1px solid #676e14;
+font-size:20px;
+border-radius:7px;
+color:#fff;
+margin-top:14px;
+background-color:transparent;
+font-family:AvenirLight;
+}
+input[type=submit] {
+background-color:#676e14;
+color:#fff;
+border:2px solid #676e14;
+padding:14px;
+font-size:20px;
+cursor:pointer;
+border-radius:5px;
+width:100%;
+font-family:AvenirLight;
+}
+
+
+.inputBox {
+}
+.buttonBoxLeft {
+padding-right:7px;
+margin-top:14px;
+}
+.buttonBoxRight {
+padding-left:7px;
+margin-top:14px;
+}
+
+@font-face { font-family: AvenirLight; src: url('AVENIRLTSTD-LIGHT.otf'); } 
+@font-face { font-family: AvenirRoman; src: url('AVENIRLTSTD-ROMAN.otf'); } 
+
+
+
+
+.main {
+font-family:raleway
+position:relative;
+}
+
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.element {
+  .center-block();
+}
+span {
+color:red
+}
+h2 {
+background-color:#FEFFED;
+text-align:center;
+border-radius:10px 10px 0 0;
+margin:-10px -40px;
+padding:15px
+}
+hr {
+border:0;
+border-bottom:1px solid #ccc;
+margin:10px -40px;
+margin-bottom:30px
+}
+.loginBox {
+border-radius:10px;
+font-family:raleway;
+border:2px solid #ccc;
+padding:10px;
+}
+
+
+#profile {
+padding:50px;
+border:1px dashed grey;
+font-size:20px;
+background-color:#DCE6F7
+}
+#logout {
+float:right;
+padding:5px;
+border:dashed 1px gray
+}
+a {
+text-decoration:none;
+color:#6495ed
+}
+i {
+color:#6495ed
+}
+
+#logo
+{
+	padding-left: 40px;
+	padding-top: 25px;
+}
+
+#dividor-text
+{
+	background-color: white; 
+	position: relative; 
+	top: -0.5em;
+	padding-left: 3px;
+	padding-right: 3px;
+}
+
+#dividor
+{
+	height: 1px; 
+	background-color: #CCCCCC; 
+	text-align: center
+}
+
+.extra-btns
+{
+	width: 100% !important;
+}
+
+#forgot-password
+{
+	float: left;
+	margin-top: 10px;
+	margin-left: 30%; 
+}
