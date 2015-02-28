@@ -1,6 +1,8 @@
 from django.contrib.auth import authenticate
 from django.http.response import HttpResponse
 from django.shortcuts import render
+from PhotoSharingApplication.models import Categories
+from django.template import RequestContext, loader
 
 
 def index(request):
@@ -35,5 +37,18 @@ def profile(request):
 
 def category_list(request):
     if request.user.is_authenticated():
-        return render(request, 'views/profile.html')
-    return render(request, 'views/category_list.html')
+        categories = Categories.objects.all()
+        # serializer = CategorySerializer(queryset, many=True)
+
+        # return JSONResponse(get_response_data("", serializer.data))
+        template = loader.get_template('views/category_list.html')
+        context = RequestContext(request, {'categories': categories, })
+        return HttpResponse(template.render(context))
+    else:
+        categories = Categories.objects.all()
+        # serializer = CategorySerializer(queryset, many=True)
+
+        # return JSONResponse(get_response_data("", serializer.data))
+        template = loader.get_template('views/category_list.html')
+        context = RequestContext(request, {'categories': categories, })
+        return HttpResponse(template.render(context))
