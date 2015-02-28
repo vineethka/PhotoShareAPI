@@ -26,18 +26,17 @@
 <script src="{% static 'app/js/bootstrap.min.js' %}"></script>
 <div class="row">
     {% if categories %}
-    {% for selected_category in categories %}
-        <li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li>
-        <div class="col-sm-6 col-md-3">
-        <a href="#" class="thumbnail">
-            <img src="{{ selected_category.image.url }}"
-                 alt="Generic placeholder thumbnail">
-        </a>
-    </div>
-    {% endfor %}
+        {% for selected_category in categories %}
+            <div class="col-sm-6 col-md-3">
+                <a href="#" class="thumbnail">
+                    <img src="{{ selected_category.image.url }}"
+                         alt="Generic placeholder thumbnail">
+                </a>
+            </div>
+        {% endfor %}
     {% else %}
-    <p>No categories</p>
-{% endif %}
+        <p>No categories</p>
+    {% endif %}
 </div>
 
 </body>
