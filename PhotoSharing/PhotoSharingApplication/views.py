@@ -26,7 +26,7 @@ def home(request):
 def register(request):
     if request.user.is_authenticated():
         go_to_home(request)
-    return render(request, 'views/templates/register.html')
+    return render(request, 'views/register.html')
 
 
 def profile(request):
