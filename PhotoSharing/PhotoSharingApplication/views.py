@@ -7,26 +7,26 @@ from django.template import RequestContext, loader
 
 def index(request):
     if request.user.is_authenticated():
-        return render(request, 'views/home.html')
+        go_to_home(request)
     return render(request, 'views/login.html')
 
 
 def login(request):
     if request.user.is_authenticated():
-        return render(request, 'views/home.html')
+        go_to_home(request)
     return render(request, 'views/login.html')
 
 
 def home(request):
     if request.user.is_authenticated():
-        return render(request, 'views/home.html')
+        go_to_home(request)
     return render(request, 'views/login.html')
 
 
 def register(request):
     if request.user.is_authenticated():
-        return render(request, 'views/home.html')
-    return render(request, 'views/register.html')
+        go_to_home(request)
+    return render(request, 'views/templates/register.html')
 
 
 def profile(request):
@@ -52,3 +52,12 @@ def category_list(request):
         template = loader.get_template('views/category_list.html')
         context = RequestContext(request, {'categories': categories, })
         return HttpResponse(template.render(context))
+
+def go_to_home(request):
+    categories = Categories.objects.all()
+    # serializer = CategorySerializer(queryset, many=True)
+
+    # return JSONResponse(get_response_data("", serializer.data))
+    template = loader.get_template('views/category_list.html')
+    context = RequestContext(request, {'categories': categories, })
+    return HttpResponse(template.render(context))
