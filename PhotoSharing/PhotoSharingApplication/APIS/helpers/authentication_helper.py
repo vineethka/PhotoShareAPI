@@ -37,3 +37,13 @@ def get_user_with_email_address(email):
             return None
     except User.DoesNotExist:
         return None
+
+def get_user_with_username(username):
+    try:
+        user = User.objects.get(username=username)
+        if user is not None:
+            return user
+        else:
+            return None
+    except User.DoesNotExist:
+        return None
