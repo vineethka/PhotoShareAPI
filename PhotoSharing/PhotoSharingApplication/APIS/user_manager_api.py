@@ -1,5 +1,5 @@
 from django.contrib.auth import authenticate, logout
-from django.http.response import HttpResponse
+from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from django.contrib.auth import login as auth_login
@@ -8,7 +8,7 @@ from django.contrib.auth import login as auth_login
 from PhotoSharingApplication.APIS.helpers import authentication_helper
 from PhotoSharingApplication.APIS.helpers.api_helper import JSONResponse, get_response_data
 from PhotoSharingApplication.APIS.helpers.serializers import UserSerializer
-from PhotoSharingApplication.models import UserProfile
+from PhotoSharingApplication.models import UserProfile, Categories
 from django.template import RequestContext, loader
 
 
@@ -22,7 +22,7 @@ def login_action(request):
                 authenticated_user = authenticate(username=user.username)
                 auth_login(request, authenticated_user)
                 # serializer = UserSerializer(authenticated_user)
-                return render(request, 'views/home.html')
+                return HttpResponseRedirect("/photoshare")
             else:
                 return render(request, 'views/login.html', {'error_message': "Invalid username / password.", })
         else:
@@ -35,12 +35,11 @@ def login_action(request):
 @api_view(['POST'])
 def logout_action(request):
     logout(request)
-    return render(request, 'views/login.html')
+    return HttpResponseRedirect("/photoshare")
 
 
 @api_view(['POST'])
 def register_action(request):
-    home_template = loader.get_template('views/home.html')
     register_template = loader.get_template('views/register.html')
     if request.method == 'POST':
         if authentication_helper.get_user_with_email_address(request.data['email']) is not None:
@@ -61,8 +60,7 @@ def register_action(request):
                     auth_login(request, authenticated_user)
                     # serializer = UserSerializer(authenticated_user)
 
-                    context = RequestContext(request)
-                    return HttpResponse(home_template.render(context))
+                    return HttpResponseRedirect("/photoshare")
                 else:
                     context = RequestContext(request, {'error_message': "Invalid username / password.", })
                     return HttpResponse(register_template.render(context))
