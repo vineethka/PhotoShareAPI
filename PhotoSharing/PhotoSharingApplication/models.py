@@ -17,6 +17,7 @@ class UserProfile(models.Model):
     profile_image = models.ImageField(upload_to='uploaded_images/profile_pics')
     power_votes = models.IntegerField(default=0)
     ad_enabled = models.BooleanField(default=True)
+    dob = models.DateField(null=True, blank=True)
     objects = UserProfileManager()
 
     def __unicode__(self):
