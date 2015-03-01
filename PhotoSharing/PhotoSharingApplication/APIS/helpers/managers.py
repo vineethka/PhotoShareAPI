@@ -4,7 +4,7 @@ from django.contrib.auth.models import User, BaseUserManager
 
 class UserProfileManager(BaseUserManager):
 
-    def create_user(self, username, email=None, password=None, first_name=None, last_name=None):
+    def create_user(self, username, email=None, password=None, first_name=None, last_name=None, dob=None):
         if not email:
             raise ValueError('Users must have a valid email address.')
 
@@ -17,6 +17,8 @@ class UserProfileManager(BaseUserManager):
         current_user = self.model(
             user=auth_user,
         )
+        if dob:
+            current_user.dob = dob
         current_user.save()
         auth_user.save()
 
