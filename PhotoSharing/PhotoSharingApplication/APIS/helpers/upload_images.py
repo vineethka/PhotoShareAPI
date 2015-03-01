@@ -9,7 +9,7 @@ class DocumentForm(forms.Form):
     )
 
 class ImageForm(forms.Form):
-    imageFile = forms.ImageField(
+    image = forms.ImageField(
         label='Select a image',
         help_text='max. 42 megabytes'
     )

@@ -1,5 +1,6 @@
+from urllib.request import HTTPRedirectHandler
 from django.contrib.auth import authenticate
-from django.http.response import HttpResponse
+from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from PhotoSharingApplication.APIS.helpers.upload_images import ImageForm
 from PhotoSharingApplication.models import Categories
@@ -15,18 +16,13 @@ def index(request):
         template = loader.get_template('views/home.html')
         context = RequestContext(request, {'categories': categories, })
         return HttpResponse(template.render(context))
+
     return render(request, 'views/login.html')
 
 
 def login(request):
     if request.user.is_authenticated():
-        categories = Categories.objects.all()
-        # serializer = CategorySerializer(queryset, many=True)
-
-        # return JSONResponse(get_response_data("", serializer.data))
-        template = loader.get_template('views/home.html')
-        context = RequestContext(request, {'categories': categories, })
-        return HttpResponse(template.render(context))
+        return HttpResponseRedirect("/photoshare")
     return render(request, 'views/login.html')
 
 
@@ -44,13 +40,7 @@ def home(request):
 
 def register(request):
     if request.user.is_authenticated():
-        categories = Categories.objects.all()
-        # serializer = CategorySerializer(queryset, many=True)
-
-        # return JSONResponse(get_response_data("", serializer.data))
-        template = loader.get_template('views/home.html')
-        context = RequestContext(request, {'categories': categories, })
-        return HttpResponse(template.render(context))
+        return HttpResponseRedirect("/photoshare")
     return render(request, 'views/register.html')
 
 

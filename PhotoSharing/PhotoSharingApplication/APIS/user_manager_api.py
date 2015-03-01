@@ -1,5 +1,5 @@
 from django.contrib.auth import authenticate, logout
-from django.http.response import HttpResponse
+from django.http.response import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from django.contrib.auth import login as auth_login
@@ -8,11 +8,12 @@ from django.contrib.auth import login as auth_login
 from PhotoSharingApplication.APIS.helpers import authentication_helper
 from PhotoSharingApplication.APIS.helpers.api_helper import JSONResponse, get_response_data
 from PhotoSharingApplication.APIS.helpers.serializers import UserSerializer
-from PhotoSharingApplication.models import UserProfile
+from PhotoSharingApplication.APIS.helpers.upload_images import ImageForm
+from PhotoSharingApplication.models import UserProfile, Categories
 from django.template import RequestContext, loader
 
 
-@api_view(['POST'])
+@api_view(['POST', 'GET'])
 def login_action(request):
     if request.method == 'POST':
         user = authentication_helper.login_authenticate(request)
@@ -22,25 +23,24 @@ def login_action(request):
                 authenticated_user = authenticate(username=user.username)
                 auth_login(request, authenticated_user)
                 # serializer = UserSerializer(authenticated_user)
-                return render(request, 'views/home.html')
+                return HttpResponseRedirect("/photoshare")
             else:
                 return render(request, 'views/login.html', {'error_message': "Invalid username / password.", })
         else:
             return render(request, 'views/login.html', {'error_message': "Invalid username / password.", })
 
     else:
-        return HttpResponse("Login Failed")
+        return HttpResponseRedirect("/photoshare")
 
 
-@api_view(['POST'])
+@api_view(['POST','GET'])
 def logout_action(request):
     logout(request)
-    return render(request, 'views/login.html')
+    return HttpResponseRedirect("/photoshare")
 
 
-@api_view(['POST'])
+@api_view(['POST', 'GET'])
 def register_action(request):
-    home_template = loader.get_template('views/home.html')
     register_template = loader.get_template('views/register.html')
     if request.method == 'POST':
         if authentication_helper.get_user_with_email_address(request.data['email']) is not None:
@@ -61,8 +61,7 @@ def register_action(request):
                     auth_login(request, authenticated_user)
                     # serializer = UserSerializer(authenticated_user)
 
-                    context = RequestContext(request)
-                    return HttpResponse(home_template.render(context))
+                    return HttpResponseRedirect("/photoshare")
                 else:
                     context = RequestContext(request, {'error_message': "Invalid username / password.", })
                     return HttpResponse(register_template.render(context))
@@ -72,7 +71,7 @@ def register_action(request):
                 return HttpResponse(register_template.render(context))
 
     else:
-        return HttpResponse("Bad request")
+        return HttpResponseRedirect("/photoshare/register")
 
 
 @api_view(['POST'])
@@ -97,6 +96,19 @@ def facebook_login(request):
 
     else:
         return JSONResponse(get_response_data("bad request", ""))
+
+
+@api_view(['POST', 'GET'])
+def upload_profile_image(request):
+    if request.method == 'POST':
+        form = ImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            userProfile = UserProfile.objects.get(user_id=request.user.id)
+            userProfile.profile_image = form.cleaned_data['image']
+            userProfile.save()
+            return HttpResponseRedirect("/photoshare/profile")
+    return HttpResponseRedirect("/photoshare/profile")
+
 
 
 

@@ -8,6 +8,7 @@ urlpatterns = patterns('',
     url(r'^login_action', user_manager_api.login_action, name='login_action'),
     url(r'^logout_action', user_manager_api.logout_action, name='logout_action'),
     url(r'^register_action', user_manager_api.register_action, name='register_action'),
+    url(r'^upload_profile_image', user_manager_api.upload_profile_image, name='upload_profile_image'),
 
     url(r'^login', views.login, name='login'),
     url(r'^home', views.home, name='home'),
