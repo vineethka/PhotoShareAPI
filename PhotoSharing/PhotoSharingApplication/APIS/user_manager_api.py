@@ -12,7 +12,7 @@ from PhotoSharingApplication.models import UserProfile, Categories
 from django.template import RequestContext, loader
 
 
-@api_view(['POST'])
+@api_view(['POST', 'GET'])
 def login_action(request):
     if request.method == 'POST':
         user = authentication_helper.login_authenticate(request)
@@ -29,16 +29,16 @@ def login_action(request):
             return render(request, 'views/login.html', {'error_message': "Invalid username / password.", })
 
     else:
-        return HttpResponse("Login Failed")
+        return HttpResponseRedirect("/photoshare")
 
 
-@api_view(['POST'])
+@api_view(['POST','GET'])
 def logout_action(request):
     logout(request)
     return HttpResponseRedirect("/photoshare")
 
 
-@api_view(['POST'])
+@api_view(['POST', 'GET'])
 def register_action(request):
     register_template = loader.get_template('views/register.html')
     if request.method == 'POST':
@@ -70,7 +70,7 @@ def register_action(request):
                 return HttpResponse(register_template.render(context))
 
     else:
-        return HttpResponse("Bad request")
+        return HttpResponseRedirect("/photoshare")
 
 
 @api_view(['POST'])
