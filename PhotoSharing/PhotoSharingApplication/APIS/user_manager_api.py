@@ -1,5 +1,5 @@
 from django.contrib.auth import authenticate, logout
-from django.http.response import HttpResponse, HttpResponseRedirect
+from django.http.response import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from django.contrib.auth import login as auth_login
@@ -8,6 +8,7 @@ from django.contrib.auth import login as auth_login
 from PhotoSharingApplication.APIS.helpers import authentication_helper
 from PhotoSharingApplication.APIS.helpers.api_helper import JSONResponse, get_response_data
 from PhotoSharingApplication.APIS.helpers.serializers import UserSerializer
+from PhotoSharingApplication.APIS.helpers.upload_images import ImageForm
 from PhotoSharingApplication.models import UserProfile, Categories
 from django.template import RequestContext, loader
 
@@ -95,6 +96,19 @@ def facebook_login(request):
 
     else:
         return JSONResponse(get_response_data("bad request", ""))
+
+
+@api_view(['POST', 'GET'])
+def upload_profile_image(request):
+    if request.method == 'POST':
+        form = ImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            userProfile = UserProfile.objects.get(user_id=request.user.id)
+            userProfile.profile_image = form.cleaned_data['image']
+            userProfile.save()
+            return HttpResponseRedirect("/photoshare/profile")
+    return HttpResponseRedirect("/photoshare/profile")
+
 
 
 
