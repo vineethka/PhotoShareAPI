@@ -127,3 +127,8 @@ body.slide-active {
 	    left: 0!important
 	}
 }
+
+#slide-nav.navbar-inverse {
+    background: #cfdd28;
+    border-color: transparent;
+}
