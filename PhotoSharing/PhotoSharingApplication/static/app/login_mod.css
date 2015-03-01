@@ -385,3 +385,9 @@ filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=2,Color=#3300000
     float: left;
     width: 5%;
 }
+
+.forgot-password
+{
+    color: #60670d;
+    cursor: pointer;
+}
