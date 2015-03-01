@@ -390,3 +390,20 @@ filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=2,Color=#3300000
     color: #60670d;
     cursor: pointer;
 }
+
+
+.menuItemText {
+  color:#fff;
+    font-size:20px;
+  background-color:transparent;
+  font-family:AvenirLight;
+    padding: 10px 5px;
+}
+
+.menuItemTextActive {
+    color:#cfdd28;
+padding: 10px 5px;
+    font-size:20px;
+  background-color:transparent;
+  font-family:AvenirLight;
+}
