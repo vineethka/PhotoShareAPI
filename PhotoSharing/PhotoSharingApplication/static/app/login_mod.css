@@ -89,9 +89,16 @@ margin-top:14px;
 }
 
 .full-width {
-    zoom: 2;  //increase if you have very small images
+    zoom: 2;
+    -moz-transform: scale(2.5);
+    -webkit-margin : auto;
+    -moz-margin: auto;
+    -ms-margin: auto;
+    -o-margin: auto;
     margin: auto;
+
     width: auto;
+
 }
 
 .thumbnail_no_margin {
