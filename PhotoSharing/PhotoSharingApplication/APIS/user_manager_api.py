@@ -70,7 +70,7 @@ def register_action(request):
                 return HttpResponse(register_template.render(context))
 
     else:
-        return HttpResponseRedirect("/photoshare")
+        return HttpResponseRedirect("/photoshare/register")
 
 
 @api_view(['POST'])
