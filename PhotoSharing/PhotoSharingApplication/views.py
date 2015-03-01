@@ -1,4 +1,3 @@
-from urllib.request import HTTPRedirectHandler
 from django.contrib.auth import authenticate
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
