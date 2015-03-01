@@ -30,7 +30,7 @@
     <div class="row">
         <div class="profile-container">
             <div class="profile-name">Paul Warren</div>
-            <img src="http://img.labnol.org/di/bo.jpg" class="circle">
+            <img src="http://img.labnol.org/di/bo.jpg" class="circle" id="circle">
         </div>
 
         <div class="photos">356 PHOTOS</div>
@@ -63,5 +63,21 @@
     } else {
         isMobile = "no";
     }
+    $('#circle').on('click', function() {
+     $('#id_image').click();
+    });
+
+    $('#id_image').change(function() {
+     var formData = new FormData(this.files[0]);
+     $.ajax({
+         url: '/echo/json/',
+         type: 'POST',
+         data: formData,
+         //Options to tell JQuery not to process data or worry about content-type
+         cache: false,
+         contentType: false,
+         processData: false
+     });
+ });
 </script>
 
