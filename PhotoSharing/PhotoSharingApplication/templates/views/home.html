@@ -12,7 +12,11 @@
                                 <img src="{{ selected_category.image.url }}"
                                      alt="Generic placeholder thumbnail" class="img img-responsive full-width">
                                 {#                                {{ selected_category.name }}#}
+                                <div class="grid-image-text">
+                                {{ selected_category.name }}
+                                </div>
                             </div>
+
                         </a>
                     </div>
                 {% endfor %}
