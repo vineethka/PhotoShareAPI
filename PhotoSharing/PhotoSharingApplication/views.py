@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from PhotoSharingApplication.APIS.helpers.upload_images import ImageForm
-from PhotoSharingApplication.models import Categories
+from PhotoSharingApplication.models import Categories, UserProfile, Pictures
 from django.template import RequestContext, loader
 
 
@@ -40,12 +40,19 @@ def home(request):
 def register(request):
     if request.user.is_authenticated():
         return HttpResponseRedirect("/photoshare")
+
     return render(request, 'views/register.html')
 
 
 def profile(request):
     if request.user.is_authenticated():
-        return render(request, 'views/profile.html')
+        user_profile = UserProfile.objects.get(user_id=request.user.id)
+        try:
+            pic_count = Pictures.objects.filter(user=request.user).count()
+        except Pictures.DoesNotExist:
+            pic_count = 0
+
+        return render(request, 'views/profile.html', {'user_profile': user_profile, 'pic_count': pic_count,})
     return render(request, 'views/login.html')
 
 
