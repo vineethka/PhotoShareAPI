@@ -14,7 +14,7 @@ from django.template import RequestContext, loader
 
 
 @api_view(['POST', 'GET'])
-def login_action(request):
+def do_login(request):
     if request.method == 'POST':
         user = authentication_helper.login_authenticate(request)
         if user is not None:
@@ -34,13 +34,13 @@ def login_action(request):
 
 
 @api_view(['POST','GET'])
-def logout_action(request):
+def logout(request):
     logout(request)
     return HttpResponseRedirect("/")
 
 
 @api_view(['POST', 'GET'])
-def register_action(request):
+def do_register(request):
     register_template = loader.get_template('views/register.html')
     if request.method == 'POST':
         if authentication_helper.get_user_with_email_address(request.data['email']) is not None:
