@@ -158,7 +158,6 @@ margin-top:14px;
 
 .content-box {
     padding-bottom:14px;
-
 }
 
 @font-face { font-family: AvenirLight; src: url('AVENIRLTSTD-LIGHT.otf'); } 
@@ -366,29 +365,45 @@ filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=2,Color=#3300000
 .right-line
 {
     float: left;
-    border: 1px solid #9ca628;
+    border: 1px solid rgba(39,39,39,0.15);
     width: 44%;
-    margin-top: 2%;
+    margin-top: 3%;
 }
 
 .left-line
 {
     float: left;
-    border: 1px solid #9ca628;
-    width: 45%;
+    border: 1px solid rgba(39,39,39,0.15);
+    width: 44%;
     margin-left: 3%;
-    margin-top: 2%;
+    margin-top: 3%;
 }
 
 .or-option
 {
     float: left;
-    width: 5%;
+    width: 6%;
 }
 
 .forgot-password
 {
     color: #60670d;
     cursor: pointer;
-    margin-left: 40px;
+}
+
+
+.menuItemText {
+  color:#fff;
+    font-size:20px;
+  background-color:transparent;
+  font-family:AvenirLight;
+    padding: 10px 5px;
+}
+
+.menuItemTextActive {
+    color:#cfdd28;
+padding: 10px 5px;
+    font-size:20px;
+  background-color:transparent;
+  font-family:AvenirLight;
 }
