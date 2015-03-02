@@ -5,7 +5,7 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="profile-container">
+            <div class="profile-container" style="background-image: url('{% if user_profile.profile_image %} {{ user_profile.profile_image.url }} {% endif %}');">
                 <div class="profile-name">{{ user_profile.get_full_name }}</div>
                 <img src="{% if user_profile.profile_image %} {{ user_profile.profile_image.url }} {% endif %}"
                      class="circle" id="circle">

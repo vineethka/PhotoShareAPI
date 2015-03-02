@@ -328,8 +328,9 @@ i {
     float: left;
     height: 180px;
     width: 100%;
-    background-color: rgb(168, 171, 171);
     margin-bottom: 100px;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .profile-name {
