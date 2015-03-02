@@ -3,7 +3,7 @@
 CSS Settings For HTML Div ExactCenter
 ------------------------------------------------*/
 
-body {
+.login_body_background {
     background: #cfdd28 url("login_background.png") ;
     background-repeat: no-repeat;
     background-position: 50% 35%;

@@ -3,8 +3,9 @@
 
 
 .cbp-spmenu {
-    background-position-x: 10%;
-    background-position-y: 5%;
+    background-attachment: fixed;
+    background-position:50% 25%;
+    background-repeat: no-repeat;
 	background-image: url("../menu_background.png") ;
     position: fixed;
 }
