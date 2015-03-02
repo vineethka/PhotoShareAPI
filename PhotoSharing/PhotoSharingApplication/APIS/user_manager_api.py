@@ -23,20 +23,20 @@ def login_action(request):
                 authenticated_user = authenticate(username=user.username)
                 auth_login(request, authenticated_user)
                 # serializer = UserSerializer(authenticated_user)
-                return HttpResponseRedirect("/photoshare")
+                return HttpResponseRedirect("/")
             else:
                 return render(request, 'views/login.html', {'error_message': "Invalid username / password.", })
         else:
             return render(request, 'views/login.html', {'error_message': "Invalid username / password.", })
 
     else:
-        return HttpResponseRedirect("/photoshare")
+        return HttpResponseRedirect("/")
 
 
 @api_view(['POST','GET'])
 def logout_action(request):
     logout(request)
-    return HttpResponseRedirect("/photoshare")
+    return HttpResponseRedirect("/")
 
 
 @api_view(['POST', 'GET'])
@@ -61,7 +61,7 @@ def register_action(request):
                     auth_login(request, authenticated_user)
                     # serializer = UserSerializer(authenticated_user)
 
-                    return HttpResponseRedirect("/photoshare")
+                    return HttpResponseRedirect("/")
                 else:
                     context = RequestContext(request, {'error_message': "Invalid username / password.", })
                     return HttpResponse(register_template.render(context))
@@ -71,7 +71,7 @@ def register_action(request):
                 return HttpResponse(register_template.render(context))
 
     else:
-        return HttpResponseRedirect("/photoshare/register")
+        return HttpResponseRedirect("/register")
 
 
 @api_view(['POST'])
@@ -106,8 +106,8 @@ def upload_profile_image(request):
             userProfile = UserProfile.objects.get(user_id=request.user.id)
             userProfile.profile_image = form.cleaned_data['image']
             userProfile.save()
-            return HttpResponseRedirect("/photoshare/profile")
-    return HttpResponseRedirect("/photoshare/profile")
+            return HttpResponseRedirect("/profile")
+    return HttpResponseRedirect("/profile")
 
 
 

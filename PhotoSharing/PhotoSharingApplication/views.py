@@ -21,7 +21,7 @@ def index(request):
 
 def login(request):
     if request.user.is_authenticated():
-        return HttpResponseRedirect("/photoshare")
+        return HttpResponseRedirect("/")
     return render(request, 'views/login.html')
 
 
@@ -39,7 +39,7 @@ def home(request):
 
 def register(request):
     if request.user.is_authenticated():
-        return HttpResponseRedirect("/photoshare")
+        return HttpResponseRedirect("/")
 
     return render(request, 'views/register.html')
 
