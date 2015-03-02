@@ -46,7 +46,7 @@
 
         <form action="upload_profile_image" method="post" enctype="multipart/form-data">
                 <p>
-                    <input id="id_image" type="file" class="" name="image">
+                    <input id="id_image" type="file" class="" name="image" style="display: none;">
                 </p>
                 <input type="submit" value="Submit" />
         </form>
@@ -68,7 +68,7 @@
     });
 
     $('#id_image').change(function() {
-        $( "#id_image" ).hide();
+    $( "#id_image" ).hide();
      var formData = new FormData(this.files[0]);
      $.ajax({
          url: '/echo/json/',
