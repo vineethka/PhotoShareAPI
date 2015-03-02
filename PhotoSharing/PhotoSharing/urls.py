@@ -6,7 +6,7 @@ from django.conf.urls.static import static
 
 from django.contrib import admin
 
-admin.site.site_header = 'Photo Share administration'
+admin.site.site_header = 'Farpic administration'
 admin.autodiscover()
 
 urlpatterns = patterns('',
