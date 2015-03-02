@@ -2,7 +2,6 @@
 {% load staticfiles %}
 
 {% block content %}
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
     <div class="container-fluid">
         <div class="row">
@@ -21,12 +20,9 @@
                 <a href="#" class="button"><span>✓</span>Email</a>
             </div>
 
-            <form action="upload_profile_image" method="post" enctype="multipart/form-data">
-                <p>
+
                     <input id="id_image" type="file" class="hidden" name="image">
-                </p>
-                <input type="submit" value="Submit"/>
-            </form>
+
         </div>
     </div>
 
@@ -62,6 +58,12 @@
                 processData: false
             });
         });
+
+        $("#profile-menu").addClass('menu-active');
+        $("#profActive").show();
+        $("#profInactive").hide();
+        $("#profActive").removeClass("hidden");
+
     </script>
 {% endblock %}
 

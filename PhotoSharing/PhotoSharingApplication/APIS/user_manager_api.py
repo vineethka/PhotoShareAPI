@@ -35,9 +35,7 @@ def do_login(request):
 
 @api_view(['POST', 'GET'])
 def do_logout(request):
-    if request.method == 'POST':
-        logout(request)
-
+    logout(request)
     return HttpResponseRedirect("/")
 
 
