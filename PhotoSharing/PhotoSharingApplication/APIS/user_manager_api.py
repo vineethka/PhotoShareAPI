@@ -52,7 +52,7 @@ def do_register(request):
         else:
             user = UserProfile.objects.create_user(request.data['username'], request.data['email'],
                                                    request.data['password'], request.data['firstName'],
-                                                   request.data['lastName'], request.data['dob'])
+                                                   request.data['lastName'], "")
             user.save()
             if user is not None:
                 if user.user.is_active:
