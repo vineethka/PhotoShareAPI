@@ -446,3 +446,24 @@ i {
 !important;
 }
 
+.bottom-bar {
+    position : fixed;
+    bottom : 0;
+    background: rgba(0,0,0,0.80);
+    width: 100%;
+    padding: 12px;
+}
+.bottom-bar div {
+    text-align: center;
+}
+
+.bottom-bar img {
+    height: 30px;
+    margin-left: auto;
+    margin-right:auto;
+
+}
+
+.bottom-bar span {
+    cursor: pointer;
+}
