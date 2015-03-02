@@ -461,9 +461,17 @@ i {
     height: 30px;
     margin-left: auto;
     margin-right:auto;
-
 }
 
 .bottom-bar span {
     cursor: pointer;
+}
+
+
+.grid-image-text {
+     position : fixed;
+    bottom : 0;
+    background: rgba(0,0,0,0.80);
+    width: 100%;
+    padding: 12px;
 }
