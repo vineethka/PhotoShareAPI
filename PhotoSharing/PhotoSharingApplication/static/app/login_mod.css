@@ -105,8 +105,7 @@ input[type=submit], [type=button] {
 }
 
 .thumbnail_no_margin {
-    margin-bottom: 0;
-!important;
+    margin-bottom: 0;  !important;
 }
 
 .image_grid_background {
@@ -467,11 +466,15 @@ i {
     cursor: pointer;
 }
 
-
 .grid-image-text {
-     position : fixed;
-    bottom : 0;
-    background: rgba(0,0,0,0.80);
+    position : absolute;
+    bottom : 0px;
+    background: rgba(0,0,0,0.50);
+    padding: 5px 9px;
+    float:right;
     width: 100%;
-    padding: 12px;
+    font-size: 1.2em;
+    font-family: AvenirLight;
+    color: #fff;
+
 }
