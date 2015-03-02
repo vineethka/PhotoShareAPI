@@ -5,8 +5,8 @@ CSS Settings For HTML Div ExactCenter
 
 body {
     background: #cfdd28 url("login_background.png") ;
-    background-position-x: 50%;
-    background-position-y: 25%;
+    background-repeat: no-repeat;
+    background-position: 50% 35%;
 }
 
 .logoImage {
