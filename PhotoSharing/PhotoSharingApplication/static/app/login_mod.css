@@ -1,24 +1,12 @@
-@import http
 
-:
-
-/
-/
-fonts.googleapis.com
-
-/
-css? family
-
-=
-Raleway
-
-;
 /*----------------------------------------------
 CSS Settings For HTML Div ExactCenter
 ------------------------------------------------*/
 
 body {
-    background: #cfdd28;
+    background: #cfdd28 url("login_background.png") ;
+    background-position-x: 50%;
+    background-position-y: 25%;
 }
 
 .logoImage {
@@ -176,12 +164,12 @@ input[type=submit], [type=button] {
 
 @font-face {
     font-family: AvenirLight;
-    src: url('AVENIRLTSTD-LIGHT.otf');
+    src: url('AVENIRLTSTD-LIGHT.OTF');
 }
 
 @font-face {
     font-family: AvenirRoman;
-    src: url('AVENIRLTSTD-ROMAN.otf');
+    src: url('AVENIRLTSTD-ROMAN.OTF');
 }
 
 .main {
