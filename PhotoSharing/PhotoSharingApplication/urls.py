@@ -6,7 +6,7 @@ from PhotoSharingApplication import views
 urlpatterns = patterns('',
     url(r'^$', views.index, name='index'),
     url(r'^do_login', user_manager_api.do_login, name='do_login'),
-    url(r'^logout', user_manager_api.logout, name='logout'),
+    url(r'^do_logout', user_manager_api.do_logout, name='do_logout'),
     url(r'^do_register', user_manager_api.do_register, name='do_register'),
     url(r'^upload_profile_image', user_manager_api.upload_profile_image, name='upload_profile_image'),
 
