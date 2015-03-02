@@ -29,13 +29,11 @@
 <div class="container-fluid">
     <div class="row">
         <div class="profile-container">
-            <div class="profile-name">Paul Warren</div>
-            <img src="http://img.labnol.org/di/bo.jpg" class="circle" id="circle">
+            <div class="profile-name">{{ user_profile.get_full_name }}</div>
+            <img src="{{ user_profile.profile_image.url }}" class="circle" id="circle">
         </div>
 
-        <div class="photos">356 PHOTOS</div>
-        <div class="strip"></div>
-        <div class="friends">15 FRIENDS</div>
+        <div class="photos">{{ pic_count }} PHOTOS</div>
 
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-sm-offset-3 col-md-offset-3  col-lg-offset-4 content-box">
 
