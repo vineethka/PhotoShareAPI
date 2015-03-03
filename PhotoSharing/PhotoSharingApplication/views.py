@@ -52,7 +52,7 @@ def profile(request):
             user_profile = request.user
 
         try:
-            pic_count = Pictures.objects.filter(user=request.user).count()
+            pic_count = Pictures.objects.filter(picturelikes__user__user_id=request.user.id).distinct().count()
         except Pictures.DoesNotExist:
             pic_count = 0
 
@@ -100,10 +100,12 @@ def category_detail(request, category_id):
     return render(request, 'views/login.html')
 
 
-    # picture_list = Pictures.objects.filter(category_id=category_id)
-    # liked_pictures = PictureLikes.objects.filter(user_id=request.user.id, category_id=category_id).select_ca
-    # if picture_list is not None and liked_pictures is not None:
-    #     for liked_picture in liked_pictures:
-    #         if liked_picture in picture_list:
-    #             picture_list.remove(liked_picture)
+def like(request):
+
+    if request.user.is_authenticated():
+        pictures = Pictures.objects.filter(picturelikes__user__user_id=request.user.id).distinct()
+        template = loader.get_template('views/like.html')
+        context = RequestContext(request, {'pictures': pictures, })
+        return HttpResponse(template.render(context))
+    return render(request, 'views/login.html')
 

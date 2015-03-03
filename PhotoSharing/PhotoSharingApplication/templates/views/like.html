@@ -1,0 +1,29 @@
+{% extends "home_slide_menu.html" %}
+{% load staticfiles %}
+
+{% block content %}
+    <div class="container-fluid image_grid_background">
+        <div class="row no-gutter">
+            {% if pictures %}
+                {% for selected_picture in pictures %}
+                    <div class="col-xs-4 col-md-3 col-lg-2">
+                            <div class="image">
+                                <img src="{{ selected_picture.image.url }}"
+                                     alt="Generic placeholder thumbnail" class="img img-responsive full-width">
+
+                            </div>
+
+                        </a>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No Images</p>
+            {% endif %}
+        </div>
+        <div class="row">
+        </div>
+    </div>
+
+
+{% endblock %}
+
