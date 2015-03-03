@@ -1,8 +1,9 @@
 from django.contrib.auth import authenticate
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
+from scipy.integrate.tests.test_integrate import Pi
 from PhotoSharingApplication.APIS.helpers.upload_images import ImageForm
-from PhotoSharingApplication.models import Categories, UserProfile, Pictures
+from PhotoSharingApplication.models import Categories, UserProfile, Pictures, PictureLikes
 from django.template import RequestContext, loader
 
 
@@ -84,3 +85,13 @@ def upload_profile_image(request):
         #
         #     # Redirect to the document list after POST
         #     return HttpResponseRedirect(reverse('myapp.views.list'))
+
+
+def category_detail(request, category_id):
+    picture_list = Pictures.objects.filter(category_id=category_id)
+    liked_pictures = PictureLikes.objects.filter(user_id=request.user.id, category_id=category_id).picture
+    if picture_list is not None and liked_pictures is not None:
+        for liked_picture in liked_pictures:
+            if liked_picture in picture_list:
+                picture_list.remove(liked_picture)
+

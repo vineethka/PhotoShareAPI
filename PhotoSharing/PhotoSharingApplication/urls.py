@@ -15,6 +15,7 @@ urlpatterns = patterns('',
     url(r'^register', views.register, name='register'),
     url(r'^profile', views.profile, name='profile'),
     url(r'^category_list', views.category_list, name='category_list'),
+    url(r'^category/(?P<category_id>\d+)',views.category_detail, name="category_detail"),
 
 
     url(r'^facebooklogin', user_manager_api.facebook_login, name='facebooklogin'),
