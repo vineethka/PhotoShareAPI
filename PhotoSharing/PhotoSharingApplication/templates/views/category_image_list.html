@@ -1,0 +1,33 @@
+{% extends "home_slide_menu.html" %}
+{% load staticfiles %}
+
+{% block content %}
+    <div class="container-fluid image_grid_background">
+        <div class="row no-gutter">
+            {% if pictures %}
+                {% for selected_picture in pictures %}
+                    <div class="col-xs-4 col-md-3 col-lg-2">
+                        <a href="{% url 'category_detail' selected_picture.id %}" class="thumbnail_no_margin">
+                            <div class="image">
+                                <img src="{{ selected_picture.image.url }}"
+                                     alt="Generic placeholder thumbnail" class="img img-responsive full-width">
+                                {#                                {{ selected_category.name }}#}
+                                <div class="grid-image-text">
+                                {{ selected_picture.name }}
+                                </div>
+                            </div>
+
+                        </a>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No categories</p>
+            {% endif %}
+        </div>
+        <div class="row">
+        </div>
+    </div>
+
+
+{% endblock %}
+
