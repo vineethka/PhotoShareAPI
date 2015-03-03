@@ -7,7 +7,7 @@
             {% if pictures %}
                 {% for selected_picture in pictures %}
                     <div class="col-xs-4 col-md-3 col-lg-2">
-                        <a href="{% url 'category_detail' selected_picture.id %}" class="thumbnail_no_margin">
+                        <a href="#" class="thumbnail_no_margin">
                             <div class="image">
                                 <img src="{{ selected_picture.image.url }}"
                                      alt="Generic placeholder thumbnail" class="img img-responsive full-width">
@@ -18,7 +18,7 @@
                     </div>
                 {% endfor %}
             {% else %}
-                <p>No Images</p>
+                <div class="alert bg-danger">No Images</div>
             {% endif %}
         </div>
         <div class="row">
