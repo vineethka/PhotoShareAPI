@@ -14,7 +14,7 @@ from django.template import RequestContext, loader
 
 
 @api_view(['POST', 'GET'])
-def login_action(request):
+def do_login(request):
     if request.method == 'POST':
         user = authentication_helper.login_authenticate(request)
         if user is not None:
@@ -23,36 +23,36 @@ def login_action(request):
                 authenticated_user = authenticate(username=user.username)
                 auth_login(request, authenticated_user)
                 # serializer = UserSerializer(authenticated_user)
-                return HttpResponseRedirect("/photoshare")
+                return HttpResponseRedirect("/")
             else:
                 return render(request, 'views/login.html', {'error_message': "Invalid username / password.", })
         else:
             return render(request, 'views/login.html', {'error_message': "Invalid username / password.", })
 
     else:
-        return HttpResponseRedirect("/photoshare")
-
-
-@api_view(['POST','GET'])
-def logout_action(request):
-    logout(request)
-    return HttpResponseRedirect("/photoshare")
+        return HttpResponseRedirect("/")
 
 
 @api_view(['POST', 'GET'])
-def register_action(request):
+def do_logout(request):
+    logout(request)
+    return HttpResponseRedirect("/")
+
+
+@api_view(['POST', 'GET'])
+def do_register(request):
     register_template = loader.get_template('views/register.html')
     if request.method == 'POST':
         if authentication_helper.get_user_with_email_address(request.data['email']) is not None:
-            context = RequestContext(request, {'error_message': "Email Already exists.", })
+            context = RequestContext(request, {'error_message': "Email Already exists", })
             return HttpResponse(register_template.render(context))
         elif authentication_helper.get_user_with_username(request.data['username']) is not None:
-            context = RequestContext(request, {'error_message': "Username Already exists.", })
+            context = RequestContext(request, {'error_message': "Username Already exists", })
             return HttpResponse(register_template.render(context))
         else:
             user = UserProfile.objects.create_user(request.data['username'], request.data['email'],
                                                    request.data['password'], request.data['firstName'],
-                                                   request.data['lastName'], request.data['dob'])
+                                                   request.data['lastName'], "")
             user.save()
             if user is not None:
                 if user.user.is_active:
@@ -61,17 +61,17 @@ def register_action(request):
                     auth_login(request, authenticated_user)
                     # serializer = UserSerializer(authenticated_user)
 
-                    return HttpResponseRedirect("/photoshare")
+                    return HttpResponseRedirect("/")
                 else:
-                    context = RequestContext(request, {'error_message': "Invalid username / password.", })
+                    context = RequestContext(request, {'error_message': "Invalid email / password", })
                     return HttpResponse(register_template.render(context))
             else:
-                context = RequestContext(request, {'error_message': "Unable to create the user. "
+                context = RequestContext(request, {'error_message': "Unable to create the user"
                                                                     "Please check the username, email", })
                 return HttpResponse(register_template.render(context))
 
     else:
-        return HttpResponseRedirect("/photoshare/register")
+        return HttpResponseRedirect("/register")
 
 
 @api_view(['POST'])
@@ -106,8 +106,8 @@ def upload_profile_image(request):
             userProfile = UserProfile.objects.get(user_id=request.user.id)
             userProfile.profile_image = form.cleaned_data['image']
             userProfile.save()
-            return HttpResponseRedirect("/photoshare/profile")
-    return HttpResponseRedirect("/photoshare/profile")
+            return HttpResponseRedirect("/profile")
+    return HttpResponseRedirect("/profile")
 
 
 

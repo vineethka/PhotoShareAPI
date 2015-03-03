@@ -1,7 +1,13 @@
 /* General styles for all menus */
+{% load staticfiles %}
+
+
 .cbp-spmenu {
-	background: #47a3da;
-	position: fixed;
+    background-attachment: fixed;
+    background-position:50% 25%;
+    background-repeat: no-repeat;
+	background-image: url("../menu_background.png") ;
+    position: fixed;
 }
 
 .cbp-spmenu h3 {
@@ -13,20 +19,24 @@
 	background: #0d77b6;
 }
 
-.cbp-spmenu a {
+.cbp-spmenu span {
 	display: block;
-	color: #fff;
-	font-size: 1.1em;
-	font-weight: 300;
+	font-size: 1.3em;
+    font-family:AvenirLight;
+    color:#fff;
+    float:left;
+    text-decoration:none;
+    min-width: 240px;
+    cursor: pointer;
 }
 
-.cbp-spmenu a:hover {
-	background: #258ecd;
+.cbp-spmenu span:hover {
+	background: #cfdd28;
 }
 
-.cbp-spmenu a:active {
-	background: #afdefa;
-	color: #47a3da;
+.menu-active {
+	background: transparent;
+	color: #cfdd28 !important;
 }
 
 /* Orientation-dependent styles for the content of the menu */
@@ -38,8 +48,7 @@
 	z-index: 1000;
 }
 
-.cbp-spmenu-vertical a {
-	border-bottom: 1px solid #258ecd;
+.cbp-spmenu-vertical span {
 	padding: 1em;
 }
 
@@ -57,7 +66,7 @@
 	float: left;
 }
 
-.cbp-spmenu-horizontal a {
+.cbp-spmenu-horizontal span {
 	float: left;
 	width: 20%;
 	padding: 0.8em;
@@ -123,6 +132,7 @@
 	-webkit-transition: all 0.3s ease;
 	-moz-transition: all 0.3s ease;
 	transition: all 0.3s ease;
+     background-color: #fff; !important;
 }
 
 /* Example media queries */

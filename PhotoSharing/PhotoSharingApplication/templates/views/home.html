@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% block content %}
-    <div class="container image_grid_background">
+    <div class="container-fluid image_grid_background">
         <div class="row no-gutter">
             {% if categories %}
                 {% for selected_category in categories %}
@@ -11,7 +11,12 @@
                             <div class="image">
                                 <img src="{{ selected_category.image.url }}"
                                      alt="Generic placeholder thumbnail" class="img img-responsive full-width">
+                                {#                                {{ selected_category.name }}#}
+                                <div class="grid-image-text">
+                                {{ selected_category.name }}
+                                </div>
                             </div>
+
                         </a>
                     </div>
                 {% endfor %}
@@ -20,11 +25,9 @@
             {% endif %}
         </div>
         <div class="row">
-            <form action='logout_action' method="post">
-                <div class="col-xs-12 col-md-12 buttonBoxCenter"><input type="submit" value=" Log out" name="submit">
-                </div>
-            </form>
         </div>
     </div>
+
+
 {% endblock %}
 

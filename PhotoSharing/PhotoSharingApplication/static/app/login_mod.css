@@ -1,51 +1,53 @@
-@import http://fonts.googleapis.com/css?family=Raleway;
+
 /*----------------------------------------------
 CSS Settings For HTML Div ExactCenter
 ------------------------------------------------*/
 
-body {
-background:#cfdd28;
+.login_body_background {
+    background: #cfdd28 url("login_background.png") ;
+    background-repeat: no-repeat;
+    background-position: 50% 35%;
 }
 
 .logoImage {
-margin-top:40px;
-margin-bottom:30px;
+    margin-top: 40px;
+    margin-bottom: 30px;
 }
 
-input[type=text],input[type=password],input[type=email] {
-width:100%;
-padding:10px 10px;
-border:1px solid rgba(0,0,0,0.45);
-font-size:20px;
-border-radius:7px;
-color:#fff;
-margin-top:14px;
-background-color:transparent;
-font-family:AvenirLight;
+input[type=text], input[type=password], input[type=email] {
+    width: 100%;
+    padding: 10px 10px;
+    border: 1px solid rgba(0, 0, 0, 0.45);
+    font-size: 20px;
+    border-radius: 7px;
+    color: #fff;
+    margin-top: 14px;
+    background-color: transparent;
+    font-family: AvenirLight;
 }
 
 input[type=date] {
-width:100%;
-padding:6px 10px;
-border:1px solid rgba(0,0,0,0.45);
-font-size:20px;
-border-radius:7px;
-color:#fff;
-margin-top:14px;
-background-color:transparent;
-font-family:AvenirLight;
+    width: 100%;
+    padding: 6px 10px;
+    border: 1px solid rgba(0, 0, 0, 0.45);
+    font-size: 20px;
+    border-radius: 7px;
+    color: #fff;
+    margin-top: 14px;
+    background-color: transparent;
+    font-family: AvenirLight;
 }
 
 input[type=submit], [type=button] {
-background-color:rgba(0,0,0,0.45);
-color:#fff;
-border:1px solid transparent;
-padding:10px 10px;
-font-size:20px;
-cursor:pointer;
-border-radius:5px;
-width:100%;
-font-family:AvenirLight;
+    background-color: rgba(0, 0, 0, 0.45);
+    color: #fff;
+    border: 1px solid transparent;
+    padding: 10px 10px;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+    font-family: AvenirLight;
 
 }
 
@@ -66,32 +68,33 @@ font-family:AvenirLight;
 }
 
 .buttonBoxLeft {
-padding-right:7px;
-margin-top:14px;
+    padding-right: 7px;
+    margin-top: 14px;
 }
 
 .buttonBoxRight {
-padding-left:7px;
-margin-top:14px;
+    padding-left: 7px;
+    margin-top: 14px;
 }
 
 .buttonBoxCenter {
-margin-top:14px;
+    margin-top: 14px;
 }
 
-.image{
-    position:relative;
-    overflow:hidden;
-    padding-bottom:100%;
+.image {
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 100%;
 }
-.image img{
-    position:absolute;
+
+.image img {
+    position: absolute;
 }
 
 .full-width {
     zoom: 2;
     -moz-transform: scale(2.5);
-    -webkit-margin : auto;
+    -webkit-margin: auto;
     -moz-margin: auto;
     -ms-margin: auto;
     -o-margin: auto;
@@ -102,20 +105,20 @@ margin-top:14px;
 }
 
 .thumbnail_no_margin {
-    margin-bottom: 0; !important;
+    margin-bottom: 0;  !important;
 }
 
 .image_grid_background {
-    background:#ffffff;
+    background: #ffffff;
 }
 
 .no-gutter [class*="-2"] {
-    padding:4px;
+    padding: 4px;
 }
 
 .buttonIcon {
     height: 24px;
-    float:left;
+    float: left;
     margin-top: 2px;
     margin-bottom: 2px;
     margin-left: 10px;
@@ -123,19 +126,17 @@ margin-top:14px;
 
 .textCenter {
     text-align: center;
-    font-family:AvenirLight;
-    color:#676e14;
+    font-family: AvenirLight;
+    color: #676e14;
     font-size: 20px;
-        padding: 26px 0px 12px 0px;
+    padding: 26px 0px 12px 0px;
 
 }
-
 
 .orBox {
     vertical-align: middle;
     padding: 26px 0px 12px 0px;
 }
-
 
 .orLine {
     display: block;
@@ -144,192 +145,195 @@ margin-top:14px;
     margin-left: auto;
     margin-right: auto;
     border-style: inset;
-    border-color: rgba(0,0,0,0.25);
+    border-color: rgba(0, 0, 0, 0.25);
     border-width: 1px;
 }
 
 .textCenterMoreTopMargin {
     text-align: center;
-    margin-top:40px;
-    font-family:AvenirLight;
-    color:#676e14;
+    margin-top: 40px;
+    font-family: AvenirLight;
+    color: #676e14;
     font-size: 20px;
 }
 
 .content-box {
-    padding-bottom:14px;
+    padding-bottom: 14px;
 }
 
-@font-face { font-family: AvenirLight; src: url('AVENIRLTSTD-LIGHT.otf'); } 
-@font-face { font-family: AvenirRoman; src: url('AVENIRLTSTD-ROMAN.otf'); } 
+@font-face {
+    font-family: AvenirLight;
+    src: url('AVENIRLTSTD-LIGHT.OTF');
+}
 
-
-
+@font-face {
+    font-family: AvenirRoman;
+    src: url('AVENIRLTSTD-ROMAN.OTF');
+}
 
 .main {
-font-family:raleway
-position:relative;
+    font-family: raleway position : relative;
 }
 
 .center-block {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .element {
-  .center-block();
-}
-span {
-color:red
-}
-h2 {
-background-color:#FEFFED;
-text-align:center;
-border-radius:10px 10px 0 0;
-margin:-10px -40px;
-padding:15px
-}
-hr {
-border:0;
-border-bottom:1px solid #ccc;
-margin:10px -40px;
-margin-bottom:30px
-}
-.loginBox {
-border-radius:10px;
-font-family:raleway;
-border:2px solid #ccc;
-padding:10px;
+. center-block();
 }
 
+span {
+    color: red
+}
+
+h2 {
+    background-color: #FEFFED;
+    text-align: center;
+    border-radius: 10px 10px 0 0;
+    margin: -10px -40px;
+    padding: 15px
+}
+
+hr {
+    border: 0;
+    border-bottom: 1px solid #ccc;
+    margin: 10px -40px;
+    margin-bottom: 30px
+}
+
+.loginBox {
+    border-radius: 10px;
+    font-family: raleway;
+    border: 2px solid #ccc;
+    padding: 10px;
+}
 
 #profile {
-padding:50px;
-border:1px dashed grey;
-font-size:20px;
-background-color:#DCE6F7
+    padding: 50px;
+    border: 1px dashed grey;
+    font-size: 20px;
+    background-color: #DCE6F7
 }
+
 #logout {
-float:right;
-padding:5px;
-border:dashed 1px gray
+    float: right;
+    padding: 5px;
+    border: dashed 1px gray
 }
+
 a {
-text-decoration:none;
-color:#6495ed
+    text-decoration: none;
+    color: #6495ed
 }
+
 i {
-color:#6495ed
+    color: #6495ed
 }
 
-#logo
-{
-	padding-left: 40px;
-	padding-top: 25px;
+#logo {
+    padding-left: 40px;
+    padding-top: 25px;
 }
 
-#dividor-text
-{
-	background-color: white; 
-	position: relative; 
-	top: -0.5em;
-	padding-left: 3px;
-	padding-right: 3px;
+#dividor-text {
+    background-color: white;
+    position: relative;
+    top: -0.5em;
+    padding-left: 3px;
+    padding-right: 3px;
 }
 
-#dividor
-{
-	height: 1px; 
-	background-color: #CCCCCC; 
-	text-align: center
+#dividor {
+    height: 1px;
+    background-color: #CCCCCC;
+    text-align: center
 }
 
-.extra-btns
-{
-	width: 100% !important;
+.extra-btns {
+    width: 100% !important;
 }
 
-#forgot-password
-{
-	float: left;
-	margin-top: 10px;
-	margin-left: 30%; 
+#forgot-password {
+    float: left;
+    margin-top: 10px;
+    margin-left: 30%;
 }
 
 .circle {
-  display: block;
-  width: 150px;
-  height: 150px;
-  margin: 1em auto;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  -webkit-border-radius: 99em;
-  -moz-border-radius: 99em;
-  border-radius: 99em;
-  border: 5px solid #eee;
-  box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);
-  margin-top: 95px;
-  cursor: pointer;
+    display: block;
+    width: 150px;
+    height: 150px;
+    margin: 1em auto;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    -webkit-border-radius: 99em;
+    -moz-border-radius: 99em;
+    border-radius: 99em;
+    border: 5px solid #eee;
+    box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);
+    margin-top: 95px;
+    cursor: pointer;
 }
 
 .button {
-  display: inline-block;
-  margin-left: 120px;
-  width: 400px;
-  height: 50px;
-  line-height: 50px;
-  padding-right: 30px;
-  padding-left: 160px;
-  position: relative;
-  background-color:rgb(41,127,184);
-  color:rgb(255,255,255);
-  text-decoration: none;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 15px;
-  border-radius: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  text-shadow:0px 1px 0px rgba(0,0,0,0.5);
--ms-filter:"progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=1,Color=#ff123852,Positive=true)";zoom:1;
-filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=1,Color=#ff123852,Positive=true);
-  -moz-box-shadow:0px 2px 2px rgba(0,0,0,0.2);
-  -webkit-box-shadow:0px 2px 2px rgba(0,0,0,0.2);
-  box-shadow:0px 2px 2px rgba(0,0,0,0.2);
-  -ms-filter:"progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=2,Color=#33000000,Positive=true)";
-filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=2,Color=#33000000,Positive=true);
+    display: inline-block;
+    margin-left: 120px;
+    width: 400px;
+    height: 50px;
+    line-height: 50px;
+    padding-right: 30px;
+    padding-left: 160px;
+    position: relative;
+    background-color: rgb(41, 127, 184);
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.5);
+    -ms-filter: "progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=1,Color=#ff123852,Positive=true)";
+    zoom: 1;
+    filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=0, OffY=1, Color=#ff123852, Positive=true);
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
+    -ms-filter: "progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=2,Color=#33000000,Positive=true)";
+    filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=0, OffY=2, Color=#33000000, Positive=true);
 }
 
-.button span
-{
+.button span {
     position: absolute;
     left: 0;
     width: 50px;
-    background-color:rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     -webkit-border-top-left-radius: 5px;
     -webkit-border-bottom-left-radius: 5px;
     -moz-border-radius-topleft: 5px;
     -moz-border-radius-bottomleft: 5px;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
-    border-right: 1px solid  rgba(0,0,0,0.15);
+    border-right: 1px solid rgba(0, 0, 0, 0.15);
     padding-left: 15px;
     color: white !important;
 }
 
-.profile-container
-{
+.profile-container {
     float: left;
     height: 180px;
     width: 100%;
-    background-color: rgb(168, 171, 171);
     margin-bottom: 100px;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
-.profile-name
-{
+.profile-name {
     float: left;
     text-align: center;
     font-size: 24px;
@@ -338,8 +342,7 @@ filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=2,Color=#3300000
     margin-top: 2%;
 }
 
-.photos
-{
+.photos {
     float: left;
     width: 8%;
     margin-left: 42%;
@@ -348,63 +351,132 @@ filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=2,Color=#3300000
     margin-top: -2px;
 }
 
-.friends
-{
+.friends {
     float: left;
     width: 20%;
     font-size: 16px;
     padding-left: 3%;
 }
 
-.strip
-{
+.strip {
     float: left;
     height: 40px;
     border: 1px solid rgba(62, 73, 77, 0.17);
 }
 
-.right-line
-{
+.right-line {
     float: left;
-    border: 1px solid rgba(39,39,39,0.15);
+    border: 1px solid rgba(39, 39, 39, 0.15);
     width: 44%;
     margin-top: 3%;
 }
 
-.left-line
-{
+.left-line {
     float: left;
-    border: 1px solid rgba(39,39,39,0.15);
+    border: 1px solid rgba(39, 39, 39, 0.15);
     width: 44%;
     margin-left: 3%;
     margin-top: 3%;
 }
 
-.or-option
-{
+.or-option {
     float: left;
     width: 6%;
 }
 
-.forgot-password
-{
+.forgot-password {
     color: #60670d;
     cursor: pointer;
 }
 
-
 .menuItemText {
-  color:#fff;
-    font-size:20px;
-  background-color:transparent;
-  font-family:AvenirLight;
+    color: #fff;
+    font-size: 20px;
+    background-color: transparent;
+    font-family: AvenirLight;
     padding: 10px 5px;
 }
 
 .menuItemTextActive {
-    color:#cfdd28;
-padding: 10px 5px;
-    font-size:20px;
-  background-color:transparent;
-  font-family:AvenirLight;
+    color: #cfdd28;
+    padding: 10px 5px;
+    font-size: 20px;
+    background-color: transparent;
+    font-family: AvenirLight;
+}
+
+.error_text {
+    text-align: center;
+    font-size: 20px;
+!important;
+    font-family: AvenirLight;
+!important;
+}
+
+.menu_icon {
+    height: 28px;
+    margin-right: 12px;
+}
+
+.menu-span {
+}
+.menuLogoImage {
+    margin-top: 40px;
+    margin-bottom: 30px;
+    cursor: pointer;
+}
+
+.navigation-bar {
+    padding: 15px;
+    float: left;
+    width: 100%;
+    background-color: #cfdd28;
+}
+
+#showLeftPush {
+    height: 25px;
+    float: left;
+    cursor: pointer;
+}
+
+.navigation-bar-title {
+    font-size: 22px;
+    color: #60670d;
+    font-weight: bold;
+    font-family: AvenirLight;
+!important;
+}
+
+.bottom-bar {
+    position : fixed;
+    bottom : 0;
+    background: rgba(0,0,0,0.80);
+    width: 100%;
+    padding: 12px;
+}
+.bottom-bar div {
+    text-align: center;
+}
+
+.bottom-bar img {
+    height: 30px;
+    margin-left: auto;
+    margin-right:auto;
+}
+
+.bottom-bar span {
+    cursor: pointer;
+}
+
+.grid-image-text {
+    position : absolute;
+    bottom : 0px;
+    background: rgba(0,0,0,0.50);
+    padding: 5px 9px;
+    float:right;
+    width: 100%;
+    font-size: 1.2em;
+    font-family: AvenirLight;
+    color: #fff;
+
 }

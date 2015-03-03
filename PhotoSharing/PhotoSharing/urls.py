@@ -6,7 +6,7 @@ from django.conf.urls.static import static
 
 from django.contrib import admin
 
-admin.site.site_header = 'Photo Share administration'
+admin.site.site_header = 'Farpic administration'
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -15,5 +15,5 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
     url(r'^grappelli/', include('grappelli.urls')), # grappelli URLS
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^photoshare/', include('PhotoSharingApplication.urls')),
+    url(r'^', include('PhotoSharingApplication.urls')),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

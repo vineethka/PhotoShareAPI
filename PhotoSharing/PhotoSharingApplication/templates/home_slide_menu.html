@@ -95,66 +95,100 @@
 
 <!DOCTYPE html>
 <html lang="en" class="no-js">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Blueprint: Slide and Push Menus</title>
-{#		<meta name="description" content="Blueprint: Slide and Push Menus" />#}
-{#		<meta name="keywords" content="sliding menu, pushing menu, navigation, responsive, menu, css, jquery" />#}
-{#		<meta name="author" content="Codrops" />#}
-		<link rel="shortcut icon" href="../favicon.ico">
-        <link href="{% static 'app/css/default.css' %}" rel="stylesheet">
-         <link href="{% static 'app/css/component.css' %}" rel="stylesheet">
-          <link href="{% static 'app/css/bootstrap.min.css' %}" rel="stylesheet">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farpic</title>
+    {#		<meta name="description" content="Blueprint: Slide and Push Menus" />#}
+    {#		<meta name="keywords" content="sliding menu, pushing menu, navigation, responsive, menu, css, jquery" />#}
+    {#		<meta name="author" content="Codrops" />#}
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link href="{% static 'app/css/default.css' %}" rel="stylesheet">
+    <link href="{% static 'app/css/component.css' %}" rel="stylesheet">
+    <link href="{% static 'app/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'app/login_mod.css' %}" rel="stylesheet" type="text/css">
 
-{#		<link rel="stylesheet" type="text/css" href="css/default.css" />#}
-{#		<link rel="stylesheet" type="text/css" href="css/component.css" />#}
-        		<script src="{% static 'app/js/modernizr.custom.js' %}"></script>
-<script src="{% static 'app/js/bootstrap.min.js' %}"></script>
+    {#		<link rel="stylesheet" type="text/css" href="css/default.css" />#}
+    {#		<link rel="stylesheet" type="text/css" href="css/component.css" />#}
+    <script src="{% static 'app/js/modernizr.custom.js' %}"></script>
+    <script src="{% static 'app/js/bootstrap.min.js' %}"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
-{#		<script src="js/modernizr.custom.js"></script>#}
-	</head>
-	<body class="cbp-spmenu-push">
-		<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
-			<h3>Menu</h3>
-			<a href="#">Celery seakale</a>
-			<a href="#">Dulse daikon</a>
-			<a href="#">Zucchini garlic</a>
-			<a href="#">Catsear azuki bean</a>
-			<a href="#">Dandelion bunya</a>
-			<a href="#">Rutabaga</a>
-		</nav>
+    {#		<script src="js/modernizr.custom.js"></script>#}
+</head>
+<body class="cbp-spmenu-push">
+<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
+    <div class="col-xs-12 col-md-12 col-lg-12"><img src="{% static "app/logo_green.png" %}"
+                                                    onclick="window.location.href='/'"
+                                                    class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xs-offset-3 col-sm-offset-3 col-md-offset-3 col-lg-offset-3 menuLogoImage">
+    </div>
+        <span class="menu-span" onclick="showProfile();" id="profile-menu"><img id="profInactive" class="menu_icon"
+                                                                                src="{% static "app/menu_profile.png" %}">
+            <img id="profActive" class="hidden menu_icon" src="{% static "app/menu_profile_green.png" %}">
+            Profile</span>
+    <span class="menu-span"><img class="menu_icon"
+                                 src="{% static "app/menu_popular_photos.png" %}">Popular Photos</span>
+    <span class="menu-span"><img class="menu_icon"
+                                 src="{% static "app/menu_uploaded_images.png" %}">Uploaded Images</span>
+    <span class="menu-span"><img class="menu_icon" src="{% static "app/menu_contact.png" %}">Contact</span>
+    <span class="menu-span"><img class="menu_icon" src="{% static "app/menu_help.png" %}">Help</span>
+    <span class="menu-span" onclick="window.location.href='/do_logout'"><img class="menu_icon"
+                                                                             src="{% static "app/menu_logout.png" %}">Log Out</span>
+
+</nav>
 {#		<div class="container">#}
-            <button id="showLeftPush">Show/Hide Left Push Menu</button>
+<div class="navigation-bar">
+    <img id="showLeftPush" src="{% static "app/side_menu_toggler.png" %}">
+
+    <div class="text-center navigation-bar-title">Home</div>
+</div>
 
 {#		</div>#}
-        <div id="page-content">
-        {% block content %}
-        {% endblock %}
+<div id="page-content" class="page-content">
+    {% block content %}
+    {% endblock %}
     <!-- /.container -->
 </div>
-        <script src="{% static 'app/js/classie.js' %}"></script>
+  <div class="bottom-bar">
+        <div class="col-md-4 col-md-offset-4 col-xs-12 col-lg-4 col-lg-offset-4">
+            <div class="col-md-3 col-xs-3 col-lg-3"><span><img src="{% static "app/bottom_bar_home.png" %}"></span>
+            </div>
+            <div class="col-md-3 col-xs-3 col-lg-3"><span><img src="{% static "app/bottom_bar_upload.png" %}"></span>
+            </div>
+            <div class="col-md-3 col-xs-3 col-lg-3"><span><img src="{% static "app/bottom_bar_favorite.png" %}"></span>
+            </div>
+            <div class="col-md-3 col-xs-3 col-lg-3"><span><img src="{% static "app/bottom_bar_trophy.png" %}"></span>
+            </div>
+        </div>
+    </div>
+<script src="{% static 'app/js/classie.js' %}"></script>
 
-		<script>
-			var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
-				showLeftPush = document.getElementById( 'showLeftPush' ),
-				body = document.body;
+<script>
+    var menuLeft = document.getElementById('cbp-spmenu-s1'),
+            showLeftPush = document.getElementById('showLeftPush'),
+            body = document.body;
 
-			showLeftPush.onclick = function() {
-				classie.toggle( this, 'active' );
-				classie.toggle( body, 'cbp-spmenu-push-toright' );
-				classie.toggle( menuLeft, 'cbp-spmenu-open' );
-				disableOther( 'showLeftPush' );
-			};
+    showLeftPush.onclick = function () {
+        classie.toggle(this, 'active');
+        classie.toggle(body, 'cbp-spmenu-push-toright');
+        classie.toggle(menuLeft, 'cbp-spmenu-open');
+        disableOther('showLeftPush');
+    };
 
 
-			function disableOther( button ) {
-				if( button !== 'showLeftPush' ) {
-					classie.toggle( showLeftPush, 'disabled' );
-				}
-			}
-		</script>
-	</body>
+    function disableOther(button) {
+        if (button !== 'showLeftPush') {
+            classie.toggle(showLeftPush, 'disabled');
+        }
+    }
+
+    function showProfile() {
+        $("#profile-menu").addClass('menu-active');
+        window.location.href = '/profile';
+    }
+
+
+</script>
+</body>
 </html>

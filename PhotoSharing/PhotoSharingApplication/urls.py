@@ -5,9 +5,9 @@ from PhotoSharingApplication import views
 
 urlpatterns = patterns('',
     url(r'^$', views.index, name='index'),
-    url(r'^login_action', user_manager_api.login_action, name='login_action'),
-    url(r'^logout_action', user_manager_api.logout_action, name='logout_action'),
-    url(r'^register_action', user_manager_api.register_action, name='register_action'),
+    url(r'^do_login', user_manager_api.do_login, name='do_login'),
+    url(r'^do_logout', user_manager_api.do_logout, name='do_logout'),
+    url(r'^do_register', user_manager_api.do_register, name='do_register'),
     url(r'^upload_profile_image', user_manager_api.upload_profile_image, name='upload_profile_image'),
 
     url(r'^login', views.login, name='login'),

@@ -22,7 +22,7 @@ def index(request):
 
 def login(request):
     if request.user.is_authenticated():
-        return HttpResponseRedirect("/photoshare")
+        return HttpResponseRedirect("/")
     return render(request, 'views/login.html')
 
 
@@ -40,14 +40,18 @@ def home(request):
 
 def register(request):
     if request.user.is_authenticated():
-        return HttpResponseRedirect("/photoshare")
+        return HttpResponseRedirect("/")
 
     return render(request, 'views/register.html')
 
 
 def profile(request):
     if request.user.is_authenticated():
-        user_profile = UserProfile.objects.get(user_id=request.user.id)
+        try:
+            user_profile = UserProfile.objects.get(user_id=request.user.id)
+        except UserProfile.DoesNotExist:
+            user_profile = request.user
+
         try:
             pic_count = Pictures.objects.filter(user=request.user).count()
         except Pictures.DoesNotExist:
