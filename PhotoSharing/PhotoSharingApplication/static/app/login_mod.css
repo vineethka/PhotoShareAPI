@@ -436,6 +436,7 @@ i {
 #showLeftPush {
     height: 25px;
     float: left;
+    cursor: pointer;
 }
 
 .navigation-bar-title {
