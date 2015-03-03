@@ -44,10 +44,10 @@ def do_register(request):
     register_template = loader.get_template('views/register.html')
     if request.method == 'POST':
         if authentication_helper.get_user_with_email_address(request.data['email']) is not None:
-            context = RequestContext(request, {'error_message': "Email Already exists.", })
+            context = RequestContext(request, {'error_message': "Email Already exists", })
             return HttpResponse(register_template.render(context))
         elif authentication_helper.get_user_with_username(request.data['username']) is not None:
-            context = RequestContext(request, {'error_message': "Username Already exists.", })
+            context = RequestContext(request, {'error_message': "Username Already exists", })
             return HttpResponse(register_template.render(context))
         else:
             user = UserProfile.objects.create_user(request.data['username'], request.data['email'],
@@ -63,10 +63,10 @@ def do_register(request):
 
                     return HttpResponseRedirect("/")
                 else:
-                    context = RequestContext(request, {'error_message': "Invalid username / password.", })
+                    context = RequestContext(request, {'error_message': "Invalid email / password", })
                     return HttpResponse(register_template.render(context))
             else:
-                context = RequestContext(request, {'error_message': "Unable to create the user. "
+                context = RequestContext(request, {'error_message': "Unable to create the user"
                                                                     "Please check the username, email", })
                 return HttpResponse(register_template.render(context))
 
