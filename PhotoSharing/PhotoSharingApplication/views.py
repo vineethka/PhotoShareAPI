@@ -100,7 +100,7 @@ def category_detail(request, category_id):
     return render(request, 'views/login.html')
 
 
-def like(request):
+def likes(request):
 
     if request.user.is_authenticated():
         pictures = Pictures.objects.filter(picturelikes__user__user_id=request.user.id).distinct()
