@@ -11,17 +11,14 @@
                             <div class="image">
                                 <img src="{{ selected_picture.image.url }}"
                                      alt="Generic placeholder thumbnail" class="img img-responsive full-width">
-                                {#                                {{ selected_category.name }}#}
-                                <div class="grid-image-text">
-                                {{ selected_picture.name }}
-                                </div>
+
                             </div>
 
                         </a>
                     </div>
                 {% endfor %}
             {% else %}
-                <p>No categories</p>
+                <p>No Images</p>
             {% endif %}
         </div>
         <div class="row">
