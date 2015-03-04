@@ -52,11 +52,12 @@ def profile(request):
             user_profile = request.user
 
         try:
-            pic_count = Pictures.objects.filter(picturelikes__user__user_id=request.user.id).distinct().count()
+            like_pic_count = Pictures.objects.filter(picturelikes__user__user_id=request.user.id).distinct().count()
         except Pictures.DoesNotExist:
-            pic_count = 0
+            like_pic_count = 0
+        uploaded_pic_count = Pictures.objects.filter(user__user_id=request.user.id).count()
 
-        return render(request, 'views/profile.html', {'user_profile': user_profile, 'pic_count': pic_count,})
+        return render(request, 'views/profile.html', {'user_profile': user_profile, 'like_pic_count': like_pic_count, 'uploaded_pic_count': uploaded_pic_count})
     return render(request, 'views/login.html')
 
 
