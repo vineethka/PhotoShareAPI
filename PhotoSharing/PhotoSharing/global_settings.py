@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'PhotoSharingApplication',
+    'social.apps.django_app.default',
     'rest_framework',
 )
 
@@ -55,6 +56,10 @@ MIDDLEWARE_CLASSES = (
 )
 
 AUTHENTICATION_BACKENDS = (
+    # ... your other backends
+    'social.backends.google.GoogleOAuth2',
+    'social.backends.twitter.TwitterOAuth',
+    'social_auth.backends.facebook.FacebookBackend',
     'PhotoSharingApplication.auth_backend.PasswordlessAuthBackend',
     'django.contrib.auth.backends.ModelBackend',
 
@@ -68,6 +73,9 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 
+FACEBOOK_APP_ID = '864070236968352'
+FACEBOOK_API_SECRET = '2a8911adfee35f74ab71da38c1ff633f'
+FACEBOOK_EXTENDED_PERMISSIONS = ['email', "first_name", 'last_name']
 ROOT_URLCONF = 'PhotoSharing.urls'
 
 WSGI_APPLICATION = 'PhotoSharing.wsgi.application'
@@ -81,7 +89,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'photoshare',
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': 'qburst',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }
