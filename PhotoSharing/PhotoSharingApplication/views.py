@@ -109,3 +109,11 @@ def likes(request):
         return HttpResponse(template.render(context))
     return render(request, 'views/login.html')
 
+
+def uploaded(request):
+    if request.user.is_authenticated():
+        pictures = Pictures.objects.filter(user__user_id=request.user.id)
+        template = loader.get_template('views/category_image_list.html')
+        context = RequestContext(request, {'pictures': pictures, })
+        return HttpResponse(template.render(context))
+    return render(request, 'views/login.html')
