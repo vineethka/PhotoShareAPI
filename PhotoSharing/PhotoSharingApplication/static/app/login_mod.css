@@ -326,11 +326,19 @@ i {
 
 .profile-container {
     float: left;
-    height: 180px;
+    height: 30%;
     width: 100%;
     margin-bottom: 100px;
     background-size: cover;
     background-repeat: no-repeat;
+}
+
+.profile-container:before {
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
 }
 
 .profile-name {
