@@ -2,7 +2,8 @@ from django.http.response import Http404, HttpResponseRedirect
 from django.shortcuts import get_list_or_404, render
 from rest_framework.decorators import api_view
 from PhotoSharingApplication.APIS.helpers.api_helper import JSONResponse, get_response_data
-from PhotoSharingApplication.models import PictureLikes, PictureAbuseReports, Pictures
+from PhotoSharingApplication.APIS.helpers.upload_images import ImageForm
+from PhotoSharingApplication.models import PictureLikes, PictureAbuseReports, Pictures, UserProfile
 
 
 @api_view(['POST'])
@@ -81,3 +82,16 @@ def save_picture_like(request):
     picture_like.is_in_app_vote = is_power_vote
     picture_like.like_count = like_count
     picture_like.save()
+
+
+@api_view(['POST', 'GET'])
+def upload_picture(request):
+    if request.method == 'POST':
+        form = ImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            user_profile = UserProfile.objects.get(user_id=request.user.id)
+            picture = Pictures(user_id=user_profile.id)
+            picture.image = form.cleaned_data['image']
+            picture.save()
+            return HttpResponseRedirect("/image_details/" + picture.id)
+    return HttpResponseRedirect("/upload")

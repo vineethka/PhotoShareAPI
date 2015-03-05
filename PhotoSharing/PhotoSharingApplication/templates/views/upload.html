@@ -1,0 +1,84 @@
+{% extends "home_slide_menu.html" %}
+{% load staticfiles %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="profile-info col-xs-6 col-md-6 col-lg-6 profile-info-border" id="img_camera">
+                            <span class="profile-info-text-count"><img
+                                    src="{% static "app/upload_camera.png" %}"></span>
+                    <span class="profile-info-text">Take a Picture</span>
+            </div>
+            <div class="profile-info col-xs-6 col-md-6 col-lg-6 profile-info-border" id="img_gallery">
+                            <span class="profile-info-text-count"><img
+                                    src="{% static "app/upload_gallery.png" %}"></span>
+                    <span class="profile-info-text">Camera Roll</span>
+            </div>
+            <input id="id_camera" type="file" accept="image/*;capture=camera" class="hidden">
+            <input id="id_gallery" type="file" accept="image/*" class="hidden" name="image">
+
+
+        </div>
+    </div>
+
+    <script>
+        var isMobile = "";
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            isMobile = "yes";
+        } else {
+            isMobile = "no";
+        }
+        $("#img_gallery").click(function () {
+            $('#id_gallery').click();
+        });
+
+        $("#img_camera").click(function () {
+            $('#id_camera').click();
+        });
+
+        $('#id_camera').change(function () {
+            $("#id_camera").hide();
+            var formData = new FormData();
+            formData.append('action', 'upload_picture');
+            formData.append('image', $('input[type=file]')[0].files[0]);
+            $.ajax({
+                url: '/upload_picture/',
+                type: 'POST',
+                data: formData,
+                success: function (data) {
+                    window.location.href = '/uploaded';
+                },
+                //Options to tell JQuery not to process data or worry about content-type
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+        });
+
+           $('#img_gallery').change(function () {
+            $("#img_gallery").hide();
+            var formData = new FormData();
+            formData.append('action', 'upload_picture');
+            formData.append('image', $('input[type=file]')[0].files[0]);
+            $.ajax({
+                url: '/upload_picture/',
+                type: 'POST',
+                data: formData,
+                success: function (data) {
+                    window.location.href = '/uploaded';
+                },
+                //Options to tell JQuery not to process data or worry about content-type
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+        });
+
+        $("#profile-menu").addClass('menu-active');
+        $("#profActive").show();
+        $("#profInactive").hide();
+        $("#profActive").removeClass("hidden");
+
+    </script>
+{% endblock %}
+

@@ -142,3 +142,10 @@ def image_details(request, picture_id):
         context = RequestContext(request, {'picture': picture, 'like_count': like_count})
         return HttpResponse(template.render(context))
     return render(request, 'views/login.html')
+
+
+def upload(request):
+    if request.user.is_authenticated():
+        return render(request, 'views/upload.html')
+
+    return render(request, 'views/login.html')
