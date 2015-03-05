@@ -15,10 +15,11 @@ urlpatterns = patterns('',
     url(r'^register', views.register, name='register'),
     url(r'^profile', views.profile, name='profile'),
     url(r'^category_list', views.category_list, name='category_list'),
-    url(r'^category/(?P<category_id>\d+)',views.category_detail, name="category_detail"),
+    url(r'^category/(?P<category_id>\d+)', views.category_detail, name="category_detail"),
     url(r'^likes',views.likes, name="likes"),
     url(r'^uploaded',views.uploaded, name="uploaded"),
-    url(r'^report_a_pic/(?P<picture_id>\d+)',views.report_a_pic, name="report_a_pic"),
+    url(r'^report_a_pic/(?P<picture_id>\d+)', views.report_a_pic, name="report_a_pic"),
+    url(r'^image_details/(?P<picture_id>\d+)', views.image_details, name="image_details"),
 
 
     url(r'^facebooklogin', user_manager_api.facebook_login, name='facebooklogin'),

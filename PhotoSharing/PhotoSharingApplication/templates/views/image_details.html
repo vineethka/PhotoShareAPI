@@ -27,7 +27,8 @@
 <div class="container-fluid">
     <div class="row">
 
-
+    <img src="{% if picture.image %} {{ picture.image.url }} {% endif %}"
+                     class="circle" id="circle">
     </div>
 </div>
 
