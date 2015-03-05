@@ -123,8 +123,9 @@ def uploaded(request):
 def report_a_pic(request, picture_id):
 
     if request.user.is_authenticated():
+        picture = Pictures.objects.get(id=picture_id)
         template = loader.get_template('views/report_a_pic.html')
-        context = RequestContext(request, {'picture_id': picture_id, })
+        context = RequestContext(request, {'picture': picture, })
         return HttpResponse(template.render(context))
     return render(request, 'views/login.html')
 

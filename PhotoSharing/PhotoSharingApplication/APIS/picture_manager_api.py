@@ -1,8 +1,8 @@
-from django.http.response import Http404
-from django.shortcuts import get_list_or_404
+from django.http.response import Http404, HttpResponseRedirect
+from django.shortcuts import get_list_or_404, render
 from rest_framework.decorators import api_view
 from PhotoSharingApplication.APIS.helpers.api_helper import JSONResponse, get_response_data
-from PhotoSharingApplication.models import PictureLikes, PictureAbuseReports
+from PhotoSharingApplication.models import PictureLikes, PictureAbuseReports, Pictures
 
 
 @api_view(['POST'])
@@ -26,35 +26,45 @@ def like(request):
         # dislike
         elif like_count < 0:
             try:
-                get_list_or_404(PictureLikes,user=user_id, picture=picture_id)
+                get_list_or_404(PictureLikes, user=user_id, picture=picture_id)
                 # PictureLikes.objects.get(user=user_id, picture=picture_id)
                 return JSONResponse(get_response_data("You can not dislike the picture that you already liked", ""))
             except Http404:
                 save_picture_like(request)
                 return JSONResponse(get_response_data("", "Success"))
-        #Normal like
+        # Normal like
         else:
             try:
-                get_list_or_404(PictureLikes,user=user_id, picture=picture_id)
+                get_list_or_404(PictureLikes, user=user_id, picture=picture_id)
                 return JSONResponse(get_response_data("User already liked this picture", ""))
             except Http404:
                 save_picture_like(request)
                 return JSONResponse(get_response_data("", "Success"))
 
 
-@api_view(['POST'])
-def abuse_picture(request, picture_id):
+@api_view(['POST', 'GET'])
+def abuse_picture(request):
+    picture = Pictures.objects.get(id=request.data['picture_id'])
+
     if request.method == 'POST':
-        picture_id = picture_id
-        subject = request.data['subject']
-        comment = request.data['comment']
-        picture_abuse_report = PictureAbuseReports()
-        picture_abuse_report.user_id = 1
-        picture_abuse_report.picture_id = picture_id
-        picture_abuse_report.subject = subject
-        picture_abuse_report.comment = comment
-        picture_abuse_report.save()
-        return JSONResponse(get_response_data("", "Success"))
+        try:
+            picture_id = request.data['picture_id']
+
+            subject = request.data['subject']
+            comment = request.data['comment']
+            picture_abuse_report = PictureAbuseReports()
+            picture_abuse_report.user_id = request.user.id
+            picture_abuse_report.picture_id = picture_id
+            picture_abuse_report.subject = subject
+            picture_abuse_report.comment = comment
+            picture_abuse_report.save()
+            return render(request, 'views/report_a_pic.html',
+                          {'error_message': "Reported abuse.", 'picture': picture, })
+        except PictureAbuseReports.DoesNotExist:
+            return render(request, 'views/report_a_pic.html',
+                          {'error_message': "Failed to report abuse", 'picture': picture, })
+    else:
+        return HttpResponseRedirect("/report_a_pic/" + request.data['picture_id'])
 
 
 def save_picture_like(request):
