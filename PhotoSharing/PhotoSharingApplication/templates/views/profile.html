@@ -18,15 +18,15 @@
                     <div class="profile-info col-xs-6 col-md-6 col-lg-6 profile-info-border">
                         <a href="{% url 'likes' %}" class="">
                             {#                            <span>{{ pic_count }}</span>#}
-                            <span class="profile-info-text-count">365</span>
-                            <span class="profile-info-text">PHOTOS</span>
+                            <span class="profile-info-text-count">{{ like_pic_count }}</span>
+                            <span class="profile-info-text">LIKES</span>
                         </a>
                     </div>
                     <div class="profile-info col-xs-6 col-md-6 col-lg-6">
-                        <a href="{% url 'likes' %}" class="">
+                        <a href="{% url 'uploaded' %}" class="">
                             {#                            <span>{{ pic_count }}</span>#}
-                            <span class="profile-info-text-count">20</span>
-                            <span class="profile-info-text">FRIENDS</span>
+                            <span class="profile-info-text-count">{{ uploaded_pic_count }}</span>
+                            <span class="profile-info-text">UPLOADS</span>
                         </a>
                     </div>
 
