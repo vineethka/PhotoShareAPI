@@ -487,3 +487,11 @@ i {
     color: #60670d;
 
 }
+
+.picture-cover {
+    float: inherit;
+    height: 300px;
+    width: 100%;
+    margin-bottom: 50px;
+    background-repeat: no-repeat;
+}

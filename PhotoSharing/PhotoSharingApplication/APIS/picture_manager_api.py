@@ -1,5 +1,5 @@
-from django.http.response import Http404
-from django.shortcuts import get_list_or_404
+from django.http.response import Http404, HttpResponseRedirect
+from django.shortcuts import get_list_or_404, render
 from rest_framework.decorators import api_view
 from PhotoSharingApplication.APIS.helpers.api_helper import JSONResponse, get_response_data
 from PhotoSharingApplication.models import PictureLikes, PictureAbuseReports
@@ -45,16 +45,22 @@ def like(request):
 @api_view(['POST'])
 def abuse_picture(request, picture_id):
     if request.method == 'POST':
-        picture_id = picture_id
-        subject = request.data['subject']
-        comment = request.data['comment']
-        picture_abuse_report = PictureAbuseReports()
-        picture_abuse_report.user_id = 1
-        picture_abuse_report.picture_id = picture_id
-        picture_abuse_report.subject = subject
-        picture_abuse_report.comment = comment
-        picture_abuse_report.save()
-        return JSONResponse(get_response_data("", "Success"))
+        try:
+            picture_id = picture_id
+            subject = request.data['subject']
+            comment = request.data['comment']
+            picture_abuse_report = PictureAbuseReports()
+            picture_abuse_report.user_id = 1
+            picture_abuse_report.picture_id = picture_id
+            picture_abuse_report.subject = subject
+            picture_abuse_report.comment = comment
+            picture_abuse_report.save()
+            return render(request, 'views/report_a_pic.html', {'error_message': "Reported abuse.", })
+        except PictureAbuseReports.DoesNotExist:
+            return render(request, 'views/report_a_pic.html', {'error_message': "Failed to report abuse", })
+    else:
+        return HttpResponseRedirect("/report_a_pic/" + picture_id)
+
 
 
 def save_picture_like(request):

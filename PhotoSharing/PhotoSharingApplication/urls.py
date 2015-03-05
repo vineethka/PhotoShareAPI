@@ -20,6 +20,7 @@ urlpatterns = patterns('',
     url(r'^uploaded',views.uploaded, name="uploaded"),
     url(r'^report_a_pic/(?P<picture_id>\d+)', views.report_a_pic, name="report_a_pic"),
     url(r'^image_details/(?P<picture_id>\d+)', views.image_details, name="image_details"),
+    url(r'^abuse_picture', picture_manager_api.abuse_picture, name='abuse_picture'),
 
 
     url(r'^facebooklogin', user_manager_api.facebook_login, name='facebooklogin'),
