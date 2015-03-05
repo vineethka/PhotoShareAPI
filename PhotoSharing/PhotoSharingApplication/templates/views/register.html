@@ -63,7 +63,7 @@
                 $('#dob').datetimepicker({
                format: 'YYYY-MM-DD',
                defaultDate: new Date(new Date().getFullYear() -18, new Date().getMonth(), new Date().getDay()),
-               minDate: new Date(new Date().getFullYear() -18, new Date().getMonth(), new Date().getDay()),
+               minDate: new Date(new Date().getFullYear() -18, new Date().getMonth(), new Date().getDay())
             });
 
             });
@@ -76,6 +76,7 @@
 
                 <div class="col-md-12"><input type="password" required="required" name="password" id="password"
                                               placeholder="Password"></div>
+            <div class="col-md-12"><span class="terms-text">By signing up, you agree to our <a href="#">Terms Of Use</a></span></div>
 
                 <div class="col-xs-12 col-md-12 buttonBoxCenter"><input type="submit" value=" Sign Up " name="submit">
                 </div>
