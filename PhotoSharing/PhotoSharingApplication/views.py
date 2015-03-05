@@ -1,4 +1,4 @@
-
+from django.db.models import Sum
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from PhotoSharingApplication.APIS.helpers.upload_images import ImageForm
@@ -134,8 +134,11 @@ def image_details(request, picture_id):
 
     if request.user.is_authenticated():
         picture = Pictures.objects.get(id=picture_id)
-
+        like_count_agg = PictureLikes.objects.filter(picture_id=picture_id).aggregate(Sum('like_count'))
+        like_count = 0
+        if like_count_agg['like_count__sum'] != None:
+            like_count = like_count_agg['like_count__sum']
         template = loader.get_template('views/image_details.html')
-        context = RequestContext(request, {'picture': picture, })
+        context = RequestContext(request, {'picture': picture, 'like_count': like_count})
         return HttpResponse(template.render(context))
     return render(request, 'views/login.html')
