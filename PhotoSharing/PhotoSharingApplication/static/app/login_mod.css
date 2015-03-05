@@ -337,11 +337,11 @@ i {
     background-position: center;
     background-repeat: no-repeat;
 
-    -webkit-filter: blur(10px);
-    -moz-filter: blur(10px);
-    -o-filter: blur(10px);
-    -ms-filter: blur(10px);
-    filter: blur(10px);
+    -webkit-filter: blur(7px);
+    -moz-filter: blur(7px);
+    -o-filter: blur(7px);
+    -ms-filter: blur(7px);
+    filter: blur(7px);
 
 }
 
@@ -378,6 +378,8 @@ i {
     margin-top: -120px;
     padding-top: 140px;
     z-index: -1;
+        padding-bottom: 64px;
+
 }
 
 .profile-facebook-button {
@@ -509,6 +511,8 @@ i {
     width: 100%;
     background-color: #cfdd28;
     display: block;
+    position : fixed;
+    top : 0;
 }
 
 #showLeftPush {
@@ -620,4 +624,14 @@ i {
     width: 100%;
     margin-bottom: 50px;
     background-repeat: no-repeat;
+}
+
+.page-content {
+    padding-bottom: 64px;
+    padding-top: 65px;
+}
+
+.slide-content {
+    position: absolute;
+    width: 100%;
 }

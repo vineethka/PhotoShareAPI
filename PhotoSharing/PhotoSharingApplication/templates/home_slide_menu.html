@@ -98,7 +98,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <title>Farpic</title>
     {#		<meta name="description" content="Blueprint: Slide and Push Menus" />#}
     {#		<meta name="keywords" content="sliding menu, pushing menu, navigation, responsive, menu, css, jquery" />#}
@@ -138,32 +138,37 @@
                                                                              src="{% static "app/menu_logout.png" %}">Log Out</span>
 
 </nav>
-{#		<div class="container">#}
-<div class="navigation-bar">
-    <img id="showLeftPush" src="{% static "app/side_menu_toggler.png" %}">
+<div class="slide-content">
+    <div class="navigation-bar">
+        <img id="showLeftPush" src="{% static "app/side_menu_toggler.png" %}">
 
-    <div class="text-center navigation-bar-title">Home</div>
-</div>
+        <div class="text-center navigation-bar-title">Home</div>
+    </div>
 
-{#		</div>#}
-<div id="page-content" class="page-content">
-    {% block content %}
-    {% endblock %}
-    <!-- /.container -->
-    <div class="bottom-bar">
-        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
-            <div class="col-md-3 col-xs-3 col-lg-3"><span><img src="{% static "app/bottom_bar_home.png" %}"></span>
-            </div>
-            <div class="col-md-3 col-xs-3 col-lg-3"><span><img src="{% static "app/bottom_bar_upload.png" %}"></span>
-            </div>
-            <div class="col-md-3 col-xs-3 col-lg-3"><span><img src="{% static "app/bottom_bar_favorite.png" %}"></span>
-            </div>
-            <div class="col-md-3 col-xs-3 col-lg-3"><span><img src="{% static "app/bottom_bar_trophy.png" %}"></span>
+
+    <div id="page-content">
+        <div class="page-content">
+            {% block content %}
+            {% endblock %}
+        </div>
+        <!-- /.container -->
+        <div class="bottom-bar">
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
+                <div class="col-md-3 col-xs-3 col-lg-3"><span><img src="{% static "app/bottom_bar_home.png" %}"></span>
+                </div>
+                <div class="col-md-3 col-xs-3 col-lg-3"><span><img
+                        src="{% static "app/bottom_bar_upload.png" %}"></span>
+                </div>
+                <div class="col-md-3 col-xs-3 col-lg-3"><span><img
+                        src="{% static "app/bottom_bar_favorite.png" %}"></span>
+                </div>
+                <div class="col-md-3 col-xs-3 col-lg-3"><span><img
+                        src="{% static "app/bottom_bar_trophy.png" %}"></span>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
 <script src="{% static 'app/js/classie.js' %}"></script>
 
 <script>
