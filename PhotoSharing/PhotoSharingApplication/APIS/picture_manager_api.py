@@ -92,6 +92,7 @@ def upload_picture(request):
             user_profile = UserProfile.objects.get(user_id=request.user.id)
             picture = Pictures(user_id=user_profile.id)
             picture.image = form.cleaned_data['image']
+            picture.category_id = 3
             picture.save()
-            return HttpResponseRedirect("/image_details/" + picture.id)
+            return HttpResponseRedirect("/image_details/" + 'picture.id')
     return HttpResponseRedirect("/upload")
