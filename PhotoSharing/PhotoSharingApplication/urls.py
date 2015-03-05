@@ -18,6 +18,7 @@ urlpatterns = patterns('',
     url(r'^category/(?P<category_id>\d+)',views.category_detail, name="category_detail"),
     url(r'^likes',views.likes, name="likes"),
     url(r'^uploaded',views.uploaded, name="uploaded"),
+    url(r'^report_a_pic/(?P<picture_id>\d+)',views.report_a_pic, name="report_a_pic"),
 
 
     url(r'^facebooklogin', user_manager_api.facebook_login, name='facebooklogin'),

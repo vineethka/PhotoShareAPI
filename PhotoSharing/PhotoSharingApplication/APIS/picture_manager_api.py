@@ -43,14 +43,13 @@ def like(request):
 
 
 @api_view(['POST'])
-def abuse_picture(request):
+def abuse_picture(request, picture_id):
     if request.method == 'POST':
-        picture_id = request.data['picture_id']
-        user_id = request.data['user_id']
+        picture_id = picture_id
         subject = request.data['subject']
         comment = request.data['comment']
         picture_abuse_report = PictureAbuseReports()
-        picture_abuse_report.user_id = user_id
+        picture_abuse_report.user_id = 1
         picture_abuse_report.picture_id = picture_id
         picture_abuse_report.subject = subject
         picture_abuse_report.comment = comment

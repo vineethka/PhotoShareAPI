@@ -1,0 +1,60 @@
+{% extends "home_slide_menu.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+    <div class="container-fluid">
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-sm-offset-3 col-md-offset-3  col-lg-offset-4 content-box">
+            <img src="{% static "app/farpic_logo.png" %}"
+                 class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xs-offset-3 col-sm-offset-3 col-md-offset-3 col-lg-offset-3 logoImage">
+
+            <form action='do_register' method="post">
+                {% if error_message %}
+                    <div class="alert bg-danger">
+                        <a href="#" class="close" data-dismiss="alert">&times;</a>
+                        {{ error_message }}
+                    </div>
+                {% endif %}
+                <div class="col-md-12"><input type="text" required="required" name="firstName" id="name"
+                                              placeholder="First Name"></div>
+                <div class="col-md-12"><input type="text" required="required" name="lastName" id="name"
+                                              placeholder="Last Name"></div>
+{#                <div class="col-md-12"><input type="date" required="required" name="dob" id="name"#}
+{#                                              placeholder="Date of Birth" min="yesterday" max="" format="mm/dd/yyyy"></div>#}
+{#                <div class="col-md-12"><input class="form-control date-picker" data-date-format="mm-dd-yyyy" id="name" name="dob" type="text" placeholder="Date of Birth"></div>#}
+
+
+            <div class='col-sm-12'>
+            <input type='text' required="required" name="dob" id="dob" placeholder="Date Of Birth" />
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#dob').datetimepicker({
+               format: 'YYYY-MM-DD',
+               defaultDate: new Date(new Date().getFullYear() -18, new Date().getMonth(), new Date().getDay()),
+               minDate: new Date(new Date().getFullYear() -18, new Date().getMonth(), new Date().getDay())
+            });
+
+            });
+        </script>
+
+                <div class="col-md-12"><input type="email" required="true" name="email" id="name"
+                                              placeholder="Email Address"></div>
+                <div class="col-md-12"><input type="text" required="required" name="username" id="username"
+                                              placeholder="User Name"></div>
+
+                <div class="col-md-12"><input type="password" required="required" name="password" id="password"
+                                              placeholder="Password"></div>
+            <div class="col-md-12"><span class="terms-text">By signing up, you agree to our <a href="#">Terms Of Use</a></span></div>
+
+                <div class="col-xs-12 col-md-12 buttonBoxCenter"><input type="submit" value=" Sign Up " name="submit">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    </div>
+
+{% endblock %}
