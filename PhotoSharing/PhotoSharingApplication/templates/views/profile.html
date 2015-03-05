@@ -26,20 +26,21 @@
 
             </div>
 
-{#            <div class="col-xs-12 col-md-12 textCenter">#}
-{#                <a href="{% url 'uploaded' %}" class="thumbnail_no_margin">{{ uploaded_pic_count }} UPLOADED PHOTOS</a>#}
-{##}
-{#            </div>#}
-
-
-
-            <div class="col-xs-12 col-md-12 buttonBoxCenter"><button type="button" value="Sign In with Facebook "
-                                                                    name="submit"><img class="buttonIcon" src="{% static "app/facebook_icon.png" %}">Sign In with Facebook</button></div>
-            <div class="col-xs-12 col-md-12 buttonBoxCenter"><button type="button" value="Sign In with Twitter "
-                                                                    name="submit"><img class="buttonIcon" src="{% static "app/twitter_icon.png" %}">Sign In with Twitter</button></div>
-            <div class="col-xs-12 col-md-12 buttonBoxCenter"><button type="button" value="Sign In with Google "
-                                                                    name="submit"><img class="buttonIcon" src="{% static "app/google_icon.png" %}">Sign In with Google</button></div>
-
+            <div class="col-xs-12 col-md-12 buttonBoxCenter">
+                    <button type="button" value="Facebook "
+                            name="submit" target="blank" onclick="window.location.href='https://www.facebook.com/sharer/sharer.php?u=https://www.farpic.com/&t=fb'"><img class="buttonIcon" src="{% static "app/facebook_icon.png" %}">Facebook
+                    </button>
+                </div>
+                <div class="col-xs-12 col-md-12 buttonBoxCenter">
+                    <button type="button" value="Twitter "
+                            name="submit" target="_blank" onclick="window.location.href='https://twitter.com/share?text=Share%20Farpic%20with%20your%20friends%20and%20family%20today!&hashtags=Farpic'"><img class="buttonIcon" src="{% static "app/twitter_icon.png" %}">Twitter
+                    </button>
+                </div>
+                  <div class="col-xs-12 col-md-12 buttonBoxCenter">
+                    <button type="button" value="Email "
+                            name="submit" target="_blank" onclick="window.location.href='mailto:mobapps.aptwei@gmail.com?subject=&body= Share Farpic with your friends and family today! #Farpic'"><img class="buttonIcon" src="{% static "app/google_icon.png" %}">Email
+                    </button>
+                </div>
 
             <input id="id_image" type="file" class="hidden" name="image">
             </div>
