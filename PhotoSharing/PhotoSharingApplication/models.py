@@ -87,7 +87,7 @@ class Categories(models.Model):
 
 
 class Pictures(models.Model):
-    category = models.ForeignKey(Categories)
+    category = models.ForeignKey(Categories, blank=True)
     user = models.ForeignKey(UserProfile)
     image = models.ImageField(upload_to='uploaded_images/pics')
     name = models.CharField(max_length=50)
