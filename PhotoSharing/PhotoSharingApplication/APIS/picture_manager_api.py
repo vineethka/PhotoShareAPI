@@ -44,10 +44,12 @@ def like(request):
 
 @api_view(['POST', 'GET'])
 def abuse_picture(request):
-    picture = Pictures.objects.get(id=request.data['picture_id'])
 
     if request.method == 'POST':
+        picture = Pictures.objects.get(id=request.data['picture_id'])
+
         try:
+
             picture_id = request.data['picture_id']
 
             subject = request.data['subject']
@@ -64,7 +66,7 @@ def abuse_picture(request):
             return render(request, 'views/report_a_pic.html',
                           {'error_message': "Failed to report abuse", 'picture': picture, })
     else:
-        return HttpResponseRedirect("/report_a_pic/" + request.data['picture_id'])
+        return HttpResponseRedirect("/")
 
 
 def save_picture_like(request):
