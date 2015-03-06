@@ -94,7 +94,7 @@ def upload_profile_image(request):
 def category_detail(request, category_id):
 
     if request.user.is_authenticated():
-        pictures = Pictures.objects.filter(category_id=category_id).exclude(picturelikes_user_id=request.user.id)
+        pictures = Pictures.objects.filter(category_id=category_id).exclude(picturelikes__user_id=request.user.id)
         template = loader.get_template('views/category_image_list.html')
         context = RequestContext(request, {'pictures': pictures, })
         return HttpResponse(template.render(context))
