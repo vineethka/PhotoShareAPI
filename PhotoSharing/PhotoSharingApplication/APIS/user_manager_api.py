@@ -103,9 +103,9 @@ def upload_profile_image(request):
     if request.method == 'POST':
         form = ImageForm(request.POST, request.FILES)
         if form.is_valid():
-            userProfile = UserProfile.objects.get(user_id=request.user.id)
-            userProfile.profile_image = form.cleaned_data['image']
-            userProfile.save()
+            user_profile = UserProfile.objects.get(user_id=request.user.id)
+            user_profile.profile_image = form.cleaned_data['image']
+            user_profile.save()
             return HttpResponseRedirect("/profile")
     return HttpResponseRedirect("/profile")
 

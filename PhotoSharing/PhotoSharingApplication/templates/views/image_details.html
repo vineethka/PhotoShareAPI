@@ -4,12 +4,14 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-    <title>Login</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
+    <title>Farpic</title>
 
     <!-- Bootstrap -->
     <link href="{% static 'app/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'app/login_mod.css' %}" rel="stylesheet" type="text/css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="{% static 'app/js/bootstrap.min.js' %}"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,7 +25,6 @@
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>-->
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="{% static 'app/js/bootstrap.min.js' %}"></script>
 <div class="container-fluid">
     <div class="row image_details_no_margin">
         <div class="" id="image_wrap">
@@ -42,7 +43,7 @@
         <div class="col-xs-2 col-md-2 col-lg-2 "><span><img
                 src="{% static "app/image_details_bottom_bar_download.png" %}"></span>
         </div>
-        <div class="col-xs-8 col-md-4 col-md-offset-2 col-lg-4 col-lg-offset-2"><span><img
+        <div class="col-xs-8 col-md-4 col-md-offset-2 col-lg-4 col-lg-offset-2"><span id="like_pic"><img
                 src="{% static "app/image_details_bottom_bar_heart.png" %}"></span>
             <span class="image_details_likes_text">{{ like_count }}</span>
         </div>
@@ -54,9 +55,33 @@
 
 
 <script type="text/javascript">
+
     $(window).load(function () {
 // Run code
         attachPinch("image_wrap", "image");
+    });
+
+    $("#like_pic").click(function () {
+        console.log("like pic clicked");
+        var formData = new FormData();
+        formData.append('action', 'like');
+        formData.append('picture_id', '{{ picture.id }}');
+        formData.append('like_count', 1);
+
+        $.ajax({
+            url: '/like/',
+            type: 'POST',
+            data: formData,
+            success: function (data) {
+                console.log(data);
+                url = '/image_details/' + '{{ picture.id }}';
+                window.location.href = url;
+            },
+            //Options to tell JQuery not to process data or worry about content-type
+            cache: false,
+            contentType: false,
+            processData: false
+        });
     });
 
     function attachPinch(wrapperID, imgID) {

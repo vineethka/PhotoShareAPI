@@ -12,9 +12,13 @@ def like(request):
     if request.method == 'POST':
 
         picture_id = request.data['picture_id']
-        user_id = request.data["user_id"]
-        is_power_vote = request.data['is_power_vote']
-        like_count = request.data['like_count']
+        # user_profile = UserProfile.objects.get(user_id=request.user.id)
+
+        user_id = request.user.userprofile.id
+        # is_power_vote = request.data['is_power_vote']
+        is_power_vote = 0
+
+        like_count = int(request.data['like_count'])
 
         if is_power_vote:
             try:
@@ -32,7 +36,7 @@ def like(request):
                 # PictureLikes.objects.get(user=user_id, picture=picture_id)
                 return JSONResponse(get_response_data("You can not dislike the picture that you already liked", ""))
             except Http404:
-                save_picture_like(request)
+                save_picture_like(request, user_id)
                 return JSONResponse(get_response_data("", "Success"))
         # Normal like
         else:
@@ -40,7 +44,7 @@ def like(request):
                 get_list_or_404(PictureLikes, user=user_id, picture=picture_id)
                 return JSONResponse(get_response_data("User already liked this picture", ""))
             except Http404:
-                save_picture_like(request)
+                save_picture_like(request, user_id)
                 return JSONResponse(get_response_data("", "Success"))
 
 
@@ -57,7 +61,7 @@ def abuse_picture(request):
             subject = request.data['subject']
             comment = request.data['comment']
             picture_abuse_report = PictureAbuseReports()
-            picture_abuse_report.user_id = request.user.id
+            picture_abuse_report.user_id = request.user.userprofile.id
             picture_abuse_report.picture_id = picture_id
             picture_abuse_report.subject = subject
             picture_abuse_report.comment = comment
@@ -71,11 +75,11 @@ def abuse_picture(request):
         return HttpResponseRedirect("/")
 
 
-def save_picture_like(request):
+def save_picture_like(request, user_id):
     picture_id = request.data['picture_id']
-    user_id = request.data["user_id"]
-    is_power_vote = request.data['is_power_vote']
-    like_count = request.data['like_count']
+    # is_power_vote = request.data['is_power_vote']
+    is_power_vote = 0
+    like_count = int(request.data['like_count'])
 
     picture_like = PictureLikes()
     picture_like.picture_id = picture_id
@@ -90,8 +94,7 @@ def upload_picture(request):
     if request.method == 'POST':
         form = ImageForm(request.POST, request.FILES)
         if form.is_valid():
-            user_profile = UserProfile.objects.get(user_id=request.user.id)
-            picture = Pictures(user_id=user_profile.id)
+            picture = Pictures(user_id=request.user.userprofile.id)
             picture.image = form.cleaned_data['image']
             picture.category_id = 3
             picture.save()

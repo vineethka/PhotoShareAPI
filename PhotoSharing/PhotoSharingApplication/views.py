@@ -47,15 +47,15 @@ def register(request):
 def profile(request):
     if request.user.is_authenticated():
         try:
-            user_profile = UserProfile.objects.get(user_id=request.user.id)
+            user_profile = UserProfile.objects.get(id=request.user.userprofile.id)
         except UserProfile.DoesNotExist:
             user_profile = request.user
 
         try:
-            like_pic_count = Pictures.objects.filter(picturelikes__user__user_id=request.user.id).distinct().count()
+            like_pic_count = Pictures.objects.filter(picturelikes__user_id=request.user.userprofile.id).distinct().count()
         except Pictures.DoesNotExist:
             like_pic_count = 0
-        uploaded_pic_count = Pictures.objects.filter(user__user_id=request.user.id).count()
+        uploaded_pic_count = Pictures.objects.filter(user_id=request.user.userprofile.id).count()
 
         return render(request, 'views/profile.html', {'user_profile': user_profile, 'like_pic_count': like_pic_count, 'uploaded_pic_count': uploaded_pic_count})
     return render(request, 'views/login.html')
@@ -94,7 +94,7 @@ def upload_profile_image(request):
 def category_detail(request, category_id):
 
     if request.user.is_authenticated():
-        pictures = Pictures.objects.filter(category_id=category_id).exclude(picturelikes__user__user_id=request.user.id)
+        pictures = Pictures.objects.filter(category_id=category_id).exclude(picturelikes_user_id=request.user.id)
         template = loader.get_template('views/category_image_list.html')
         context = RequestContext(request, {'pictures': pictures, })
         return HttpResponse(template.render(context))
@@ -104,7 +104,7 @@ def category_detail(request, category_id):
 def likes(request):
 
     if request.user.is_authenticated():
-        pictures = Pictures.objects.filter(picturelikes__user__user_id=request.user.id).distinct()
+        pictures = Pictures.objects.filter(picturelikes__user_id=request.user.userprofile.id).distinct()
         template = loader.get_template('views/like.html')
         context = RequestContext(request, {'pictures': pictures, })
         return HttpResponse(template.render(context))
@@ -113,7 +113,7 @@ def likes(request):
 
 def uploaded(request):
     if request.user.is_authenticated():
-        pictures = Pictures.objects.filter(user__user_id=request.user.id)
+        pictures = Pictures.objects.filter(user_id=request.user.userprofile.id)
         template = loader.get_template('views/category_image_list.html')
         context = RequestContext(request, {'pictures': pictures, })
         return HttpResponse(template.render(context))
