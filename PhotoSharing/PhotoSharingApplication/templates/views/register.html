@@ -68,13 +68,16 @@
             });
         </script>
 
-                <div class="col-md-12"><input type="email" required="true" name="email" id="name"
+                <div class="col-md-12"><input type="email" required="required" name="email" id="name"
                                               placeholder="Email Address"></div>
                 <div class="col-md-12"><input type="text" required="required" name="username" id="username"
                                               placeholder="User Name"></div>
 
                 <div class="col-md-12"><input type="password" required="required" name="password" id="password"
                                               placeholder="Password"></div>
+                <div class="col-md-12"><input type="password" required="required" name="confirm-password" id="confirm-password"
+                                              placeholder="Confirm Password" onfocus="validatePass(document.getElementById('password'), this);"
+                                              oninput="validatePass(document.getElementById('password'), this);"></div>
             <div class="col-md-12"><span class="terms-text">By signing up, you agree to our <a href="#">Terms Of Use</a></span></div>
 
                 <div class="col-xs-12 col-md-12 buttonBoxCenter"><input type="submit" value=" Sign Up " name="submit">
@@ -86,3 +89,13 @@
 
 </body>
 </html>
+
+<script>
+    function validatePass(p1, p2) {
+	    if (p1.value != p2.value || p1.value == '' || p2.value == '') {
+	        p2.setCustomValidity('Passwords do not match.');
+	    } else {
+	        p2.setCustomValidity('');
+	    }
+}
+</script>
