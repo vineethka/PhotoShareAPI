@@ -2,6 +2,7 @@ from django.http.response import Http404, HttpResponseRedirect
 from django.shortcuts import get_list_or_404, render
 from rest_framework.decorators import api_view
 from PhotoSharingApplication.APIS.helpers.api_helper import JSONResponse, get_response_data
+from PhotoSharingApplication.APIS.helpers.serializers import PictureSerializer
 from PhotoSharingApplication.APIS.helpers.upload_images import ImageForm
 from PhotoSharingApplication.models import PictureLikes, PictureAbuseReports, Pictures, UserProfile
 
@@ -94,5 +95,8 @@ def upload_picture(request):
             picture.image = form.cleaned_data['image']
             picture.category_id = 3
             picture.save()
-            return HttpResponseRedirect("/image_details/" + 'picture.id')
+            serializer = PictureSerializer(picture)
+            return JSONResponse(get_response_data("", serializer.data))
+
     return HttpResponseRedirect("/upload")
+

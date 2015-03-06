@@ -46,7 +46,8 @@
                 type: 'POST',
                 data: formData,
                 success: function (data) {
-                    window.location.href = '/uploaded';
+                    url = '/image_details/' + data.data.id;
+                    window.location.href = url;
                 },
                 //Options to tell JQuery not to process data or worry about content-type
                 cache: false,
@@ -65,7 +66,8 @@
                 type: 'POST',
                 data: formData,
                 success: function (data) {
-                    window.location.href = '/uploaded';
+                    url = '/image_details/' + data.data.id;
+                    window.location.href = url;;
                 },
                 //Options to tell JQuery not to process data or worry about content-type
                 cache: false,
