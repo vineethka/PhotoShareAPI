@@ -32,6 +32,7 @@ class UserProfileManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+
     @staticmethod
     def create_facebook_user(self, user_id, access_token=None, email=None, first_name=None, last_name=None):
         if not access_token:

@@ -14,7 +14,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(_('username'), max_length=30, unique=True, help_text=_('Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters'), validators=[validators.RegexValidator(re.compile('^[\w.@+-]+$'), _('Enter a valid username.'), _('invalid'))])
     first_name = models.CharField(_('first name'), max_length=30, default='')
     last_name = models.CharField(_('last name'), max_length=30, default='')
-    email = models.EmailField(_('email address'), max_length=255)
+    email = models.EmailField(_('email address'), blank=True)
     is_staff = models.BooleanField(_('staff status'), default=False, help_text=_('Designates whether the user can log into this admin site.'))
     is_active = models.BooleanField(_('active'), default=False, help_text=_('Designates whether this user should be treated as active. Unselect this instead of deleting accounts.'))
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
@@ -55,10 +55,6 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
         return self.profile_image.url
     profile_image_link.allow_tags = True
 
-
-    def is_authenticated(self):
-        return True
-
     def has_perm(self, perm, obj=None):
         "Does the user have a specific permission?"
         # Simplest possible answer: Yes, always
@@ -67,6 +63,9 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     def has_module_perms(self, app_label):
         "Does the user have permissions to view the app `app_label`?"
         # Simplest possible answer: Yes, always
+        return True
+
+    def is_authenticated(self):
         return True
 
     class Meta:
