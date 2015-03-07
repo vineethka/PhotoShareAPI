@@ -85,6 +85,18 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'social.apps.django_app.context_processors.login_redirect',
 )
 
+SOCIAL_AUTH_PIPELINE = (
+    'social.pipeline.social_auth.social_details',
+    'social.pipeline.social_auth.social_uid',
+    'social.pipeline.social_auth.auth_allowed',
+    'social.pipeline.social_auth.social_user',
+    'social.pipeline.user.get_username',
+    'social.pipeline.social_auth.associate_by_email',  # <--- enable this one
+    'social.pipeline.user.create_user',
+    'social.pipeline.social_auth.associate_user',
+    'social.pipeline.social_auth.load_extra_data',
+    'social.pipeline.user.user_details'
+)
 
 ROOT_URLCONF = 'PhotoSharing.urls'
 
@@ -121,7 +133,7 @@ USE_TZ = True
 GRAPPELLI_ADMIN_TITLE = "Farpic Application"
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.6/howto/static-files/
+# https://docs.djangoproject.com/en/1.6/howto/static-filesF/
 
 STATIC_URL = '/static/'
 
@@ -135,6 +147,12 @@ GRAPPELLI_INDEX_DASHBOARD = 'PhotoSharing.dashboardhelper.CustomIndexDashboard'
 # GRAPPELLI_INDEX_DASHBOARD = {  # alternative method
 #     'PhotoSharing.admin.admin_site': 'PhotoSharing.my_dashboard.CustomIndexDashboard',
 # }
+## Also add this at the bottom of the fille:
+AUTH_USER_MODEL = 'PhotoSharingApplication.UserProfile'
+SOCIAL_AUTH_USER_MODEL = 'PhotoSharingApplication.UserProfile'
+# LOGIN_REDIRECT_URL = '/'
+
+
 
 
 

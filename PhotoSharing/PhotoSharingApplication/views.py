@@ -52,15 +52,15 @@ def register(request):
 def profile(request):
     if request.user.is_authenticated():
         try:
-            user_profile = UserProfile.objects.get(id=request.user.userprofile.id)
+            user_profile = UserProfile.objects.get(id=request.user.id)
         except UserProfile.DoesNotExist:
             user_profile = request.user
 
         try:
-            like_pic_count = Pictures.objects.filter(picturelikes__user_id=request.user.userprofile.id).distinct().count()
+            like_pic_count = Pictures.objects.filter(picturelikes__user_id=request.user.id).distinct().count()
         except Pictures.DoesNotExist:
             like_pic_count = 0
-        uploaded_pic_count = Pictures.objects.filter(user_id=request.user.userprofile.id).count()
+        uploaded_pic_count = Pictures.objects.filter(user_id=request.user.id).count()
 
         return render(request, 'views/profile.html', {'user_profile': user_profile, 'like_pic_count': like_pic_count, 'uploaded_pic_count': uploaded_pic_count})
     return render(request, 'views/login.html')
@@ -109,7 +109,7 @@ def category_detail(request, category_id):
 def likes(request):
 
     if request.user.is_authenticated():
-        pictures = Pictures.objects.filter(picturelikes__user_id=request.user.userprofile.id).distinct()
+        pictures = Pictures.objects.filter(picturelikes__user_id=request.user.id).distinct()
         template = loader.get_template('views/like.html')
         context = RequestContext(request, {'pictures': pictures, })
         return HttpResponse(template.render(context))
@@ -118,7 +118,7 @@ def likes(request):
 
 def uploaded(request):
     if request.user.is_authenticated():
-        pictures = Pictures.objects.filter(user_id=request.user.userprofile.id)
+        pictures = Pictures.objects.filter(user_id=request.user.id)
         template = loader.get_template('views/category_image_list.html')
         context = RequestContext(request, {'pictures': pictures, })
         return HttpResponse(template.render(context))

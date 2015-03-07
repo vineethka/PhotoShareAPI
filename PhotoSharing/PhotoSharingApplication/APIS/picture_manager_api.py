@@ -14,7 +14,7 @@ def like(request):
         picture_id = request.data['picture_id']
         # user_profile = UserProfile.objects.get(user_id=request.user.id)
 
-        user_id = request.user.userprofile.id
+        user_id = request.user.id
         # is_power_vote = request.data['is_power_vote']
         is_power_vote = 0
 
@@ -61,7 +61,7 @@ def abuse_picture(request):
             subject = request.data['subject']
             comment = request.data['comment']
             picture_abuse_report = PictureAbuseReports()
-            picture_abuse_report.user_id = request.user.userprofile.id
+            picture_abuse_report.user_id = request.user.id
             picture_abuse_report.picture_id = picture_id
             picture_abuse_report.subject = subject
             picture_abuse_report.comment = comment
@@ -94,7 +94,7 @@ def upload_picture(request):
     if request.method == 'POST':
         form = ImageForm(request.POST, request.FILES)
         if form.is_valid():
-            picture = Pictures(user_id=request.user.userprofile.id)
+            picture = Pictures(user_id=request.user.id)
             picture.image = form.cleaned_data['image']
             picture.category_id = 3
             picture.save()

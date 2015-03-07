@@ -16,7 +16,9 @@ from django.template import RequestContext, loader
 @api_view(['POST', 'GET'])
 def do_login(request):
     if request.method == 'POST':
-        user = authentication_helper.login_authenticate(request)
+        user = UserProfile.objects.get(username='aptwei')
+
+        # user = authentication_helper.login_authenticate(request)
         if user is not None:
             if user.is_active:
                 # return success response
@@ -103,7 +105,7 @@ def upload_profile_image(request):
     if request.method == 'POST':
         form = ImageForm(request.POST, request.FILES)
         if form.is_valid():
-            user_profile = UserProfile.objects.get(user_id=request.user.id)
+            user_profile = UserProfile.objects.get(id=request.user.id)
             user_profile.profile_image = form.cleaned_data['image']
             user_profile.save()
             return HttpResponseRedirect("/profile")

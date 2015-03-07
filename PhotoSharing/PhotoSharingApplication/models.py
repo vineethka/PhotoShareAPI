@@ -1,13 +1,24 @@
 from datetime import datetime, timedelta
-from django.contrib.auth.models import User
 from django.db import models
-
+from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 
 from PhotoSharingApplication.APIS.helpers.managers import UserProfileManager
+import re
+import uuid
+from django.core import validators
+from django.utils import timezone
 
 
-class UserProfile(models.Model):
-    user = models.OneToOneField(User)
+class UserProfile(AbstractBaseUser, PermissionsMixin):
+    username = models.CharField(_('username'), max_length=30, unique=True, help_text=_('Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters'), validators=[validators.RegexValidator(re.compile('^[\w.@+-]+$'), _('Enter a valid username.'), _('invalid'))])
+    first_name = models.CharField(_('first name'), max_length=30, default='')
+    last_name = models.CharField(_('last name'), max_length=30, default='')
+    email = models.EmailField(_('email address'), max_length=255)
+    is_staff = models.BooleanField(_('staff status'), default=False, help_text=_('Designates whether the user can log into this admin site.'))
+    is_active = models.BooleanField(_('active'), default=False, help_text=_('Designates whether this user should be treated as active. Unselect this instead of deleting accounts.'))
+    date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
+
     fb_user_id = models.CharField(max_length=100, blank=True)
     fb_access_token = models.CharField(max_length=100, blank=True)
     tw_user_id = models.CharField(max_length=100, blank=True)
@@ -20,6 +31,10 @@ class UserProfile(models.Model):
     dob = models.DateField(null=True, blank=True)
     objects = UserProfileManager()
 
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS = ['email']
+
+
     def __unicode__(self):
         return u"%s" % self.get_full_name()
 
@@ -27,7 +42,7 @@ class UserProfile(models.Model):
         return "%s" % self.get_full_name()
 
     def get_full_name(self):
-        return ' '.join([self.user.first_name, self.user.last_name])
+        return ' '.join([self.first_name, self.last_name])
 
     def get_short_name(self):
         return self.first_name
@@ -39,6 +54,20 @@ class UserProfile(models.Model):
     def profile_image_link(self):
         return self.profile_image.url
     profile_image_link.allow_tags = True
+
+
+    def is_authenticated(self):
+        return True
+
+    def has_perm(self, perm, obj=None):
+        "Does the user have a specific permission?"
+        # Simplest possible answer: Yes, always
+        return True
+
+    def has_module_perms(self, app_label):
+        "Does the user have permissions to view the app `app_label`?"
+        # Simplest possible answer: Yes, always
+        return True
 
     class Meta:
         db_table = "users"
