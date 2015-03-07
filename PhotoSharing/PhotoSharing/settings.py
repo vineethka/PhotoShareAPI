@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 from django.conf import settings
+from PhotoSharing.config import *
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
@@ -42,6 +43,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'PhotoSharingApplication',
     'rest_framework',
+    'social.apps.django_app.default',
+
 )
 
 MIDDLEWARE_CLASSES = (
@@ -52,11 +55,18 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'PhotoSharingApplication.disable.DisableCSRF',
+
+    'social.apps.django_app.middleware.SocialAuthExceptionMiddleware',
+
 )
 
+
 AUTHENTICATION_BACKENDS = (
-    'PhotoSharingApplication.auth_backend.PasswordlessAuthBackend',
+    'social.backends.facebook.FacebookOAuth2',
+    'social.backends.google.GoogleOAuth2',
+    'social.backends.twitter.TwitterOAuth',
     'django.contrib.auth.backends.ModelBackend',
+    'PhotoSharingApplication.auth_backend.PasswordlessAuthBackend',
 
 )
 
@@ -65,6 +75,14 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.request",
     "django.core.context_processors.i18n",
     'django.contrib.messages.context_processors.messages',
+
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.core.context_processors.static',
+    'django.core.context_processors.tz',
+    'social.apps.django_app.context_processors.backends',
+    'social.apps.django_app.context_processors.login_redirect',
 )
 
 
@@ -117,3 +135,6 @@ GRAPPELLI_INDEX_DASHBOARD = 'PhotoSharing.dashboardhelper.CustomIndexDashboard'
 # GRAPPELLI_INDEX_DASHBOARD = {  # alternative method
 #     'PhotoSharing.admin.admin_site': 'PhotoSharing.my_dashboard.CustomIndexDashboard',
 # }
+
+
+

@@ -55,12 +55,13 @@
             </div>
 
 
-            <div class="col-xs-12 col-md-12 buttonBoxCenter"><button type="button" value="Sign In with Facebook "
-                                                                    name="submit"><img class="buttonIcon" src="{% static "app/facebook_icon.png" %}">Sign In with Facebook</button></div>
+                <div class="col-xs-12 col-md-12 buttonBoxCenter"><button type="button" value="Sign In with Facebook "
+                                                                    name="submit" onclick="window.location.href='{% url 'social:begin' 'facebook' %}?next={{ request.path }}'"><img class="buttonIcon" src="{% static "app/facebook_icon.png" %}">Sign In with Facebook</button></div>
             <div class="col-xs-12 col-md-12 buttonBoxCenter"><button type="button" value="Sign In with Twitter "
-                                                                    name="submit"><img class="buttonIcon" src="{% static "app/twitter_icon.png" %}">Sign In with Twitter</button></div>
+                                                                    name="submit" onclick="window.location.href='{% url 'social:begin' 'twitter' %}?next={{ request.path }}'"><img class="buttonIcon" src="{% static "app/twitter_icon.png" %}">Sign In with Twitter</button></div>
             <div class="col-xs-12 col-md-12 buttonBoxCenter"><button type="button" value="Sign In with Google "
-                                                                    name="submit"><img class="buttonIcon" src="{% static "app/google_icon.png" %}">Sign In with Google</button></div>
+                                                                    name="submit" onclick="window.location.href='{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}'"><img class="buttonIcon" src="{% static "app/google_icon.png" %}">Sign In with Google</button></div>
+
 
             <div class="col-xs-12 col-md-12 textCenterMoreTopMargin"><span class="forgot-password">Forgot Password?</span></div>
 

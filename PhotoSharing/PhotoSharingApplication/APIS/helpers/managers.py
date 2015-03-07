@@ -24,6 +24,10 @@ class UserProfileManager(BaseUserManager):
 
         return current_user
 
+    def create_user(self, username, email=None, password=None, **extra_fields):
+        return self._create_user(username, email, password, False, False,
+                                 **extra_fields)
+
     @staticmethod
     def create_facebook_user(self, user_id, access_token=None, email=None, first_name=None, last_name=None):
         if not access_token:

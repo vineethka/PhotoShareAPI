@@ -1,10 +1,11 @@
 from django.db.models import Sum
 from django.http.response import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from PhotoSharingApplication.APIS.helpers.upload_images import ImageForm
 from PhotoSharingApplication.models import Categories, UserProfile, Pictures, PictureLikes
 from django.template import RequestContext, loader
-
+from django.contrib.auth import logout as auth_logout
+from django.contrib.auth.decorators import login_required
 
 def index(request):
     if request.user.is_authenticated():
@@ -23,6 +24,10 @@ def login(request):
     if request.user.is_authenticated():
         return HttpResponseRedirect("/")
     return render(request, 'views/login.html')
+
+def logout(request):
+    auth_logout(request)
+    return redirect('/')
 
 
 def home(request):
