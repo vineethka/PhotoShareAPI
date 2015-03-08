@@ -1,9 +1,7 @@
 """
 Django settings for PhotoSharing project.
-
 For more information on this file, see
 https://docs.djangoproject.com/en/1.6/topics/settings/
-
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.6/ref/settings/
 """
@@ -112,7 +110,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'photoshare',
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': 'qburst',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }
@@ -158,4 +156,3 @@ LOGIN_REDIRECT_URL = '/'
 
 SOCIAL_AUTH_BACKEND_ERROR_URL = '/'
 LOGIN_ERROR_URL = '/'
-

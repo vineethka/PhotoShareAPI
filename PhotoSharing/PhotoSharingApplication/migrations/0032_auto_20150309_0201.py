@@ -8,14 +8,14 @@ import datetime
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('PhotoSharingApplication', '0012_auto_20150305_2313'),
+        ('PhotoSharingApplication', '0031_auto_20150308_0831'),
     ]
 
     operations = [
         migrations.AlterField(
             model_name='contest',
             name='end_at',
-            field=models.DateTimeField(default=datetime.datetime(2015, 3, 19, 23, 39, 59, 315000)),
+            field=models.DateTimeField(default=datetime.datetime(2015, 3, 23, 2, 1, 44, 91822)),
             preserve_default=True,
         ),
     ]
