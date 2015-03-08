@@ -3,22 +3,26 @@
 
 {% block content %}
     <title>{% block title %}Upload{% endblock %}</title>
-    <div class="container-fluid">
+    <div class="upload-container">
         <div class="row">
-            <div class="profile-info col-xs-6 col-md-6 col-lg-6 profile-info-border" id="img_camera">
-                            <span class="profile-info-text-count"><img
-                                    src="{% static "app/upload_camera.png" %}"></span>
-                    <span class="profile-info-text">Take a Picture</span>
+            <div class="upload-button-container col-xs-12 col-md-6 col-lg-6" id="img_camera">
+                <div class="upload-button-inner-container upload-button-border-vertical">
+                    <span class="upload-button-image"><img src="{% static "app/upload_camera.png" %}"></span>
+                    <span class="upload-button-text">Take a Picture</span>
+                </div>
+                <span class="visible-xs visible-sm upload-button-border-horizontal"></span>
             </div>
-            <div class="profile-info col-xs-6 col-md-6 col-lg-6 profile-info-border" id="img_gallery">
-                            <span class="profile-info-text-count"><img
-                                    src="{% static "app/upload_gallery.png" %}"></span>
-                    <span class="profile-info-text">Camera Roll</span>
+
+            <div class="upload-button-container col-xs-12 col-md-6 col-lg-6" id="img_gallery">
+                <div class="upload-button-inner-container">
+                    <span class="upload-button-image"><img src="{% static "app/upload_gallery.png" %}"></span>
+                    <span class="upload-button-text">Camera Roll</span>
+                </div>
             </div>
+
+
             <input id="id_camera" type="file" accept="image/*;capture=camera" class="hidden">
             <input id="id_gallery" type="file" accept="image/*" class="hidden" name="image">
-
-
         </div>
     </div>
 
@@ -57,7 +61,7 @@
             });
         });
 
-           $('#img_gallery').change(function () {
+        $('#img_gallery').change(function () {
             $("#img_gallery").hide();
             var formData = new FormData();
             formData.append('action', 'upload_picture');
@@ -68,7 +72,8 @@
                 data: formData,
                 success: function (data) {
                     url = '/image_details/' + data.data.id;
-                    window.location.href = url;;
+                    window.location.href = url;
+                    ;
                 },
                 //Options to tell JQuery not to process data or worry about content-type
                 cache: false,

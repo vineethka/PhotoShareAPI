@@ -635,3 +635,56 @@ i {
     position: absolute;
     width: 100%;
 }
+
+
+
+.upload-container {
+    vertical-align: middle;
+    position: fixed;
+    top: 50%;
+    width: 100%;
+    transform: translate(0, -50%);
+}
+
+.upload-button-container {
+    text-align: center;
+}
+
+.upload-button-inner-container {
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+
+.upload-button-border-horizontal {
+    margin-left: 10px;
+    margin-right: 10px;
+    border-bottom: 1px solid #cccccc;
+}
+
+@media screen and (min-width: 992px) {
+.upload-button-border-vertical {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 100%;
+    border-right: 1px solid #cccccc;
+}
+}
+
+.upload-button-text {
+    margin-top: 15px;
+    display: block;
+    font-size: 25px;
+    font-family: AvenirRoman;
+    color:#60670d;
+}
+
+.upload-button-image {
+    display: block;
+}
+
+.upload-button-image img {
+    width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+}
