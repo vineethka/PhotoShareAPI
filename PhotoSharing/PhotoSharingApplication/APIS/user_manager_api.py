@@ -16,9 +16,10 @@ from django.template import RequestContext, loader
 @api_view(['POST', 'GET'])
 def do_login(request):
     if request.method == 'POST':
-        user = UserProfile.objects.get(username='aptwei')
+        email = request.data['email']
+        # user = UserProfile.objects.get(email=email)
 
-        # user = authentication_helper.login_authenticate(request)
+        user = authentication_helper.get_user_with_email_address(email=email)
         if user is not None:
             if user.is_active:
                 # return success response
