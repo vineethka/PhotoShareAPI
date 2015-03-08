@@ -53,11 +53,16 @@ def do_register(request):
             return HttpResponse(register_template.render(context))
         else:
             user = UserProfile.objects.create_user(request.data['username'], request.data['email'],
-                                                   request.data['password'], request.data['firstName'],
-                                                   request.data['lastName'], request.data['dob'])
+                                                   request.data['password'])
+            user.first_name = request.data['firstName']
+            user.last_name = request.data['lastName']
+            user.dob = request.data['dob']
+            user.is_active = True
+            # user.backend = 'django.contrib.auth.backends.ModelBackend'
+
             user.save()
             if user is not None:
-                if user.user.is_active:
+                if user.is_active:
                     # return success response
                     authenticated_user = authenticate(username=request.data['username'])
                     auth_login(request, authenticated_user)

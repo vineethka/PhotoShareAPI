@@ -149,7 +149,7 @@ GRAPPELLI_INDEX_DASHBOARD = 'PhotoSharing.dashboardhelper.CustomIndexDashboard'
 # }
 ## Also add this at the bottom of the fille:
 AUTH_USER_MODEL = 'PhotoSharingApplication.UserProfile'
-SOCIAL_AUTH_USER_MODEL = 'PhotoSharingApplication.UserProfile'
+# SOCIAL_AUTH_USER_MODEL = 'PhotoSharingApplication.UserProfile'
 # LOGIN_REDIRECT_URL = '/'
 
 
