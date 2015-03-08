@@ -29,6 +29,8 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# ALLOWED_HOSTS = ['localhost', '0.0.0,0', '127.0.0.1', '127.0.0.0', 'farpic.com', 'farpic.shopywei.com']
+
 
 # Application definition
 
@@ -55,7 +57,6 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'PhotoSharingApplication.disable.DisableCSRF',
-
     'social.apps.django_app.middleware.SocialAuthExceptionMiddleware',
 
 )
@@ -150,10 +151,11 @@ GRAPPELLI_INDEX_DASHBOARD = 'PhotoSharing.dashboardhelper.CustomIndexDashboard'
 ## Also add this at the bottom of the fille:
 AUTH_USER_MODEL = 'PhotoSharingApplication.UserProfile'
 # SOCIAL_AUTH_USER_MODEL = 'PhotoSharingApplication.UserProfile'
-# LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/'
 
 
 # SOCIAL_AUTH_ENABLED_BACKENDS = ('facebook', 'twitter')
 
-
+SOCIAL_AUTH_BACKEND_ERROR_URL = '/'
+LOGIN_ERROR_URL = '/'
 
