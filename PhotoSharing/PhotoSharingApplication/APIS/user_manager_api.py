@@ -57,7 +57,7 @@ def do_register(request):
             user.first_name = request.data['firstName']
             user.last_name = request.data['lastName']
             user.dob = request.data['dob']
-            user.is_active = True
+            # user.is_active = True
             # user.backend = 'django.contrib.auth.backends.ModelBackend'
 
             user.save()

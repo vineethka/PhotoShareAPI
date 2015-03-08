@@ -153,6 +153,7 @@ AUTH_USER_MODEL = 'PhotoSharingApplication.UserProfile'
 # LOGIN_REDIRECT_URL = '/'
 
 
+# SOCIAL_AUTH_ENABLED_BACKENDS = ('facebook', 'twitter')
 
 
 
