@@ -6,11 +6,10 @@
     <div class="upload-container">
         <div class="row">
             <div class="upload-button-container col-xs-12 col-md-6 col-lg-6" id="img_camera">
-                <div class="upload-button-inner-container upload-button-border-vertical">
+                <div class="upload-button-inner-container upload-button-border-vertical upload-button-border-horizontal">
                     <span class="upload-button-image"><img src="{% static "app/upload_camera.png" %}"></span>
                     <span class="upload-button-text">Take a Picture</span>
                 </div>
-                <span class="visible-xs visible-sm upload-button-border-horizontal"></span>
             </div>
 
             <div class="upload-button-container col-xs-12 col-md-6 col-lg-6" id="img_gallery">
@@ -19,7 +18,6 @@
                     <span class="upload-button-text">Camera Roll</span>
                 </div>
             </div>
-
 
             <input id="id_camera" type="file" accept="image/*;capture=camera" class="hidden">
             <input id="id_gallery" type="file" accept="image/*" class="hidden" name="image">

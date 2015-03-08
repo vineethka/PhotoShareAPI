@@ -513,6 +513,7 @@ i {
     display: block;
     position : fixed;
     top : 0;
+    z-index: 5;
 }
 
 #showLeftPush {
@@ -653,22 +654,24 @@ i {
 .upload-button-inner-container {
     padding-top: 80px;
     padding-bottom: 80px;
+    cursor: pointer;
 }
 
-
-.upload-button-border-horizontal {
-    margin-left: 10px;
-    margin-right: 10px;
-    border-bottom: 1px solid #cccccc;
+@media screen and (max-width: 991px) {
+    .upload-button-border-horizontal {
+        margin-left: 10px;
+        margin-right: 10px;
+        border-bottom: 1px solid #cccccc;
+    }
 }
 
 @media screen and (min-width: 992px) {
-.upload-button-border-vertical {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    height: 100%;
-    border-right: 1px solid #cccccc;
-}
+    .upload-button-border-vertical {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        height: 100%;
+        border-right: 1px solid #cccccc;
+    }
 }
 
 .upload-button-text {
