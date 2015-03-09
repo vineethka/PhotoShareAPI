@@ -160,6 +160,17 @@ def upload(request):
 
 def contact_us(request):
     if request.user.is_authenticated():
-        return render(request, 'views/contact_us.html')
+        template = loader.get_template('views/contact_us.html')
+        context = RequestContext(request, {'title': 'Contact Us'})
+        return HttpResponse(template.render(context))
+
+    return render(request, 'views/login.html')
+
+
+def popular_pics(request):
+    if request.user.is_authenticated():
+        template = loader.get_template('views/popular_pics.html')
+        context = RequestContext(request, {'title': 'Popular'})
+        return HttpResponse(template.render(context))
 
     return render(request, 'views/login.html')

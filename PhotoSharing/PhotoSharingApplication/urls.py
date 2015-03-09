@@ -9,6 +9,7 @@ urlpatterns = patterns('',
     url(r'^do_logout', user_manager_api.do_logout, name='do_logout'),
     url(r'^do_register', user_manager_api.do_register, name='do_register'),
     url(r'^upload_profile_image', user_manager_api.upload_profile_image, name='upload_profile_image'),
+    url(r'^do_contact_us', user_manager_api.do_contact_us, name='do_contact_us'),
 
     url(r'^login', views.login, name='login'),
     url(r'^home', views.home, name='home'),
@@ -24,7 +25,7 @@ urlpatterns = patterns('',
     url(r'^upload_picture', picture_manager_api.upload_picture, name='upload_picture'),
     url(r'^upload', views.upload, name="upload"),
     url(r'^contact_us', views.contact_us, name="contact_us"),
-    url(r'^do_contact_us', user_manager_api.do_contact_us, name='do_contact_us'),
+    url(r'^popular_pics', views.popular_pics, name="popular_pics"),
 
 
     url(r'^facebooklogin', user_manager_api.facebook_login, name='facebooklogin'),

@@ -1,0 +1,12 @@
+{% extends "home_slide_menu.html" %}
+{% load staticfiles %}
+
+{% block content %}
+    <title>{% block title %}Contact Us{% endblock %}</title>
+    <div class="container-fluid"></div>
+    <script>
+        document.getElementById("header-name").innerHTML = "{{ title}}";
+    </script>
+
+{% endblock %}
+
