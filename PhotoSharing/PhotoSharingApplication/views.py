@@ -174,3 +174,12 @@ def popular_pics(request):
         return HttpResponse(template.render(context))
 
     return render(request, 'views/login.html')
+
+
+def help(request):
+    if request.user.is_authenticated():
+        template = loader.get_template('views/help.html')
+        context = RequestContext(request, {'title': 'Help'})
+        return HttpResponse(template.render(context))
+
+    return render(request, 'views/login.html')

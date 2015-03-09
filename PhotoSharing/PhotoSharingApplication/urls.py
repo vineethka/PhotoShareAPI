@@ -26,6 +26,7 @@ urlpatterns = patterns('',
     url(r'^upload', views.upload, name="upload"),
     url(r'^contact_us', views.contact_us, name="contact_us"),
     url(r'^popular_pics', views.popular_pics, name="popular_pics"),
+    url(r'^help', views.help, name="help"),
 
 
     url(r'^facebooklogin', user_manager_api.facebook_login, name='facebooklogin'),

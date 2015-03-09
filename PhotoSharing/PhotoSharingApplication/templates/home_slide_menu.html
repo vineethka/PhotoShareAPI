@@ -127,13 +127,13 @@
                                                                                 src="{% static "app/menu_profile.png" %}">
             <img id="profActive" class="hidden menu_icon" src="{% static "app/menu_profile_green.png" %}">
             Profile</span>
-    <span class="menu-span"><img class="menu_icon"
+    <span class="menu-span" onclick="window.location.href='/popular_pics'"><img class="menu_icon"
                                  src="{% static "app/menu_popular_photos.png" %}">Popular Photos</span>
     <span class="menu-span" onclick="showUploadedImages()" id="uploaded-menu"><img class="menu_icon"
                                                                                    src="{% static "app/menu_uploaded_images.png" %}">Uploaded Images</span>
 
     <span class="menu-span" onclick="window.location.href='/contact_us'"><img class="menu_icon" src="{% static "app/menu_contact.png" %}">Contact</span>
-    <span class="menu-span"><img class="menu_icon" src="{% static "app/menu_help.png" %}">Help</span>
+    <span class="menu-span" onclick="window.location.href='/help'"><img class="menu_icon" src="{% static "app/menu_help.png" %}">Help</span>
     <span class="menu-span" onclick="window.location.href='/do_logout'"><img class="menu_icon"
                                                                              src="{% static "app/menu_logout.png" %}">Log Out</span>
 
@@ -154,15 +154,15 @@
         <!-- /.container -->
         <div class="bottom-bar">
             <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
-                <div class="col-md-3 col-xs-3 col-lg-3"><span><img src="{% static "app/bottom_bar_home.png" %}"></span>
+                <div class="col-md-3 col-xs-3 col-lg-3" onclick="window.location.href='/'"><span><img src="{% static "app/bottom_bar_home.png" %}"></span>
                 </div>
                 <div class="col-md-3 col-xs-3 col-lg-3" onclick="window.location.href='/upload'"><span><img
                         src="{% static "app/bottom_bar_upload.png" %}"></span>
                 </div>
-                <div class="col-md-3 col-xs-3 col-lg-3"><span><img
+                <div class="col-md-3 col-xs-3 col-lg-3" onclick="window.location.href='/likes'"><span><img
                         src="{% static "app/bottom_bar_favorite.png" %}"></span>
                 </div>
-                <div class="col-md-3 col-xs-3 col-lg-3"><span><img
+                <div class="col-md-3 col-xs-3 col-lg-3" onclick="window.location.href='/popular_pics'"><span><img
                         src="{% static "app/bottom_bar_trophy.png" %}"></span>
                 </div>
             </div>
