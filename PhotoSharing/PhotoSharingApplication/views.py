@@ -100,8 +100,10 @@ def category_detail(request, category_id):
 
     if request.user.is_authenticated():
         pictures = Pictures.objects.filter(category_id=category_id).exclude(picturelikes__user_id=request.user.id)
+        category = Categories.objects.get(id=category_id)
+
         template = loader.get_template('views/category_image_list.html')
-        context = RequestContext(request, {'pictures': pictures, })
+        context = RequestContext(request, {'pictures': pictures, 'title': category.name})
         return HttpResponse(template.render(context))
     return render(request, 'views/login.html')
 
@@ -111,7 +113,7 @@ def likes(request):
     if request.user.is_authenticated():
         pictures = Pictures.objects.filter(picturelikes__user_id=request.user.id).distinct()
         template = loader.get_template('views/like.html')
-        context = RequestContext(request, {'pictures': pictures, })
+        context = RequestContext(request, {'pictures': pictures, 'title': 'Your Likes' })
         return HttpResponse(template.render(context))
     return render(request, 'views/login.html')
 
@@ -120,7 +122,7 @@ def uploaded(request):
     if request.user.is_authenticated():
         pictures = Pictures.objects.filter(user_id=request.user.id)
         template = loader.get_template('views/category_image_list.html')
-        context = RequestContext(request, {'pictures': pictures, })
+        context = RequestContext(request, {'pictures': pictures, 'title': 'Your Uploads'})
         return HttpResponse(template.render(context))
     return render(request, 'views/login.html')
 
@@ -152,5 +154,12 @@ def image_details(request, picture_id):
 def upload(request):
     if request.user.is_authenticated():
         return render(request, 'views/upload.html')
+
+    return render(request, 'views/login.html')
+
+
+def contact_us(request):
+    if request.user.is_authenticated():
+        return render(request, 'views/contact_us.html')
 
     return render(request, 'views/login.html')

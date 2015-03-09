@@ -224,6 +224,7 @@ class PictureAbuseReports(models.Model):
 
 
 class ContactUs(models.Model):
+    user = models.ForeignKey(UserProfile, blank=True, null=True)
     name = models.CharField(max_length=50)
     email = models.EmailField(max_length=150)
     subject = models.CharField(max_length=150, blank=True)

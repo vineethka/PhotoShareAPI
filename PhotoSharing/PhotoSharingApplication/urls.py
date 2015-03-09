@@ -23,6 +23,8 @@ urlpatterns = patterns('',
     url(r'^abuse_picture', picture_manager_api.abuse_picture, name='abuse_picture'),
     url(r'^upload_picture', picture_manager_api.upload_picture, name='upload_picture'),
     url(r'^upload', views.upload, name="upload"),
+    url(r'^contact_us', views.contact_us, name="contact_us"),
+    url(r'^do_contact_us', user_manager_api.do_contact_us, name='do_contact_us'),
 
 
     url(r'^facebooklogin', user_manager_api.facebook_login, name='facebooklogin'),

@@ -1,0 +1,39 @@
+{% extends "home_slide_menu.html" %}
+{% load staticfiles %}
+
+{% block content %}
+    <title>{% block title %}Contact Us{% endblock %}</title>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4 content-box">
+                 <form action='do_contact_us' method="post">
+                    {% if error_message %}
+                        <div class="alert bg-danger">
+                            <p class="error_text text-danger">{{ error_message }}</p>
+                        </div>
+                    {% endif %}
+                    <div class="col-md-12"><input type="text" required="required" name="name" id="name"
+                                                  placeholder="Name"></div>
+                    <div class="col-md-12"><input type="email" required="required" name="email" id="name"
+                                                  placeholder="Email Address"></div>
+                    <div class="col-md-12"><select name="subject" class="form-control" required="required">
+                        <option>Suggest New Prize</option>
+                        <option>Suggest New Category</option>
+                        <option>Advertise with Us</option>
+                        <option>Report Photo</option>
+                        <option>Other</option>
+                    </select></div>
+
+                    <div class="col-md-12"><textarea required="required" name="comment" id="name"
+                                             placeholder="Comment" rows="3"></textarea></div>
+
+                    <div class="col-xs-12 col-md-12 buttonBoxCenter"><input type="submit" value=" Send "
+                                                                            name="submit">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+

@@ -9,7 +9,7 @@ from PhotoSharingApplication.APIS.helpers import authentication_helper
 from PhotoSharingApplication.APIS.helpers.api_helper import JSONResponse, get_response_data
 from PhotoSharingApplication.APIS.helpers.serializers import UserSerializer
 from PhotoSharingApplication.APIS.helpers.upload_images import ImageForm
-from PhotoSharingApplication.models import UserProfile, Categories
+from PhotoSharingApplication.models import UserProfile, Categories, ContactUs
 from django.template import RequestContext, loader
 
 
@@ -51,6 +51,9 @@ def do_register(request):
             return HttpResponse(register_template.render(context))
         elif authentication_helper.get_user_with_username(request.data['username']) is not None:
             context = RequestContext(request, {'error_message': "Username Already exists", })
+            return HttpResponse(register_template.render(context))
+        elif request.data['password'] is not request.data['confirm-password']:
+            context = RequestContext(request, {'error_message': "Passwords do not match", })
             return HttpResponse(register_template.render(context))
         else:
             user = UserProfile.objects.create_user(request.data['username'], request.data['email'],
@@ -116,6 +119,23 @@ def upload_profile_image(request):
             user_profile.save()
             return HttpResponseRedirect("/profile")
     return HttpResponseRedirect("/profile")
+
+@api_view(['POST', 'GET'])
+def do_contact_us(request):
+    if request.method == 'POST':
+
+        contact_us = ContactUs()
+        if request.user.id:
+            contact_us.user_id = request.user.id
+        contact_us.name = request.data['name']
+        contact_us.email = request.data['email']
+        contact_us.subject = request.data['subject']
+        contact_us.comment = request.data['comment']
+        contact_us.save()
+        return render(request, 'views/contact_us.html', {'error_message': "Submitted", })
+
+    else:
+        return HttpResponseRedirect("/contact_us")
 
 
 

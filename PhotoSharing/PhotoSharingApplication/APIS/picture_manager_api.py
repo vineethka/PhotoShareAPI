@@ -96,7 +96,7 @@ def upload_picture(request):
         if form.is_valid():
             picture = Pictures(user_id=request.user.id)
             picture.image = form.cleaned_data['image']
-            picture.category_id = 3
+            picture.category_id = 1
             picture.save()
             serializer = PictureSerializer(picture)
             return JSONResponse(get_response_data("", serializer.data))
