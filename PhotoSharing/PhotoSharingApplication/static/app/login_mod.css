@@ -691,3 +691,42 @@ i {
     margin-left: auto;
     margin-right: auto;
 }
+
+.winners-name-text {
+    font-size: 24px;
+    font-family: AvenirRoman;
+    color: #60670d;
+}
+
+.winners-likes-text {
+    font-size: 20px;
+    font-family: AvenirRoman;
+    color: #60670d;
+}
+
+.winners ul {
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+.winners-container {
+    border-bottom: 1px solid #cccccc;
+    background: #ffffff;
+    padding: 10px;
+    height: 250px;
+    vertical-align: middle;
+}
+
+.winners-heart-icon {
+    width: 22px;
+}
+
+.winners-profile-pic {
+    height:75px;
+    border-radius: 100%;
+}
+
+.winners-element {
+    height: 50px;
+}
