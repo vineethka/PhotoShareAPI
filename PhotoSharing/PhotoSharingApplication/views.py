@@ -14,7 +14,7 @@ def index(request):
 
         # return JSONResponse(get_response_data("", serializer.data))
         template = loader.get_template('views/home.html')
-        context = RequestContext(request, {'categories': categories, })
+        context = RequestContext(request, {'categories': categories, 'type': 'home'})
         return HttpResponse(template.render(context))
 
     return render(request, 'views/login.html')
@@ -37,7 +37,7 @@ def home(request):
 
         # return JSONResponse(get_response_data("", serializer.data))
         template = loader.get_template('views/home.html')
-        context = RequestContext(request, {'categories': categories, })
+        context = RequestContext(request, {'categories': categories, 'type': 'home'})
         return HttpResponse(template.render(context))
     return render(request, 'views/login.html')
 
@@ -62,7 +62,7 @@ def profile(request):
             like_pic_count = 0
         uploaded_pic_count = Pictures.objects.filter(user_id=request.user.id).count()
 
-        return render(request, 'views/profile.html', {'user_profile': user_profile, 'like_pic_count': like_pic_count, 'uploaded_pic_count': uploaded_pic_count})
+        return render(request, 'views/profile.html', {'user_profile': user_profile, 'like_pic_count': like_pic_count, 'uploaded_pic_count': uploaded_pic_count, 'type': 'profile'})
     return render(request, 'views/login.html')
 
 
@@ -103,7 +103,7 @@ def category_detail(request, category_id):
         category = Categories.objects.get(id=category_id)
 
         template = loader.get_template('views/category_image_list.html')
-        context = RequestContext(request, {'pictures': pictures, 'title': category.name})
+        context = RequestContext(request, {'pictures': pictures, 'title': category.name, 'type': 'category'})
         return HttpResponse(template.render(context))
     return render(request, 'views/login.html')
 
@@ -113,7 +113,7 @@ def likes(request):
     if request.user.is_authenticated():
         pictures = Pictures.objects.filter(picturelikes__user_id=request.user.id).distinct()
         template = loader.get_template('views/like.html')
-        context = RequestContext(request, {'pictures': pictures, 'title': 'Your Likes' })
+        context = RequestContext(request, {'pictures': pictures, 'title': 'Your Likes', 'type': 'like'})
         return HttpResponse(template.render(context))
     return render(request, 'views/login.html')
 
@@ -122,7 +122,7 @@ def uploaded(request):
     if request.user.is_authenticated():
         pictures = Pictures.objects.filter(user_id=request.user.id)
         template = loader.get_template('views/category_image_list.html')
-        context = RequestContext(request, {'pictures': pictures, 'title': 'Your Uploads'})
+        context = RequestContext(request, {'pictures': pictures, 'title': 'Your Uploads', 'type': 'upload'})
         return HttpResponse(template.render(context))
     return render(request, 'views/login.html')
 
@@ -132,7 +132,7 @@ def report_a_pic(request, picture_id):
     if request.user.is_authenticated():
         picture = Pictures.objects.get(id=picture_id)
         template = loader.get_template('views/report_a_pic.html')
-        context = RequestContext(request, {'picture': picture, })
+        context = RequestContext(request, {'picture': picture, 'type': 'report'})
         return HttpResponse(template.render(context))
     return render(request, 'views/login.html')
 
@@ -146,7 +146,7 @@ def image_details(request, picture_id):
         if like_count_agg['like_count__sum'] != None:
             like_count = like_count_agg['like_count__sum']
         template = loader.get_template('views/image_details.html')
-        context = RequestContext(request, {'picture': picture, 'like_count': like_count})
+        context = RequestContext(request, {'picture': picture, 'like_count': like_count, 'type': 'image'})
         return HttpResponse(template.render(context))
     return render(request, 'views/login.html')
 
@@ -161,7 +161,7 @@ def upload(request):
 def contact_us(request):
     if request.user.is_authenticated():
         template = loader.get_template('views/contact_us.html')
-        context = RequestContext(request, {'title': 'Contact Us'})
+        context = RequestContext(request, {'title': 'Contact Us', 'type': 'contact'})
         return HttpResponse(template.render(context))
 
     return render(request, 'views/login.html')
@@ -170,7 +170,7 @@ def contact_us(request):
 def popular_pics(request):
     if request.user.is_authenticated():
         template = loader.get_template('views/popular_pics.html')
-        context = RequestContext(request, {'title': 'Popular'})
+        context = RequestContext(request, {'title': 'Popular', 'type': 'popular'})
         return HttpResponse(template.render(context))
 
     return render(request, 'views/login.html')
@@ -179,7 +179,7 @@ def popular_pics(request):
 def help(request):
     if request.user.is_authenticated():
         template = loader.get_template('views/help.html')
-        context = RequestContext(request, {'title': 'Help'})
+        context = RequestContext(request, {'title': 'Help', 'type': 'help'})
         return HttpResponse(template.render(context))
 
     return render(request, 'views/login.html')

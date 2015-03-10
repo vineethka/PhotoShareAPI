@@ -5,6 +5,11 @@
     <title>{% block title %}Contact Us{% endblock %}</title>
     <div class="container-fluid"></div>
     <script>
+        $("#help-menu").addClass('menu-active');
+        $("#helpMenuActive").show();
+        $("#helpMenuInactive").hide();
+        $("#helpMenuActive").removeClass("hidden");
+
         document.getElementById("header-name").innerHTML = "{{ title}}";
     </script>
 

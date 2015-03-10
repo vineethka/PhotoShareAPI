@@ -26,6 +26,13 @@
     </div>
 
     <script>
+        {% if type == 'upload' %}
+            $("#uploaded-menu").addClass('menu-active');
+            $("#uploadImagesActive").show();
+            $("#uploadImagesInactive").hide();
+            $("#uploadImagesActive").removeClass("hidden");
+        {% endif %}
+
         document.getElementById("header-name").innerHTML = "{{ title}}";
     </script>
 

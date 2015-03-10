@@ -110,7 +110,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'photoshare',
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': 'qburst',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }

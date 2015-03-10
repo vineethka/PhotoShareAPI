@@ -98,7 +98,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
     {#		<meta name="description" content="Blueprint: Slide and Push Menus" />#}
     {#		<meta name="keywords" content="sliding menu, pushing menu, navigation, responsive, menu, css, jquery" />#}
     {#		<meta name="author" content="Codrops" />#}
@@ -110,7 +110,7 @@
 
     {#		<link rel="stylesheet" type="text/css" href="css/default.css" />#}
     {#		<link rel="stylesheet" type="text/css" href="css/component.css" />#}
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
     <script src="{% static 'app/js/modernizr.custom.js' %}"></script>
     <script src="{% static 'app/js/bootstrap.min.js' %}"></script>
@@ -127,15 +127,25 @@
                                                                                 src="{% static "app/menu_profile.png" %}">
             <img id="profActive" class="hidden menu_icon" src="{% static "app/menu_profile_green.png" %}">
             Profile</span>
-    <span class="menu-span" onclick="window.location.href='/popular_pics'"><img id="popularInactive" class="menu_icon"
-                                 src="{% static "app/menu_popular_photos.png" %}"> <img id="popularActive" class="hidden menu_icon"
-                                 src="{% static "app/menu_popular_photos_green.png" %}">Popular Photos</span>
-    <span class="menu-span" onclick="showUploadedImages()" id="uploaded-menu"><img id="uploadImagesInactive" class="menu_icon"
-                                                                                   src="{% static "app/menu_uploaded_images.png" %}"><img id="uploadImagesActive" class="hidden menu_icon"
-                                                                                   src="{% static "app/menu_uploaded_images_green.png" %}">Uploaded Images</span>
+    <span class="menu-span" onclick="window.location.href='/popular_pics'" id="popular-menu"><img id="popularInactive"
+                                                                                                  class="menu_icon"
+                                                                                                  src="{% static "app/menu_popular_photos.png" %}"> <img
+            id="popularActive" class="hidden menu_icon"
+            src="{% static "app/menu_popular_photos_green.png" %}">Popular Photos</span>
+    <span class="menu-span" onclick="showUploadedImages()" id="uploaded-menu"><img id="uploadImagesInactive"
+                                                                                   class="menu_icon"
+                                                                                   src="{% static "app/menu_uploaded_images.png" %}"><img
+            id="uploadImagesActive" class="hidden menu_icon"
+            src="{% static "app/menu_uploaded_images_green.png" %}">Uploaded Images</span>
 
-    <span class="menu-span" onclick="window.location.href='/contact_us'"><img id="contactUsInactive" class="menu_icon" src="{% static "app/menu_contact.png" %}"><img id="contactUsActive" class="hidden menu_icon"  src="{% static "app/menu_contact_green.png" %}">Contact</span>
-    <span class="menu-span" onclick="window.location.href='/help'"><img id="helpMenuInactive" class="menu_icon" src="{% static "app/menu_help.png" %}"><img id="helpMenuActive" class="hidden menu_icon"  src="{% static "app/menu_help_green.png" %}">Help</span>
+    <span class="menu-span" onclick="window.location.href='/contact_us'" id="contactus-menu"><img id="contactUsInactive"
+                                                                                                  class="menu_icon"
+                                                                                                  src="{% static "app/menu_contact.png" %}"><img
+            id="contactUsActive" class="hidden menu_icon" src="{% static "app/menu_contact_green.png" %}">Contact</span>
+    <span class="menu-span" onclick="window.location.href='/help'" id="help-menu"><img id="helpMenuInactive"
+                                                                                       class="menu_icon"
+                                                                                       src="{% static "app/menu_help.png" %}"><img
+            id="helpMenuActive" class="hidden menu_icon" src="{% static "app/menu_help_green.png" %}">Help</span>
     <span class="menu-span" onclick="window.location.href='/do_logout'"><img id="uploadImagesInactive" class="menu_icon"
                                                                              src="{% static "app/menu_logout.png" %}">Log Out</span>
 
@@ -156,7 +166,8 @@
         <!-- /.container -->
         <div class="bottom-bar">
             <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
-                <div class="col-md-3 col-xs-3 col-lg-3" onclick="window.location.href='/'"><span><img src="{% static "app/bottom_bar_home.png" %}"></span>
+                <div class="col-md-3 col-xs-3 col-lg-3" onclick="window.location.href='/'"><span><img
+                        src="{% static "app/bottom_bar_home.png" %}"></span>
                 </div>
                 <div class="col-md-3 col-xs-3 col-lg-3" onclick="window.location.href='/upload'"><span><img
                         src="{% static "app/bottom_bar_upload.png" %}"></span>
